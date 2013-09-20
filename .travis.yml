@@ -26,7 +26,7 @@ env:
         # User specific env variables
         - secure: "AmP2i9Huk9GPd9FXA6Cbzh3XzMu4n1TQo+Hn0kMuc9A0/zHhBOt3r8AMJqdWXKjuzxgo1WXKjW49Df//O/g4GE8pJoUF1Nc7JVCzQmcWoKa3dCka7uf83Opu3+84OjsmAGYCH50Ss0vxMw3v86zkMs56l3ys9aOMkx10VxnhnMc="
         - GH_OWNER: atomantic
-        - GH_PROJECT_NAME: core.js
+        - GH_PROJECT_NAME: undermore
         # This .travis.yml file instructs travis-ci.org to build your master branch using `yeoman build`
         # and deploy the output to your project's gh-pages branch.
 
