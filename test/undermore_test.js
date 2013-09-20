@@ -1,5 +1,5 @@
 /*jslint jquery:true,browser:true */
-/*global test,module,deepEqual,equal,ok,notEqual,_*/
+/*global test,module,deepEqual,equal,ok,notEqual,_,QUnit*/
 (function() {
     'use strict';
 
@@ -29,6 +29,171 @@
         setup: function() {
         }
     });
+    
+    
+    test('base64_encode',function(){
+        equal(_.base64_encode(''), '', '');
+        equal(_.base64_encode('f'), 'Zg==', '');
+        equal(_.base64_encode('fo'), 'Zm8=', '');
+        equal(_.base64_encode('foo'), 'Zm9v', '');
+        equal(_.base64_encode('quux'), 'cXV1eA==', '');
+        equal(_.base64_encode('!"#$%'), 'ISIjJCU=', '');
+        equal(_.base64_encode("&'()*+"), 'JicoKSor', '');
+        equal(_.base64_encode(',-./012'), 'LC0uLzAxMg==', '');
+        equal(_.base64_encode('3456789:'), 'MzQ1Njc4OTo=', '');
+        equal(_.base64_encode(';<=>?@ABC'), 'Ozw9Pj9AQUJD', '');
+        equal(_.base64_encode('DEFGHIJKLM'), 'REVGR0hJSktMTQ==', '');
+        equal(_.base64_encode('NOPQRSTUVWX'), 'Tk9QUVJTVFVWV1g=', '');
+        equal(_.base64_encode('YZ[\\]^_`abc'), 'WVpbXF1eX2BhYmM=', '');
+        equal(_.base64_encode('defghijklmnop'), 'ZGVmZ2hpamtsbW5vcA==', '');
+        equal(_.base64_encode('qrstuvwxyz{|}~'), 'cXJzdHV2d3h5ent8fX4=', '');
+        
+        // non-ascii input
+        equal(_.base64_encode('✈'),'4pyI','non-ascii input');
+    });
+    
+    test('base64_decode',function(){
+        equal(_.base64_decode(''), '', '');
+        equal(_.base64_decode('Zg=='), 'f', '');
+        equal(_.base64_decode('Zm8='), 'fo', '');
+        equal(_.base64_decode('Zm9v'), 'foo', '');
+        equal(_.base64_decode('cXV1eA=='), 'quux', '');
+        equal(_.base64_decode('ISIjJCU='), '!"#$%', '');
+        equal(_.base64_decode('JicoKSor'), "&'()*+", '');
+        equal(_.base64_decode('LC0uLzAxMg=='), ',-./012', '');
+        equal(_.base64_decode('MzQ1Njc4OTo='), '3456789:', '');
+        equal(_.base64_decode('Ozw9Pj9AQUJD'), ';<=>?@ABC', '');
+        equal(_.base64_decode('REVGR0hJSktMTQ=='), 'DEFGHIJKLM', '');
+        equal(_.base64_decode('Tk9QUVJTVFVWV1g='), 'NOPQRSTUVWX', '');
+        equal(_.base64_decode('WVpbXF1eX2BhYmM='), 'YZ[\\]^_`abc', '');
+        equal(_.base64_decode('ZGVmZ2hpamtsbW5vcA=='), 'defghijklmnop', '');
+        equal(_.base64_decode('cXJzdHV2d3h5ent8fX4='), 'qrstuvwxyz{|}~', '');
+        
+        equal(_.base64_decode('4pyI'),'✈','non-ascii output');
+    });
+    
+    
+    test('utf8',function(){
+       
+        var data = [
+                // 1-byte
+                {
+                    'codePoint': 0x0000,
+                    'decoded': '\0',
+                    'encoded': '\0'
+                },
+                {
+                    'codePoint': 0x005C,
+                    'decoded': '\x5C',
+                    'encoded': '\x5C'
+                },
+                {
+                    'codePoint': 0x007F,
+                    'decoded': '\x7F',
+                    'encoded': '\x7F'
+                },
+
+                // 2-byte
+                {
+                    'codePoint': 0x0080,
+                    'decoded': '\x80',
+                    'encoded': '\xC2\x80'
+                },
+                {
+                    'codePoint': 0x05CA,
+                    'decoded': '\u05CA',
+                    'encoded': '\xD7\x8A'
+                },
+                {
+                    'codePoint': 0x07FF,
+                    'decoded': '\u07FF',
+                    'encoded': '\xDF\xBF'
+                },
+
+                // 3-byte
+                {
+                    'codePoint': 0x0800,
+                    'decoded': '\u0800',
+                    'encoded': '\xE0\xA0\x80'
+                },
+                {
+                    'codePoint': 0x2C3C,
+                    'decoded': '\u2C3C',
+                    'encoded': '\xE2\xB0\xBC'
+                },
+                {
+                    'codePoint': 0xFFFF,
+                    'decoded': '\uFFFF',
+                    'encoded': '\xEF\xBF\xBF'
+                },
+
+                // 4-byte
+                {
+                    'codePoint': 0x010000,
+                    'decoded': '\uD800\uDC00',
+                    'encoded': '\xF0\x90\x80\x80'
+                },
+                {
+                    'codePoint': 0x01D306,
+                    'decoded': '\uD834\uDF06',
+                    'encoded': '\xF0\x9D\x8C\x86'
+                },
+                {
+                    'codePoint': 0x10FFF,
+                    'decoded': '\uDBFF\uDFFF',
+                    'encoded': '\xF4\x8F\xBF\xBF'
+                }
+            ];
+            
+            // `throws` is a reserved word in ES3; alias it to avoid errors
+            var raises = QUnit.assert.throws;
+
+            _.each(data, function(object) {
+                var description = object.description || 'U+' + object.codePoint.toString(16).toUpperCase();
+                equal(
+                    object.encoded,
+                    _.utf8_encode(object.decoded),
+                    'Encoding: ' + description
+                );
+                equal(
+                    object.decoded,
+                    _.utf8_decode(object.encoded),
+                    'Decoding: ' + description
+                );
+            });
+
+            // Error handling
+            raises(
+                function() {
+                    _.utf8_decode('\uFFFF');
+                },
+                Error,
+                'Error: invalid UTF-8 detected'
+            );
+            raises(
+                function() {
+                    _.utf8_decode('\xE9\x00\x00');
+                },
+                Error,
+                'Error: invalid continuation byte (4-byte sequence expected)'
+            );
+            raises(
+                function() {
+                    _.utf8_decode('\xC2\uFFFF');
+                },
+                Error,
+                'Error: invalid continuation byte'
+            );
+            raises(
+                function() {
+                    _.utf8_decode('\xF0\x9D');
+                },
+                Error,
+                'Error: invalid byte index'
+            );
+    });
+    
+    
     
     test('curry',function(){
         // create a curry fn
