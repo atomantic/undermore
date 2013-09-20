@@ -1,10 +1,13 @@
 ## Undermore.js, more utilities for underscore.js
 
+
+[![Build Status](https://travis-ci.org/atomantic/undermore.png?branch=dev)](https://travis-ci.org/atomantic/undermore)
+
 ## About
 
 We've all seen this happen:
 
-A developer needs a generic function that isn't a part of the language spec. Let's use Base64 encoding as an example. So you need to base64 encode some data, but there's no base64_encode and base64_decode in javascript. So what does a developer do? Google it, of course. So you find something to fit the need, it's a pretty big chunk of code, but you figure it's like a library, so you just drop it into your codebase in a /libs folder and call it as a global function. Over time, you've collected a whole lot of these and it's not clear what is available to a developer and what isn't. To make matters worse, if you are developing modular code across teams, you likely don't know that another team has a copy of the same base64 function, but it isn't part of underscore.js, so you both implement it. I have a product right now with several teams contributing that contains 3 copies of a Base64 function :(
+A developer needs a generic function that isn't a part of the language spec. Let's use Base64 encoding as an example. So you need to base64 encode some data, but there's no base64 encode/decode in javascript. So what does a developer do? Google it, of course. So you find something to fit the need, it's a pretty big chunk of code, but you figure it's like a library, so you just drop it into your codebase in a /libs folder and call it as a global function. Over time, you've collected a whole lot of these and it's not clear what is available to a developer and what isn't. To make matters worse, if you are developing modular code across teams, you likely don't know that another team has a copy of the same base64 function, but it isn't part of underscore.js, so you both implement it. I have a product right now with several teams contributing that contains 3 copies of a Base64 function :(
 
 So let's be honest: web standards can't keep up with innovation. While I may make devil's-advocate and practical arguments against some of the complaints in [Zed Shaw's talk](http://vimeo.com/43380467), he still makes a lot of great points regarding the speed (or lack thereof) in standards adoption.
 
@@ -34,7 +37,7 @@ var undermore = require('undermore');
 
 // "get the english ordinal for a number"
 var num = 345,
-    ord = core.ord(num),
+    ord = _.ord(num),
     out = 'your number is the '+num+ord;
 // out is now 'your number is the 345th';
 ```
@@ -80,7 +83,7 @@ _Also, please note that the "dist" subdirectory is generated via Grunt. You'll f
  * _.curry(fn)
  * _.uuid()
  * safe console.log
- * added some basic methods: _.fn, _.eFn, _.fnMore, _.ord
+ * added some basic methods: \_.fn, \_.eFn, \_.fnMore, \_.ord
  * String.prototype.capitalize()
  * String.prototype.endsWith(suffix)
  * String.prototype.left(size)
