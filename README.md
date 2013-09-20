@@ -48,7 +48,7 @@ Download the [production version][min] or the [development version][max].
 In your web page:
 
 ```html
-<!-- NOTE: by not setting an exports var in the window context, core will create the lib within window.core (or core.*) -->
+<script src="libs/underscore-min.js"></script>
 <script src="dist/undermore.min.js"></script>
 <script>
 // "get the english ordinal for a number"
