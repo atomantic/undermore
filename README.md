@@ -75,14 +75,14 @@ _Also, please note that the "dist" subdirectory is generated via Grunt. You'll f
 
 ## Release History
  
-### <sup>v0.1.1</sup>
+### <sup>v0.1.2</sup>
 
  * \_.utf8_encode(str)
  * \_.utf8_decode(str)
  * \_.base64_encode(str)
  * \_.base64_decode(str)
 
-### <sup>v0.1.0</sup>
+### <sup>v0.1.1</sup>
 
  * Grunt build system
  * jsdoc documentation
