@@ -101,3 +101,7 @@ _Also, please note that the "dist" subdirectory is generated via Grunt. You'll f
 ## License
 Copyright (c) 2013 Adam Eivy (@antic)  
 Licensed under the MIT license.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/atomantic/undermore/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
