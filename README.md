@@ -20,7 +20,7 @@ If web standards were implemented as quickly as they should be:
 * our own method to get the ordinal suffix of a number (1 => "st")
 * etc...
 
-Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with [unit tests](https://travis-ci.org/atomantic/core.js) and auto-generated [documentation](http://atomantic.github.io/core.js/#docs).
+Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with [unit tests](https://travis-ci.org/atomantic/undermore) and auto-generated [documentation](http://atomantic.github.io/undermore/#docs).
 
 [underscore.js](http://underscorejs.org/) has a lot of extra tools and specs for javascript that are either implemented in edge versions of ecmascript or on the way in the futre, but it's missing a few things. If you have underscore.js (or lodash.js) in your project, this is an additional library to help you collect things like _.base64, so you don't end up with a lot of global namespace pollution and duplication.
 
