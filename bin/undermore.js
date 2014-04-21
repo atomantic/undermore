@@ -1,6 +1,6 @@
-/*! undermore - v0.1.2 - 2013-10-01
+/*! undermore - v0.1.2 - 2014-02-27
 * https://github.com/atomantic/undermore
-* Copyright (c) 2013 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*global console*/
 
 // make it safe to use console.log always

@@ -1,6 +1,14 @@
 /*jslint jquery:true,browser:true */
-/*global test,module,equal,ok*/
-(function() {
+/*global test,module,equal,define,ok*/
+define([ 
+    '../src/safe.js', 
+    '../src/string.capitalize.js',
+    '../src/string.endsWith.js',
+    '../src/string.startsWith.js', 
+    '../src/string.left.js',
+    '../src/string.right.js',
+    '../src/string.trunc.js'
+    ], function() {
 
     'use strict';
 
@@ -27,7 +35,12 @@
     
     var str = 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose injected humour and the like';
 
-    module('String.prototype');
+    module('JS#string', {
+        // This will run before each test in this module.
+        setup: function() {
+            //this.elems = $('#qunit-fixture').children();
+        }
+    });
     
     test('capitalize',function(){
         equal(typeof str.capitalize,'function','function has been added to String.prototype');
@@ -50,7 +63,7 @@
     test('endsWith', function() {
         equal(typeof str.endsWith,'function','function has been added to String.prototype');
         ok(str.endsWith('e'),'string ends with last letter');
-        ok(str.endsWith('like'),'string ends with last two letters');
+        ok(str.endsWith('ke'),'string ends with last two letters');
         ok(str.endsWith('and the like'),'string ends with last part');
         ok(!str.endsWith('foobar'),'string does not end with foobar');
     });
@@ -80,4 +93,4 @@
         equal(str.right(5000),str,'left beyond letters');
     });
 
-})();
+});

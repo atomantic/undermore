@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>undermore Test Suite</title>
+  <script data-main="../libs/require.main" src="../libs/require.js"></script>
   <!-- Load local QUnit. -->
   <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
 </head>
@@ -11,9 +12,13 @@
     <div id="qunit-fixture"></div>
     <script src="../libs/qunit/qunit.js"></script>
     <script src="../libs/underscore-min.js"></script>
-    <script src="../src/undermore.js"></script>
-    <script src="../src/undermore.string.js"></script>
-    <script src="undermore_test.js"></script>
-    <script src="undermore.string_test.js"></script>
+
+  <script>
+  QUnit.config.autostart = false;
+
+  require(['undermore_test.js','string_test.js'], function(){
+      QUnit.start(); //Tests loaded, run tests
+  });
+  </script>
 </body>
 </html>
