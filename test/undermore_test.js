@@ -1,6 +1,6 @@
 /*jslint jquery:true,browser:true */
-/*global test,module,deepEqual,equal,define,ok,notEqual*/
-define(['../libs/underscore-min.js','../src/undermore', '../src/core.js', '../src/safe.js'], function(undermore, core) {
+/*global _,QUnit,test,module,deepEqual,equal,define,ok,notEqual*/
+define(['../src/undermore.js', '../src/safe.js'], function() {
     'use strict';
 
     /*
@@ -308,4 +308,4 @@ define(['../libs/underscore-min.js','../src/undermore', '../src/core.js', '../sr
         
     });
 
-})();
+});

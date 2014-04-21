@@ -64,16 +64,14 @@
       </header>
     </div>
 
-    <section class="container">
-    </section>
 
-        <section class="container">
+        <section class="container" id="download">
         <div class="page-header">
           <a class="btn btn-small pull-right toggle-all" href="#">Toggle all</a>
           
-          <h1 id="download">Customize and Download</h1>
+          <h1>Customize and Download</h1>
           <p id="errorMessage" class="note alert alert-error hide"></p>
-          <p class="lead"><a href="https://github.com/atomantic/undermore">Download the full repository</a> or customize your entire <em>underscore</em> build by selecting only the components that you need.</p>
+          <p class="lead"><a href="https://github.com/atomantic/undermore">Download the full repository</a> or just take some parts:</p>
         </div>
         <div class="row">
           <div class="span3">
@@ -81,7 +79,6 @@
           </div>
           <div class="span3">
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/undermore.js"> undermore.js</label>
-            <label class="checkbox"><input checked="checked" type="checkbox" value="src/core.jquery.js"> jQuery $.fn plugins</label>
           </div>
           <div class="span3">
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.capitalize.js">String.prototype.capitalize</label>
@@ -120,6 +117,9 @@
     <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/jquery-ui-1.8.22.custom.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.tocify.min.js"></script>
+    <script src="js/DownloadBuilder.js"></script>
 
+    <script src="js/dist.js"></script>
   </body>
 </html>

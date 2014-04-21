@@ -7,7 +7,7 @@
  */
 /**
  * undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
- * that really should just already be there--these are tiny, unit tested additions to unders_.js, which
+ * that really should just already be there--these are tiny, unit tested additions to underscore.js, which
  * reside in _.* -- e.g. _.curry()
  *
  * @module undermore
@@ -15,7 +15,7 @@
  * @copyright 2013 Adam Eivy (@antic)
  * @license MIT
  *
- * @param {object} exports The location of the unders_ library to mixin all of the undermore methods
+ * @param {object} exports The location of the underscore library to mixin all of the undermore methods
  */
 (function(exports) {
 
