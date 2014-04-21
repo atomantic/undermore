@@ -42,6 +42,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#home">Home</a></li>
+              <li><a href="#download" class="active">Custom Download</a></li>
               <li><a href="#overview" class="active">About</a></li>
               <li><a href="#docs">Docs</a></li>
             </ul>
@@ -63,8 +64,47 @@
       </header>
     </div>
 
-    <section class="container">
+
+        <section class="container" id="download">
+        <div class="page-header">
+          <a class="btn btn-small pull-right toggle-all" href="#">Toggle all</a>
+          
+          <h1>Customize and Download</h1>
+          <p id="errorMessage" class="note alert alert-error hide"></p>
+          <p class="lead"><a href="https://github.com/atomantic/undermore">Download the full repository</a> or just take some parts:</p>
+        </div>
+        <div class="row">
+          <div class="span3">
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/safe.js"> safe.js (console safety)</label>
+          </div>
+          <div class="span3">
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/undermore.js"> undermore.js</label>
+          </div>
+          <div class="span3">
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.capitalize.js">String.prototype.capitalize</label>
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.startsWith.js">String.prototype.startsWith</label>
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.endsWith.js">String.prototype.endsWith</label>
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.left.js">String.prototype.left</label>
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.right.js">String.prototype.right</label>
+            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.trunc.js">String.prototype.trunc</label>
+          </div>
+        </div><!-- /row -->
+        <br />
+        <a class="btn" href="#" data-bind="javascript-downloads" id="javascript-generate">Generate JavaScript</a>
+        <a class="btn btn-primary download-button" id="javascript-download" download="core.js">Download JavaScript</a>
+        <br /><br />
+        <textarea class="source-area default sourceView" id="generated-javascript-source">// Minified source</textarea>
     </section>
+
+    <div class="modal hide fade" id="myModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Downloads</h3>
+        </div>
+        <div class="modal-body">
+            <a class="btn btn-large" href="#" target="_blank" data-lang="javascript">Download JavaScript</a>
+        </div>
+    </div>
     
     <section class="container">
         <h1 id="docs">Documentation</h1>
@@ -77,6 +117,9 @@
     <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/jquery-ui-1.8.22.custom.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.tocify.min.js"></script>
+    <script src="js/DownloadBuilder.js"></script>
 
+    <script src="js/dist.js"></script>
   </body>
 </html>
