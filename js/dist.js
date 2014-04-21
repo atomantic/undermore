@@ -20,7 +20,7 @@
       "location": "github", 
       "author": "atomantic", 
       "repo": "undermore",
-      "branch": "master",
+      "branch": "dev",
       "onError": function(error){
           $('#errorMessage').html(error).show();
       }
