@@ -52,6 +52,16 @@ define([
         equal(funked.capitalize(),'1234 #asdf!j','funky');
     });
 
+    test('contains',function(){
+        equal(typeof str.contains,'function','function has been added to String.prototype');
+        var str = 'To be, or not to be, that is the question.';
+        ok(str.contains('To be'),'contains start characters');
+        ok(str.contains('question'),'contains last characters');
+        ok(!str.contains('nonexistent'),'does not contain nonexistent string'); 
+        ok(!str.contains('To be',1),'does not find string given wrong partial starting point'); 
+        ok(!str.contains('TO BE'),'does not find wrong case');
+    });
+
     test('startsWith', function() {
         equal(typeof str.startsWith,'function','function has been added to String.prototype');
         ok(str.startsWith('I'),'string starts with first letter');

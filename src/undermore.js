@@ -208,7 +208,7 @@ eFn: function(e) {
 * @return {function} the new function which will serially call the given functions in the given scope
 * @example
 *   var fn = _.fnMore(oldFn,newFn,someObj);
-*   fn(); 
+*   fn();
 *   // runs oldFn, then newFn in the context of someObj
 */
 fnMore: function(originalFn, moreFn, scope) {

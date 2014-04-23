@@ -9,6 +9,6 @@
   * @example
   *  'some string'.startsWith('s') === true;
  */
-String.prototype.startsWith = function (prefix){
+String.prototype.startsWith = String.prototype.startsWith || function (prefix){
     return this.slice(0, prefix.length) === prefix;
 };

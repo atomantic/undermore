@@ -7,6 +7,6 @@
  * @example
  *  'foobar'.left(3) === 'foo'
  */
-String.prototype.left = function(n) {
+String.prototype.left = String.prototype.left || function(n) {
 	return this.substr(0,n);
 };

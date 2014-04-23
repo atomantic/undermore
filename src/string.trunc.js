@@ -9,6 +9,6 @@
  * @example
  *  'this is a description that is too detailed'.trunc(10) === 'this is a &hellip;'
  */
-String.prototype.trunc = function(len,suffix) {
+String.prototype.trunc = String.prototype.trunc || function(len,suffix) {
     return this.length > len ? this.slice(0, len) + (suffix||'&hellip;') : this;
 };

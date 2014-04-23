@@ -1,5 +1,9 @@
-## Undermore.js, more utilities for underscore.js
+[min]: https://raw.github.com/atomantic/undermore/master/dist/undermore.min.js
+[max]: https://raw.github.com/atomantic/undermore/master/dist/undermore.js
+[docs]: http://atomantic.github.io/undermore/#docs
+[build]: http://atomantic.github.io/undermore/#download
 
+## Undermore (mo-dash): vetted, tested, documented mixins
 
 [![Build Status](https://travis-ci.org/atomantic/undermore.png?branch=dev)](https://travis-ci.org/atomantic/undermore)
 
@@ -20,16 +24,30 @@ If web standards were implemented as quickly as they should be:
 * our own method to get the ordinal suffix of a number (1 => "st")
 * etc...
 
-Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with [unit tests](https://travis-ci.org/atomantic/undermore) and auto-generated [documentation](http://atomantic.github.io/undermore/#docs).
+Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with [unit tests](https://travis-ci.org/atomantic/undermore) and auto-generated [documentation][docs].
 
-[underscore.js](http://underscorejs.org/) has a lot of extra tools and specs for javascript that are either implemented in edge versions of ecmascript or on the way in the futre, but it's missing a few things. If you have underscore.js (or lodash.js) in your project, this is an additional library to help you collect things like _.base64, so you don't end up with a lot of global namespace pollution and duplication.
+[underscore.js](http://underscorejs.org/) and [lo-dash](http://lodash.com/) have a lot of extra tools and specs for javascript that are either implemented in edge versions of ecmascript or on the way in the future, but there are still utilities that haven't made it into lo-dash or underscore that you will use in your product. If you are using underscore.js or lodash.js in your project, this is an additional library to help you collect things like _.base64, so you don't end up with a lot of global namespace pollution, duplication, and google copied code with potential bugs.
 
 Additionally, this library provides a selection of String methods in patient anticipation of the next ecmascript standard, hoping it might have some of these methods: http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
 
-If you want polyfils for ES5 and ES6, I highly recommend using [the es5-shim](https://github.com/kriskowal/es5-shim) and [the es6-shim](https://github.com/paulmillr/es6-shim) in tandem with underscore+undermore.
+If you want polyfils for ES6, I highly recommend using [the es6-shim](https://github.com/paulmillr/es6-shim) in tandem with underscore/lo-dash + undermore. You can even include the es6-shim with your [custom build][build]!
+
+## Core Principles
+
+* No additional global/obtuse functions or variables
+* Passes jshint
+* Includes jsdocs
+* Unit tested
+* Peer vetted (not randomly chosen from google/stack-overflow answers)
+* Provide shims for the latest standards (and proposals)
+* Build on lo-dash (preferred over underscore)
+* Perf test (jstest)
+* Customized build
+
 
 ## Getting Started
 ### On the server
+If you are using node.js, we are published in NPM!
 Install the module with: `npm install undermore`
 
 ```javascript
@@ -45,13 +63,10 @@ var num = 345,
 ### In the browser
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/atomantic/undermore/master/dist/undermore.min.js
-[max]: https://raw.github.com/atomantic/undermore/master/dist/undermore.js
-
 In your web page:
 
 ```html
-<script src="libs/underscore-min.js"></script>
+<script src="libs/lodash/dist/lodash-min.js"></script>
 <script src="dist/undermore.min.js"></script>
 <script>
 // "get the english ordinal for a number"
@@ -63,17 +78,34 @@ var num = 345,
 ```
 
 ## Documentation
-You can view the documentation generated via grunt:jsdoc on github: [http://atomantic.github.io/undermore/docs/](http://atomantic.github.io/undermore/docs/)
+You can view the documentation generated via grunt:jsdoc on github: [http://atomantic.github.io/undermore/docs/module-undermore.html][docs]
+
+## Custom Build
+Create your own [custom build][build]!
 
 ## Contributing
+
+Start by downloading the project:
+
+```
+git clone git@github.com:atomantic/undermore.git
+cd undermore;
+git submodule update --init
+```
+
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Please note that the codebase uses 4 spaces (not 2) instead of tabs--and uses the comma pattern for declaring sets of new variables. 
 Add unit tests for any new or changed functionality. 
 Lint, build and test your code using [Grunt](http://gruntjs.com/).
 
-_Also, please note that the "dist" subdirectory is generated via Grunt. You'll find source code in the "src" subdirectory :)_
+_Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Grunt. You'll find source code in the "src" subdirectory :)_
 
 ## Release History
+
+### <sup>v0.1.3</sup>
+ * String.prototype.contains(searchString, position)
+ * es6-shim as a build include option
+ * update docs to include lo-dash as preferred foundation
  
 ### <sup>v0.1.2</sup>
 
@@ -96,8 +128,8 @@ _Also, please note that the "dist" subdirectory is generated via Grunt. You'll f
  * String.prototype.left(size)
  * String.prototype.right(size)
  * String.prototype.startsWith(prefix)
- * String.prototype.trunc(len,suffix)
+ * String.prototype.trunc(len, suffix)
 
 ## License
-Copyright (c) 2013 Adam Eivy (@antic)  
+Copyright (c) 2013-2014 Adam Eivy (@antic)  
 Licensed under the MIT license.
