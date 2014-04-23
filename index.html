@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">  
-    <title>Undermore - mixins for underscore.js and a collection box for your own standards</title>
+    <title>Undermore/Mo-Dash - mixins for underscore.js/lo-dash.js and a collection box for your own standards</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">undermore</a>
+          <a class="brand" href="#">undermore/mo-dash</a>
 
           <div class="nav-collapse">
             <ul class="nav">
@@ -51,12 +51,12 @@
       </div>
     </div>
     
-    <a href="https://github.com/atomantic/undermore"><img style="position: absolute; top: 30px; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    <a href="https://github.com/atomantic/undermore"><img class="fork" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
   
     <div class="container">
 
       <header class="jumbotron subhead" id="overview">
-        <h1>undermore <a href="https://travis-ci.org/atomantic/undermore">
+        <h1>undermore / mo-dash<a href="https://travis-ci.org/atomantic/undermore">
             <img src="https://travis-ci.org/atomantic/undermore.png?branch=dev" alt="Build Status" />
           </a>
         </h1>
@@ -76,14 +76,16 @@
         <div class="row" id="javascript-downloads">
           <div class="span3">
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/safe.js"> safe.js (console safety)</label>
+            <label class="checkbox"><input class="es6-shim" checked="checked" type="checkbox" value="libs/es6/es6-shim.js"> es6-shim.js (<a href="https://github.com/es-shims/es6-shim" target="off">docs</a>)</label>
           </div>
-          <div class="span3">
+          <div class="span2">
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/undermore.js"> undermore.js</label>
           </div>
-          <div class="span3">
-            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.capitalize.js">String.prototype.capitalize</label>
-            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.startsWith.js">String.prototype.startsWith</label>
-            <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.endsWith.js">String.prototype.endsWith</label>
+          <div class="span6">
+            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.capitalize.js">String.prototype.capitalize (es6-shim)</label>
+            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.contains.js">String.prototype.contains (es6-shim)</label>
+            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.startsWith.js">String.prototype.startsWith (es6-shim)</label>
+            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.endsWith.js">String.prototype.endsWith (es6-shim)</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.left.js">String.prototype.left</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.right.js">String.prototype.right</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.trunc.js">String.prototype.trunc</label>
