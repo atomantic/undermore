@@ -25,7 +25,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source"><code>/*global exports*/
+            <pre class="prettyprint source"><code>/*global exports,Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 /**
  * The ecmascript String prototype
@@ -34,7 +34,7 @@
  */
 /**
  * undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
- * that really should just already be there--these are tiny, unit tested additions to unders_.js, which
+ * that really should just already be there--these are tiny, unit tested additions to underscore.js, which
  * reside in _.* -- e.g. _.curry()
  *
  * @module undermore
@@ -42,19 +42,125 @@
  * @copyright 2013 Adam Eivy (@antic)
  * @license MIT
  *
- * @param {object} exports The location of the unders_ library to mixin all of the undermore methods
+ * @param {object} exports The location of the underscore library to mixin all of the undermore methods
  */
 (function(exports) {
 
     'use strict';
     
     // Establish the root object, `window` in the browser, or `global` on the server.
-    var _ = exports._;
+    var _ = exports._,
+        // chars for base64 methods
+        chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     
-    // TODO: Grunt should wrap all of these methods from split files into the outer wrapper
-    // that way, we could build a custom version without any or all of these methods
-    
+
+    // add the mixins to underscore
     _.mixin({
+
+/**
+ * utf8 encode a string
+ * 
+ * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
+ * @param {string} str The string to encode
+ * @return {string}
+ */
+utf8_encode:function( str ){
+    return unescape( encodeURIComponent( str ) );
+},
+/**
+ * utf8 decode a string
+ * 
+ * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
+ * @param {string} str The string to decode
+ * @return {string}
+ */
+utf8_decode:function(str){
+    return decodeURIComponent( escape( str ) );
+},
+
+/**
+ * base64_encode encode a string
+ * 
+ * Note: it might be work including an urlsafe flag
+ * (see https://github.com/knowledgecode/base64.js)
+ * 
+ * @link https://github.com/davidchambers/Base64.js
+ * @param {string} str The string to encode
+ * @return {string}
+ */
+base64_encode:function(str){
+    // allow browser implementation if it exists
+    // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
+    if(btoa){
+        // first utf8 encode to keep from throwing an error if we are out of 0xFF
+        return btoa(_.utf8_encode(str));
+    }
+    // allow node.js Buffer implementation if it exists
+    if(Buffer){
+        var buffer = (str instanceof Buffer) ? str : new Buffer(str.toString(), 'binary');
+        return buffer.toString('base64');
+    }
+    // now roll our own
+    // [https://gist.github.com/999166] by [https://github.com/nignag]
+    for (
+      // initialize result and counter
+      var block, charCode, idx = 0, map = chars, output = '';
+      // if the next input index does not exist:
+      //   change the mapping table to "="
+      //   check if d has no fractional digits
+      str.charAt(idx | 0) || (map = '=', idx % 1);
+      // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+      output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+    ) {
+      charCode = str.charCodeAt(idx += 3/4);
+      block = block &lt;&lt; 8 | charCode;
+    }
+    return output;
+},
+/**
+ * base64_decode decode a string
+ * 
+ * @link https://github.com/davidchambers/Base64.js
+ * @param {string} str The string to decode
+ * @return {string}
+ */
+base64_decode:function(str){
+    
+    // allow browser implementation if it exists
+    // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
+    if(atob){
+        // utf8 decode after the fact to make sure we convert > 0xFF to ascii
+        return _.utf8_decode(atob(str));
+    }
+    // allow node.js Buffer implementation if it exists
+    if(Buffer){
+        return new Buffer(str, 'base64').toString('binary');
+    }
+    // now roll our own
+    if(atob){
+        return _.utf8_decode(atob(str));
+    }
+    
+    // decoder
+    // [https://gist.github.com/1020396] by [https://github.com/atk]
+    str = str.replace(/=+$/, '');
+    for (
+      // initialize result and counters
+      var bc = 0, bs, buffer, idx = 0, output = '';
+      // get next character
+      buffer = str.charAt(idx++);
+      // character found in table? initialize bit storage and add its ascii value;
+      ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
+        // and if not first of each 4 characters,
+        // convert the first 8 bits to one ascii character
+        bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+    ) {
+      // try to find character in table (0-63, not found => -1)
+      buffer = chars.indexOf(buffer);
+    }
+    return output;
+},
+
 /**
   * create a partial application function (curry)
   * 
@@ -129,7 +235,7 @@ eFn: function(e) {
 * @return {function} the new function which will serially call the given functions in the given scope
 * @example
 *   var fn = _.fnMore(oldFn,newFn,someObj);
-*   fn(); 
+*   fn();
 *   // runs oldFn, then newFn in the context of someObj
 */
 fnMore: function(originalFn, moreFn, scope) {
@@ -183,7 +289,7 @@ uuid: function(){
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Fri Sep 20 2013 11:19:28 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Apr 23 2014 15:04:15 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

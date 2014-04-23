@@ -1,6 +1,6 @@
 /*jslint jquery:true,browser:true */
-/*global test,module,deepEqual,equal,ok,notEqual,_,QUnit*/
-(function() {
+/*global _,QUnit,test,module,deepEqual,equal,define,ok,notEqual*/
+define(['../src/undermore.js', '../src/safe.js'], function() {
     'use strict';
 
     /*
@@ -308,4 +308,4 @@
         
     });
 
-})();
+});

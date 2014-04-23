@@ -146,7 +146,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.string.js.html">undermore.string.js</a>, <a href="undermore.string.js.html#line1">line 1</a>
+        <a href="string.capitalize.js.html">string.capitalize.js</a>, <a href="string.capitalize.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -191,6 +191,176 @@
         
     <pre class="prettyprint"><code> 'hello'.capitalize() === 'Hello'
  'HELLO WORLD!'.capitalize() === 'Hello world!'</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="contains"><span class="type-signature"></span>contains<span class="signature">(searchString, position)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        determines whether one string may be found within another string
+
+Once ecmascript adds this natively, you should build core.js without this method:
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>searchString</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A string to be searched for within this string.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The position in this string at which to begin searching for searchString; defaults to 0.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="string.contains.js.html">string.contains.js</a>, <a href="string.contains.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">boolean</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> var str = "To be, or not to be, that is the question.";
+ console.log(str.contains("To be"));       // true
+ console.log(str.contains("question"));    // true
+ console.log(str.contains("nonexistent")); // false
+ console.log(str.contains("To be", 1));    // false
+ console.log(str.contains("TO BE"));       // false</code></pre>
 
     
 </dd>
@@ -289,7 +459,7 @@ Once ecmascript adds this natively, you should build core.js without this method
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.string.js.html">undermore.string.js</a>, <a href="undermore.string.js.html#line14">line 14</a>
+        <a href="string.endsWith.js.html">string.endsWith.js</a>, <a href="string.endsWith.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -431,7 +601,7 @@ Once ecmascript adds this natively, you should build core.js without this method
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.string.js.html">undermore.string.js</a>, <a href="undermore.string.js.html#line32">line 32</a>
+        <a href="string.left.js.html">string.left.js</a>, <a href="string.left.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -571,7 +741,7 @@ Once ecmascript adds this natively, you should build core.js without this method
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.string.js.html">undermore.string.js</a>, <a href="undermore.string.js.html#line45">line 45</a>
+        <a href="string.right.js.html">string.right.js</a>, <a href="string.right.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -713,7 +883,7 @@ Once ecmascript adds this natively, you should build core.js without this method
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.string.js.html">undermore.string.js</a>, <a href="undermore.string.js.html#line59">line 59</a>
+        <a href="string.startsWith.js.html">string.startsWith.js</a>, <a href="string.startsWith.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -877,7 +1047,7 @@ default suffix is an html encoded ellipsis '&hellip;'
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.string.js.html">undermore.string.js</a>, <a href="undermore.string.js.html#line74">line 74</a>
+        <a href="string.trunc.js.html">string.trunc.js</a>, <a href="string.trunc.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -947,7 +1117,7 @@ default suffix is an html encoded ellipsis '&hellip;'
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Fri Sep 20 2013 11:19:28 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Apr 23 2014 15:04:15 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

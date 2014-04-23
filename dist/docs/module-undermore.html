@@ -39,7 +39,7 @@
     
         
             <div class="description">undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
-that really should just already be there--these are tiny, unit tested additions to unders_.js, which
+that really should just already be there--these are tiny, unit tested additions to underscore.js, which
 reside in _.* -- e.g. _.curry()</div>
         
         
@@ -104,6 +104,279 @@ reside in _.* -- e.g. _.curry()</div>
         <h3 class="subsection-title">Methods</h3>
         
         <dl>
+            
+<dt>
+    <h4 class="name" id="base64_decode"><span class="type-signature">&lt;inner> </span>base64_decode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        base64_decode decode a string
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The string to decode</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">string</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="base64_encode"><span class="type-signature">&lt;inner> </span>base64_encode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        base64_encode encode a string
+
+Note: it might be work including an urlsafe flag
+(see https://github.com/knowledgecode/base64.js)
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The string to encode</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">string</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
             
 <dt>
     <h4 class="name" id="curry"><span class="type-signature">&lt;inner> </span>curry<span class="signature">(fnBase)</span><span class="type-signature"> &rarr; {function}</span></h4>
@@ -195,7 +468,7 @@ reside in _.* -- e.g. _.curry()</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line50">line 50</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line156">line 156</a>
     </li></ul></dd>
     
     
@@ -297,7 +570,7 @@ reside in _.* -- e.g. _.curry()</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line92">line 92</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line198">line 198</a>
     </li></ul></dd>
     
     
@@ -373,7 +646,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line83">line 83</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line189">line 189</a>
     </li></ul></dd>
     
     
@@ -563,7 +836,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line108">line 108</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line214">line 214</a>
     </li></ul></dd>
     
     
@@ -611,7 +884,7 @@ but this one is useful for anything requiring a boolean true return
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>  var fn = _.fnMore(oldFn,newFn,someObj);
-  fn(); 
+  fn();
   // runs oldFn, then newFn in the context of someObj</code></pre>
 
     
@@ -709,7 +982,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line68">line 68</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line174">line 174</a>
     </li></ul></dd>
     
     
@@ -737,6 +1010,276 @@ but this one is useful for anything requiring a boolean true return
     The ordinal for that number
 </div>
 
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">string</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="utf8_decode"><span class="type-signature">&lt;inner> </span>utf8_decode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        utf8 decode a string
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The string to decode</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line50">line 50</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">string</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="utf8_encode"><span class="type-signature">&lt;inner> </span>utf8_encode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        utf8 encode a string
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The string to encode</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
 
 
 <dl>
@@ -802,7 +1345,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line130">line 130</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line236">line 236</a>
     </li></ul></dd>
     
     
@@ -876,7 +1419,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Fri Sep 20 2013 11:19:28 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Apr 23 2014 15:04:15 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

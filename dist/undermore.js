@@ -1,6 +1,6 @@
-/*! undermore - v0.1.0 - 2013-09-20
+/*! undermore - v0.1.2 - 2014-04-23
 * https://github.com/atomantic/undermore
-* Copyright (c) 2013 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*global console*/
 
 // make it safe to use console.log always
@@ -20,6 +20,27 @@
         return (window.console = {});
     }
 }()));
+String.prototype.capitalize = String.prototype.capitalize || function() {
+    return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase();
+};
+String.prototype.contains = String.prototype.contains || function() {
+    return String.prototype.indexOf.apply( this, arguments ) !== -1;
+};
+String.prototype.endsWith = String.prototype.endsWith || function (suffix){ 
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+String.prototype.left = String.prototype.left || function(n) {
+	return this.substr(0,n);
+};
+String.prototype.right = String.prototype.right || function(n) {
+	return this.substr((this.length-n),this.length);
+};
+String.prototype.startsWith = String.prototype.startsWith || function (prefix){
+    return this.slice(0, prefix.length) === prefix;
+};
+String.prototype.trunc = String.prototype.trunc || function(len,suffix) {
+    return this.length > len ? this.slice(0, len) + (suffix||'&hellip;') : this;
+};
 /*jslint browser:true*/
 /**
  * The ecmascript String prototype
@@ -28,7 +49,7 @@
  */
 /**
  * undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
- * that really should just already be there--these are tiny, unit tested additions to unders_.js, which
+ * that really should just already be there--these are tiny, unit tested additions to underscore.js, which
  * reside in _.* -- e.g. _.curry()
  *
  * @module undermore
@@ -36,19 +57,125 @@
  * @copyright 2013 Adam Eivy (@antic)
  * @license MIT
  *
- * @param {object} exports The location of the unders_ library to mixin all of the undermore methods
+ * @param {object} exports The location of the underscore library to mixin all of the undermore methods
  */
 (function(exports) {
 
     'use strict';
     
     // Establish the root object, `window` in the browser, or `global` on the server.
-    var _ = exports._;
+    var _ = exports._,
+        // chars for base64 methods
+        chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     
-    // TODO: Grunt should wrap all of these methods from split files into the outer wrapper
-    // that way, we could build a custom version without any or all of these methods
-    
+
+    // add the mixins to underscore
     _.mixin({
+
+/**
+ * utf8 encode a string
+ * 
+ * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
+ * @param {string} str The string to encode
+ * @return {string}
+ */
+utf8_encode:function( str ){
+    return unescape( encodeURIComponent( str ) );
+},
+/**
+ * utf8 decode a string
+ * 
+ * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
+ * @param {string} str The string to decode
+ * @return {string}
+ */
+utf8_decode:function(str){
+    return decodeURIComponent( escape( str ) );
+},
+
+/**
+ * base64_encode encode a string
+ * 
+ * Note: it might be work including an urlsafe flag
+ * (see https://github.com/knowledgecode/base64.js)
+ * 
+ * @link https://github.com/davidchambers/Base64.js
+ * @param {string} str The string to encode
+ * @return {string}
+ */
+base64_encode:function(str){
+    // allow browser implementation if it exists
+    // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
+    if(btoa){
+        // first utf8 encode to keep from throwing an error if we are out of 0xFF
+        return btoa(_.utf8_encode(str));
+    }
+    // allow node.js Buffer implementation if it exists
+    if(Buffer){
+        var buffer = (str instanceof Buffer) ? str : new Buffer(str.toString(), 'binary');
+        return buffer.toString('base64');
+    }
+    // now roll our own
+    // [https://gist.github.com/999166] by [https://github.com/nignag]
+    for (
+      // initialize result and counter
+      var block, charCode, idx = 0, map = chars, output = '';
+      // if the next input index does not exist:
+      //   change the mapping table to "="
+      //   check if d has no fractional digits
+      str.charAt(idx | 0) || (map = '=', idx % 1);
+      // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+      output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+    ) {
+      charCode = str.charCodeAt(idx += 3/4);
+      block = block << 8 | charCode;
+    }
+    return output;
+},
+/**
+ * base64_decode decode a string
+ * 
+ * @link https://github.com/davidchambers/Base64.js
+ * @param {string} str The string to decode
+ * @return {string}
+ */
+base64_decode:function(str){
+    
+    // allow browser implementation if it exists
+    // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
+    if(atob){
+        // utf8 decode after the fact to make sure we convert > 0xFF to ascii
+        return _.utf8_decode(atob(str));
+    }
+    // allow node.js Buffer implementation if it exists
+    if(Buffer){
+        return new Buffer(str, 'base64').toString('binary');
+    }
+    // now roll our own
+    if(atob){
+        return _.utf8_decode(atob(str));
+    }
+    
+    // decoder
+    // [https://gist.github.com/1020396] by [https://github.com/atk]
+    str = str.replace(/=+$/, '');
+    for (
+      // initialize result and counters
+      var bc = 0, bs, buffer, idx = 0, output = '';
+      // get next character
+      buffer = str.charAt(idx++);
+      // character found in table? initialize bit storage and add its ascii value;
+      ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
+        // and if not first of each 4 characters,
+        // convert the first 8 bits to one ascii character
+        bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+    ) {
+      // try to find character in table (0-63, not found => -1)
+      buffer = chars.indexOf(buffer);
+    }
+    return output;
+},
+
 /**
   * create a partial application function (curry)
   * 
@@ -123,7 +250,7 @@ eFn: function(e) {
 * @return {function} the new function which will serially call the given functions in the given scope
 * @example
 *   var fn = _.fnMore(oldFn,newFn,someObj);
-*   fn(); 
+*   fn();
 *   // runs oldFn, then newFn in the context of someObj
 */
 fnMore: function(originalFn, moreFn, scope) {
@@ -161,82 +288,3 @@ uuid: function(){
 }); // mixin
 
 }(typeof exports === 'object' && exports || this));
-
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase();
-};
-
-/**
- * see if a string ends with a given string
- * 
- * Once ecmascript adds this natively, you should build core.js without this method:
- * @link http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
- * @link http://jsperf.com/string-prototype-endswith/3
- * @function external:String.prototype.endsWith
- * @param {string} A substring expected to be in the beginning of this string
- * @return {boolean}
-  * @example
-  *  'some string'.endsWith('g') === true;
-  *  'some string'.endsWith('string') === true;
-  *  'some string'.endsWith('!') === false;
- */
-String.prototype.endsWith = function (suffix){ 
-    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-};
-
-/**
- * get a substring of a particular length from the left
- * 
- * @function external:String.prototype.left
- * @param {number}     n     The lenth of the string to return
- * @return {string}
- * @example
- *  'foobar'.left(3) === 'foo'
- */
-String.prototype.left = function(n) {
-	return this.substr(0,n);
-};
-
-/**
- * get a substring of a particular length from the right
- * 
- * @function external:String.prototype.right
- * @param {number}     n     The lenth of the string to return
- * @return {string}
- * @example
- *  'foobar'.right(3) === 'bar'
- */
-String.prototype.right = function(n) {
-	return this.substr((this.length-n),this.length);
-};
-
-
-/**
- * see if a string begins with a given string
- * 
- * Once ecmascript adds this natively, you should build core.js without this method:
- * @link http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
- * @function external:String.prototype.startsWith
- * @param {string} A substring expected to be in the beginning of this string
- * @return {boolean}
-  * @example
-  *  'some string'.startsWith('s') === true;
- */
-String.prototype.startsWith = function (prefix){
-    return this.slice(0, prefix.length) === prefix;
-};
-
-/**
- * shorten a string, adding a suffix in place of excessive characters
- * default suffix is an html encoded ellipsis '&hellip;'
- * 
- * @function external:String.prototype.trunc
- * @param {number}     len     The lenth of the string to keep (not counting suffix)
- * @param {string}  suffix  The suffix to append (e.g. '...<a>read more</a>')
- * @return {string}
- * @example
- *  'this is a description that is too detailed'.trunc(10) === 'this is a &hellip;'
- */
-String.prototype.trunc = function(len,suffix) {
-    return this.length > len ? this.slice(0, len) + (suffix||'&hellip;') : this;
-};
