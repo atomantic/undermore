@@ -1,9 +1,0 @@
-[submodule "libs/lodash"]
-	path = libs/lodash
-	url = git://github.com/lodash/lodash.git
-[submodule "libs/underscore"]
-	path = libs/underscore
-	url = git://github.com/jashkenas/underscore.git
-[submodule "libs/es6"]
-	path = libs/es6
-	url = git://github.com/es-shims/es6-shim.git

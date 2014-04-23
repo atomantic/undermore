@@ -90,7 +90,7 @@ Start by downloading the project:
 ```
 git clone git@github.com:atomantic/undermore.git
 cd undermore;
-git submodule update --init
+npm install;
 ```
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
