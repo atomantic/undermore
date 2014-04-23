@@ -3,6 +3,7 @@
 define([
     '../src/safe.js',
     '../src/string.capitalize.js',
+    '../src/string.contains.js',
     '../src/string.endsWith.js',
     '../src/string.startsWith.js',
     '../src/string.left.js',
