@@ -1,4 +1,4 @@
-/*! undermore - v0.1.2 - 2014-04-21
+/*! undermore - v0.1.2 - 2014-04-23
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*global console*/
@@ -20,22 +20,25 @@
         return (window.console = {});
     }
 }()));
-String.prototype.capitalize = function() {
+String.prototype.capitalize = String.prototype.capitalize || function() {
     return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase();
 };
-String.prototype.endsWith = function (suffix){ 
+String.prototype.contains = String.prototype.contains || function() {
+    return String.prototype.indexOf.apply( this, arguments ) !== -1;
+};
+String.prototype.endsWith = String.prototype.endsWith || function (suffix){ 
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
-String.prototype.left = function(n) {
+String.prototype.left = String.prototype.left || function(n) {
 	return this.substr(0,n);
 };
-String.prototype.right = function(n) {
+String.prototype.right = String.prototype.right || function(n) {
 	return this.substr((this.length-n),this.length);
 };
-String.prototype.startsWith = function (prefix){
+String.prototype.startsWith = String.prototype.startsWith || function (prefix){
     return this.slice(0, prefix.length) === prefix;
 };
-String.prototype.trunc = function(len,suffix) {
+String.prototype.trunc = String.prototype.trunc || function(len,suffix) {
     return this.length > len ? this.slice(0, len) + (suffix||'&hellip;') : this;
 };
 /*jslint browser:true*/
@@ -247,7 +250,7 @@ eFn: function(e) {
 * @return {function} the new function which will serially call the given functions in the given scope
 * @example
 *   var fn = _.fnMore(oldFn,newFn,someObj);
-*   fn(); 
+*   fn();
 *   // runs oldFn, then newFn in the context of someObj
 */
 fnMore: function(originalFn, moreFn, scope) {

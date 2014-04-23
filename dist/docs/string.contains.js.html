@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: string.right.js</title>
+    <title>JSDoc: Source: string.contains.js</title>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Source: string.right.js</h1>
+    <h1 class="page-title">Source: string.contains.js</h1>
     
     
 
@@ -26,16 +26,24 @@
     <section>
         <article>
             <pre class="prettyprint source"><code>/**
- * get a substring of a particular length from the right
+ * determines whether one string may be found within another string
  * 
- * @function external:String.prototype.right
- * @param {number}     n     The lenth of the string to return
- * @return {string}
- * @example
- *  'foobar'.right(3) === 'bar'
+ * Once ecmascript adds this natively, you should build core.js without this method:
+ * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains
+ * @function external:String.prototype.contains
+ * @param {string} searchString A string to be searched for within this string.
+ * @param {number} position The position in this string at which to begin searching for searchString; defaults to 0.
+ * @return {boolean}
+  * @example
+  *  var str = "To be, or not to be, that is the question.";
+  *  console.log(str.contains("To be"));       // true
+  *  console.log(str.contains("question"));    // true
+  *  console.log(str.contains("nonexistent")); // false
+  *  console.log(str.contains("To be", 1));    // false
+  *  console.log(str.contains("TO BE"));       // false
  */
-String.prototype.right = String.prototype.right || function(n) {
-	return this.substr((this.length-n),this.length);
+String.prototype.contains = String.prototype.contains || function() {
+    return String.prototype.indexOf.apply( this, arguments ) !== -1;
 };</code></pre>
         </article>
     </section>
