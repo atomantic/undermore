@@ -130,6 +130,6 @@ module.exports = function(grunt) {
     grunt.task.run('notify_hooks');
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'jsdoc', 'qunit', 'notify:done']);
+    grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'jsdoc', 'qunit', 'notify:done']);
 
 };

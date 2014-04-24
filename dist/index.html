@@ -74,18 +74,61 @@
           <p class="lead"><a href="https://github.com/atomantic/undermore">Download the full repository</a> or just take some parts:</p>
         </div>
         <div class="row" id="javascript-downloads">
-          <div class="span3">
+          <div class="span3 set">
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/safe.js"> safe.js (console safety)</label>
-            <label class="checkbox"><input class="es6-shim" checked="checked" type="checkbox" value="libs/es6-shim.js"> es6-shim.js (<a href="https://github.com/es-shims/es6-shim" target="off">docs</a>)</label>
           </div>
-          <div class="span2">
-            <label class="checkbox"><input checked="checked" type="checkbox" value="src/undermore.js"> undermore.js</label>
+          <div class="span3 set">
+            <label class="checkbox"><input class="complete" checked="checked" type="checkbox" value="src/_.build.js"> All undermore.js</label>
+            <hr/>
+            <input class="partial wrap" disabled type="checkbox" value="src/_source/_.banner.tmpl" />
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.base64_decode.js" /> _.base64_decode
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />asdf
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.base64_decode.js" /> _.base64_encode
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.curry.js" /> _.curry
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.eFn.js" /> _.eFn
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.fn.js" /> _.fn
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.fnMore.js" /> _.fnMore
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.ord.js" /> _.ord
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.utf8_decode.js" /> _.utf8_decode
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.utf8_encode.js" /> _.utf8_encode
+              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" class="partial" value="src/_.uuid.js" /> _.uuid
+            </label>
+            <input class="partial wrap" disabled type="checkbox" value="src/_source/_.foot.tmpl" />
+            
           </div>
-          <div class="span6">
-            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.capitalize.js">String.prototype.capitalize (es6-shim)</label>
-            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.contains.js">String.prototype.contains (es6-shim)</label>
-            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.startsWith.js">String.prototype.startsWith (es6-shim)</label>
-            <label class="checkbox"><input class="in-es6-shim" type="checkbox" value="src/string.endsWith.js">String.prototype.endsWith (es6-shim)</label>
+          <div class="span5 set">
+            <label class="checkbox"><input class="complete" checked="checked" type="checkbox" value="libs/es6-shim.js"> es6-shim.js (<a href="https://github.com/es-shims/es6-shim" target="off">docs</a>)</label><hr/>
+            <label class="checkbox"><input class="partial" type="checkbox" value="src/string.capitalize.js">String.prototype.capitalize (es6-shim)</label>
+            <label class="checkbox"><input class="partial" type="checkbox" value="src/string.contains.js">String.prototype.contains (es6-shim)</label>
+            <label class="checkbox"><input class="partial" type="checkbox" value="src/string.startsWith.js">String.prototype.startsWith (es6-shim)</label>
+            <label class="checkbox"><input class="partial" type="checkbox" value="src/string.endsWith.js">String.prototype.endsWith (es6-shim)</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.left.js">String.prototype.left</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.right.js">String.prototype.right</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.trunc.js">String.prototype.trunc</label>

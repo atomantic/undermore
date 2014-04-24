@@ -1,6 +1,6 @@
 /*jslint jquery:true,browser:true */
 /*global _,QUnit,test,module,deepEqual,equal,define,ok,notEqual*/
-define(['../src/undermore.js', '../src/safe.js'], function() {
+define(['../src/_.build.js', '../src/safe.js'], function() {
     'use strict';
 
     /*
@@ -26,12 +26,11 @@ define(['../src/undermore.js', '../src/safe.js'], function() {
 
     module('undermore', {
         // This will run before each test in this module.
-        setup: function() {
-        }
+        setup: function() {}
     });
-    
-    
-    test('base64_encode',function(){
+
+
+    test('base64_encode', function() {
         equal(_.base64_encode(''), '', '');
         equal(_.base64_encode('f'), 'Zg==', '');
         equal(_.base64_encode('fo'), 'Zm8=', '');
@@ -47,12 +46,12 @@ define(['../src/undermore.js', '../src/safe.js'], function() {
         equal(_.base64_encode('YZ[\\]^_`abc'), 'WVpbXF1eX2BhYmM=', '');
         equal(_.base64_encode('defghijklmnop'), 'ZGVmZ2hpamtsbW5vcA==', '');
         equal(_.base64_encode('qrstuvwxyz{|}~'), 'cXJzdHV2d3h5ent8fX4=', '');
-        
+
         // non-ascii input
-        equal(_.base64_encode('✈'),'4pyI','non-ascii input');
+        equal(_.base64_encode('✈'), '4pyI', 'non-ascii input');
     });
-    
-    test('base64_decode',function(){
+
+    test('base64_decode', function() {
         equal(_.base64_decode(''), '', '');
         equal(_.base64_decode('Zg=='), 'f', '');
         equal(_.base64_decode('Zm8='), 'fo', '');
@@ -68,154 +67,147 @@ define(['../src/undermore.js', '../src/safe.js'], function() {
         equal(_.base64_decode('WVpbXF1eX2BhYmM='), 'YZ[\\]^_`abc', '');
         equal(_.base64_decode('ZGVmZ2hpamtsbW5vcA=='), 'defghijklmnop', '');
         equal(_.base64_decode('cXJzdHV2d3h5ent8fX4='), 'qrstuvwxyz{|}~', '');
-        
-        equal(_.base64_decode('4pyI'),'✈','non-ascii output');
+
+        equal(_.base64_decode('4pyI'), '✈', 'non-ascii output');
     });
-    
-    
-    test('utf8',function(){
-       
+
+
+    test('utf8', function() {
+
         var data = [
-                // 1-byte
-                {
-                    'codePoint': 0x0000,
-                    'decoded': '\0',
-                    'encoded': '\0'
-                },
-                {
-                    'codePoint': 0x005C,
-                    'decoded': '\x5C',
-                    'encoded': '\x5C'
-                },
-                {
-                    'codePoint': 0x007F,
-                    'decoded': '\x7F',
-                    'encoded': '\x7F'
-                },
+            // 1-byte
+            {
+                'codePoint': 0x0000,
+                'decoded': '\0',
+                'encoded': '\0'
+            }, {
+                'codePoint': 0x005C,
+                'decoded': '\x5C',
+                'encoded': '\x5C'
+            }, {
+                'codePoint': 0x007F,
+                'decoded': '\x7F',
+                'encoded': '\x7F'
+            },
 
-                // 2-byte
-                {
-                    'codePoint': 0x0080,
-                    'decoded': '\x80',
-                    'encoded': '\xC2\x80'
-                },
-                {
-                    'codePoint': 0x05CA,
-                    'decoded': '\u05CA',
-                    'encoded': '\xD7\x8A'
-                },
-                {
-                    'codePoint': 0x07FF,
-                    'decoded': '\u07FF',
-                    'encoded': '\xDF\xBF'
-                },
+            // 2-byte
+            {
+                'codePoint': 0x0080,
+                'decoded': '\x80',
+                'encoded': '\xC2\x80'
+            }, {
+                'codePoint': 0x05CA,
+                'decoded': '\u05CA',
+                'encoded': '\xD7\x8A'
+            }, {
+                'codePoint': 0x07FF,
+                'decoded': '\u07FF',
+                'encoded': '\xDF\xBF'
+            },
 
-                // 3-byte
-                {
-                    'codePoint': 0x0800,
-                    'decoded': '\u0800',
-                    'encoded': '\xE0\xA0\x80'
-                },
-                {
-                    'codePoint': 0x2C3C,
-                    'decoded': '\u2C3C',
-                    'encoded': '\xE2\xB0\xBC'
-                },
-                {
-                    'codePoint': 0xFFFF,
-                    'decoded': '\uFFFF',
-                    'encoded': '\xEF\xBF\xBF'
-                },
+            // 3-byte
+            {
+                'codePoint': 0x0800,
+                'decoded': '\u0800',
+                'encoded': '\xE0\xA0\x80'
+            }, {
+                'codePoint': 0x2C3C,
+                'decoded': '\u2C3C',
+                'encoded': '\xE2\xB0\xBC'
+            }, {
+                'codePoint': 0xFFFF,
+                'decoded': '\uFFFF',
+                'encoded': '\xEF\xBF\xBF'
+            },
 
-                // 4-byte
-                {
-                    'codePoint': 0x010000,
-                    'decoded': '\uD800\uDC00',
-                    'encoded': '\xF0\x90\x80\x80'
-                },
-                {
-                    'codePoint': 0x01D306,
-                    'decoded': '\uD834\uDF06',
-                    'encoded': '\xF0\x9D\x8C\x86'
-                },
-                {
-                    'codePoint': 0x10FFF,
-                    'decoded': '\uDBFF\uDFFF',
-                    'encoded': '\xF4\x8F\xBF\xBF'
-                }
-            ];
-            
-            // `throws` is a reserved word in ES3; alias it to avoid errors
-            var raises = QUnit.assert.throws;
+            // 4-byte
+            {
+                'codePoint': 0x010000,
+                'decoded': '\uD800\uDC00',
+                'encoded': '\xF0\x90\x80\x80'
+            }, {
+                'codePoint': 0x01D306,
+                'decoded': '\uD834\uDF06',
+                'encoded': '\xF0\x9D\x8C\x86'
+            }, {
+                'codePoint': 0x10FFF,
+                'decoded': '\uDBFF\uDFFF',
+                'encoded': '\xF4\x8F\xBF\xBF'
+            }
+        ];
 
-            _.each(data, function(object) {
-                var description = object.description || 'U+' + object.codePoint.toString(16).toUpperCase();
-                equal(
-                    object.encoded,
-                    _.utf8_encode(object.decoded),
-                    'Encoding: ' + description
-                );
-                equal(
-                    object.decoded,
-                    _.utf8_decode(object.encoded),
-                    'Decoding: ' + description
-                );
-            });
+        // `throws` is a reserved word in ES3; alias it to avoid errors
+        var raises = QUnit.assert.throws;
 
-            // Error handling
-            raises(
-                function() {
-                    _.utf8_decode('\uFFFF');
-                },
-                Error,
-                'Error: invalid UTF-8 detected'
+        _.each(data, function(object) {
+            var description = object.description || 'U+' + object.codePoint.toString(16).toUpperCase();
+            equal(
+                object.encoded,
+                _.utf8_encode(object.decoded),
+                'Encoding: ' + description
             );
-            raises(
-                function() {
-                    _.utf8_decode('\xE9\x00\x00');
-                },
-                Error,
-                'Error: invalid continuation byte (4-byte sequence expected)'
+            equal(
+                object.decoded,
+                _.utf8_decode(object.encoded),
+                'Decoding: ' + description
             );
-            raises(
-                function() {
-                    _.utf8_decode('\xC2\uFFFF');
-                },
-                Error,
-                'Error: invalid continuation byte'
-            );
-            raises(
-                function() {
-                    _.utf8_decode('\xF0\x9D');
-                },
-                Error,
-                'Error: invalid byte index'
-            );
+        });
+
+        // Error handling
+        raises(
+            function() {
+                _.utf8_decode('\uFFFF');
+            },
+            Error,
+            'Error: invalid UTF-8 detected'
+        );
+        raises(
+            function() {
+                _.utf8_decode('\xE9\x00\x00');
+            },
+            Error,
+            'Error: invalid continuation byte (4-byte sequence expected)'
+        );
+        raises(
+            function() {
+                _.utf8_decode('\xC2\uFFFF');
+            },
+            Error,
+            'Error: invalid continuation byte'
+        );
+        raises(
+            function() {
+                _.utf8_decode('\xF0\x9D');
+            },
+            Error,
+            'Error: invalid byte index'
+        );
     });
-    
-    
-    
-    test('curry',function(){
+
+
+
+    test('curry', function() {
         // create a curry fn
         // this function takes whatever arguments are passed and adds them together
-          var adder = function() {
-            var n = 0, args = [].slice.call(arguments);
+        var adder = function() {
+            var n = 0,
+                args = [].slice.call(arguments);
 
             for (var i = 0, len = args.length; i < len; i++) {
-              n += args[i];
-            }   
+                n += args[i];
+            }
 
             return n;
-          };
+        };
 
-          equal(adder(2,2),4,'test basic adder with 2 args');
+        equal(adder(2, 2), 4, 'test basic adder with 2 args');
 
-          // curry adder for later application
-          var addTwelve = _.curry(adder, 12);
+        // curry adder for later application
+        var addTwelve = _.curry(adder, 12);
 
-          equal(addTwelve(3),15,'test add twelve to 3 for 15');
-          
-          equal(addTwelve(3,6,4),25,'test add twelve with 3 args');
+        equal(addTwelve(3), 15, 'test add twelve to 3 for 15');
+
+        equal(addTwelve(3, 6, 4), 25, 'test add twelve with 3 args');
     });
 
     test('ord', function() {
@@ -242,9 +234,9 @@ define(['../src/undermore.js', '../src/safe.js'], function() {
 
     test('fnMore', function() {
         var fn1 = function(fnArg) {
-                this.fn1Arg = fnArg;
-                this.fn1Prop = 'fn1';
-            },
+            this.fn1Arg = fnArg;
+            this.fn1Prop = 'fn1';
+        },
             fn2 = function(fnArg) {
                 this.fn2Arg = fnArg;
                 this.fn2Prop = 'fn2';
@@ -261,17 +253,17 @@ define(['../src/undermore.js', '../src/safe.js'], function() {
         fnMore('an arg');
 
         deepEqual(
-        obj, {
-            name: 'obj',
-            fn1Arg: 'an arg',
-            fn1Prop: 'fn1',
-            fn2Prop: 'fn2',
-            fn2Arg: 'an arg'
-        }, 'mutated object');
+            obj, {
+                name: 'obj',
+                fn1Arg: 'an arg',
+                fn1Prop: 'fn1',
+                fn2Prop: 'fn2',
+                fn2Arg: 'an arg'
+            }, 'mutated object');
 
     });
-    
-    test('uuid',function(){
+
+    test('uuid', function() {
         var uuid1 = _.uuid(),
             uuid2 = _.uuid(),
             parts = uuid1.split('-'),
@@ -279,33 +271,33 @@ define(['../src/undermore.js', '../src/safe.js'], function() {
             cache = {},
             i,
             uuid;
-            
-        notEqual(uuid1,uuid2,'two different uuids generated: '+uuid1+' and '+uuid2);
-        
-        equal(parts.length,5,'uuid has correct number of segments');
-        
-        equal(parts[0].length,8,'1st segment length is 8');
-        equal(parts[1].length,4,'2nd segment length is 4');
-        equal(parts[2].length,4,'3rd segment length is 4');
-        equal(parts[3].length,4,'4th segment length is 4');
-        equal(parts[4].length,12,'5th segment length is 12');
-        
-        equal(parts[2].charAt(0),'4','3rd segment begins with a 4');
-        
-        
-        ok((/[^cdef0-7]/).test(limited),'4th segment begins with 8-b ('+limited+')');
-        
+
+        notEqual(uuid1, uuid2, 'two different uuids generated: ' + uuid1 + ' and ' + uuid2);
+
+        equal(parts.length, 5, 'uuid has correct number of segments');
+
+        equal(parts[0].length, 8, '1st segment length is 8');
+        equal(parts[1].length, 4, '2nd segment length is 4');
+        equal(parts[2].length, 4, '3rd segment length is 4');
+        equal(parts[3].length, 4, '4th segment length is 4');
+        equal(parts[4].length, 12, '5th segment length is 12');
+
+        equal(parts[2].charAt(0), '4', '3rd segment begins with a 4');
+
+
+        ok((/[^cdef0-7]/).test(limited), '4th segment begins with 8-b (' + limited + ')');
+
         // now let's generate a ton of them and make sure they are unique
-        
-        for(i=0;i<10000;i++){
+
+        for (i = 0; i < 10000; i++) {
             uuid = _.uuid();
             limited = uuid.charAt(19);
-            
-            ok(!cache[uuid] && (/[89ab]/).test(limited),uuid+' is unique and 4th segment begins with 8-b ('+limited+')');
-            
+
+            ok(!cache[uuid] && (/[89ab]/).test(limited), uuid + ' is unique and 4th segment begins with 8-b (' + limited + ')');
+
             cache[uuid] = 1;
         }
-        
+
     });
 
 });
