@@ -851,3 +851,13 @@ form.well {
   }
 
 }
+
+.set {
+  background-color: #eee;
+  padding: 5px 0 2px 5px;
+  margin-bottom: 5px;
+  border: 1px solid #999;
+}
+.wrap,.join{
+  display:none;
+}

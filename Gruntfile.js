@@ -11,11 +11,21 @@ module.exports = function(grunt) {
             '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
             '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
             ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+        banner_undermore: grunt.file.read('src/_source/_.banner.tmpl'),
+        foot_undermore: grunt.file.read('src/_source/_.foot.tmpl'),
         // Task configuration.
         concat: {
             options: {
-                banner: '<%= banner %>',
-                stripBanners: true
+                banner: '<%= banner %>'
+            },
+            undermore: {
+                options: {
+                    separator: ', \n ',
+                    banner: ' <%= banner_undermore %> ',
+                    footer: ' <%= foot_undermore %> '
+                },
+                src: ['src/_source/_.*.js'],
+                dest: 'src/_.build.js'
             },
             dist: {
                 src: ['src/*.js'],
@@ -47,9 +57,10 @@ module.exports = function(grunt) {
             },
             src: {
                 options: {
-                    jshintrc: 'src/.jshintrc'
+                    jshintrc: 'src/.jshintrc',
+                    ignore: 'src/_source'
                 },
-                src: ['src/**/*.js']
+                src: ['src/*.js']
             },
             test: {
                 src: ['test/**/*.js']
@@ -119,6 +130,6 @@ module.exports = function(grunt) {
     grunt.task.run('notify_hooks');
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'jsdoc', 'qunit', 'notify:done']);
+    grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'jsdoc', 'qunit', 'notify:done']);
 
 };
