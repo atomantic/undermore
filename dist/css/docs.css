@@ -19,9 +19,14 @@ body {
 
 .fork {
   position: absolute; 
-  top: 0; 
+  top: 30px; 
   right: 0; 
   border: 0;
+}
+@media (max-width: 480px){
+  .fork {
+    top: 50px; 
+  }
 }
 
 /* Tweak navbar brand link to be super sleek
