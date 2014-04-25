@@ -131,3 +131,7 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 ## License
 Copyright (c) 2013-2014 Adam Eivy (@antic)  
 Licensed under the MIT license.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/atomantic/undermore/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
