@@ -8,7 +8,7 @@
  *  _.ord(345) === 'th'
  */
 ord: function(n) {
-    var sfx = ["th", "st", "nd", "rd"],
+    var sfx = ['th', 'st', 'nd', 'rd'],
         v = n % 100;
     return sfx[(v - 20) % 10] || sfx[v] || sfx[0];
 }

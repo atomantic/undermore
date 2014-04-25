@@ -53,11 +53,8 @@ Install the module with: `npm install undermore`
 ```javascript
 var undermore = require('undermore');
 
-// "get the english ordinal for a number"
-var num = 345,
-    ord = _.ord(num),
-    out = 'your number is the '+num+ord;
-// out is now 'your number is the 345th';
+// get a random uuid
+var uuid = _.uuid();
 ```
 
 ### In the browser
@@ -67,13 +64,11 @@ In your web page:
 
 ```html
 <script src="libs/lodash/dist/lodash-min.js"></script>
+<!--include the full minified undermore library (or your custom build)-->
 <script src="dist/undermore.min.js"></script>
 <script>
-// "get the english ordinal for a number"
-var num = 345,
-    ord = _.ord(num);
-    out = 'your number is the '+num+ord;
-// out is now 'your number is the 345th';
+// get a random uuid
+var uuid = _.uuid();
 </script>
 ```
 
@@ -101,6 +96,9 @@ Lint, build and test your code using [Grunt](http://gruntjs.com/).
 _Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Grunt. You'll find source code in the "src" subdirectory :)_
 
 ## Release History
+
+### <sup>v0.2.0</sup>
+ * Undermore is now split into _source/*.js for customizing undermore builds
 
 ### <sup>v0.1.3</sup>
  * String.prototype.contains(searchString, position)
