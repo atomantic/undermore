@@ -13,6 +13,8 @@ module.exports = function(grunt) {
             ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
         banner_undermore: grunt.file.read('src/_source/_.banner.tmpl'),
         foot_undermore: grunt.file.read('src/_source/_.foot.tmpl'),
+        banner_jquery: grunt.file.read('src/jquery_source/$.banner.tmpl'),
+        foot_jquery: grunt.file.read('src/jquery_source/$.foot.tmpl'),
         // Task configuration.
         concat: {
             options: {
@@ -26,6 +28,15 @@ module.exports = function(grunt) {
                 },
                 src: ['src/_source/_.*.js'],
                 dest: 'src/_.build.js'
+            },
+            jquery: {
+                options: {
+                    separator: '\n\n',
+                    banner: ' <%= banner_jquery %> ',
+                    footer: ' <%= foot_jquery %> '
+                },
+                src: ['src/jquery_source/$.*.js'],
+                dest: 'src/$.build.js'
             },
             dist: {
                 src: ['src/*.js'],
