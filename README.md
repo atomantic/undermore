@@ -97,6 +97,12 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v0.3.0</sup>
+ * Including jquery extensions and tiny $.fn methods
+ * :containsI - case insensitive version of $(':contains(...)')
+ * :startsWith - select elements with text that begins with value
+ * $.fn.formToObject (get name:value object from html form elements)
+
 ### <sup>v0.2.0</sup>
  * Undermore is now split into _source/*.js for customizing undermore builds
 

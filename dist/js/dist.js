@@ -6,7 +6,8 @@
         $jsDownload = $("#javascript-download"),
         $section = $toggler.closest('section'),
         $checkboxes_all = $section.find('input[type=checkbox]'),
-        $checkboxes = $checkboxes_all.not(":disabled");
+        $checkboxes = $checkboxes_all.not(":disabled"),
+        $docs = $('#docsframe');
 
     $("a[href='#']").click(function(event) {
         event.preventDefault();
@@ -77,4 +78,7 @@
             }
         );
     });
+
+    $docs.css({height:$docs.contents().height()+'px'});
+
 })();

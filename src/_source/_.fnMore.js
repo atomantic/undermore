@@ -1,6 +1,7 @@
 /**
  * get a new function, which runs two functions serially within a given context
  *
+ * @function module:undermore.fnMore
  * @param {function} originalFn The original function to run
  * @param {function} moreFn The extra function to run in the same context after the first
  * @param {object} scope The context in which to run the fn

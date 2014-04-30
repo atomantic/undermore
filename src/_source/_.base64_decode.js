@@ -1,6 +1,7 @@
 /**
  * base64_decode decode a string
  *
+ * @function module:undermore.base64_decode
  * @link https://github.com/davidchambers/Base64.js
  * @param {string} str The string to decode
  * @return {string}

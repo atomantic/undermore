@@ -13,6 +13,8 @@ module.exports = function(grunt) {
             ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
         banner_undermore: grunt.file.read('src/_source/_.banner.tmpl'),
         foot_undermore: grunt.file.read('src/_source/_.foot.tmpl'),
+        banner_jquery: grunt.file.read('src/jquery_source/$.banner.tmpl'),
+        foot_jquery: grunt.file.read('src/jquery_source/$.foot.tmpl'),
         // Task configuration.
         concat: {
             options: {
@@ -21,14 +23,28 @@ module.exports = function(grunt) {
             undermore: {
                 options: {
                     separator: ', \n ',
-                    banner: ' <%= banner_undermore %> ',
-                    footer: ' <%= foot_undermore %> '
+                    banner: '<%= banner_undermore %>',
+                    footer: '<%= foot_undermore %>'
                 },
                 src: ['src/_source/_.*.js'],
                 dest: 'src/_.build.js'
             },
+            jquery: {
+                options: {
+                    separator: '\n\n',
+                    banner: '<%= banner_jquery %>',
+                    footer: '<%= foot_jquery %>'
+                },
+                src: ['src/jquery_source/$.*.js'],
+                dest: 'src/$.build.js'
+            },
             dist: {
-                src: ['src/*.js'],
+                src: [
+                    'src/_.build.js',
+                    'src/$.build.js',
+                    'src/safe.js',
+                    'src/string.*.js'
+                ],
                 dest: 'dist/undermore.js'
             },
             bin: {
@@ -46,7 +62,7 @@ module.exports = function(grunt) {
             }
         },
         qunit: {
-            files: ['test/**/*.html']
+            files: ['test/*.html']
         },
         jshint: {
             options: {
@@ -90,7 +106,9 @@ module.exports = function(grunt) {
         },
         jsdoc: {
             dist: {
-                src: ['src/*.js'],
+                src: [
+                    'dist/undermore.js'
+                ],
                 options: {
                     destination: 'dist/docs'
                 }
@@ -131,5 +149,6 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'jsdoc', 'qunit', 'notify:done']);
+    grunt.registerTask('build', ['concat', 'jshint', 'uglify', 'jsdoc', 'notify:done']);
 
 };

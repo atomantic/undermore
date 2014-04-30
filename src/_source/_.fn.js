@@ -3,6 +3,8 @@
  * If you are using jQuery, you could use $.noop if returning undefined is desireable
  * but this one is useful for anything requiring a boolean true return
  *
+ * @function module:undermore.fn
+ *
  * @return {boolean} true
  * @example
  *  this.onComplete = conf.onComplete||_.fn;

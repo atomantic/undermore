@@ -137,7 +137,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         ];
 
         // `throws` is a reserved word in ES3; alias it to avoid errors
-        var raises = QUnit.assert.throws;
+        var raises = QUnit.assert['throws'];
 
         _.each(data, function(object) {
             var description = object.description || 'U+' + object.codePoint.toString(16).toUpperCase();
@@ -289,7 +289,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
 
         // now let's generate a ton of them and make sure they are unique
 
-        for (i = 0; i < 10000; i++) {
+        for (i = 0; i < 1000; i++) {
             uuid = _.uuid();
             limited = uuid.charAt(19);
 

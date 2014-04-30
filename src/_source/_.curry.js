@@ -1,6 +1,7 @@
 /**
   * create a partial application function (curry)
   * 
+  * @function module:undermore.curry
   * @link http://stackoverflow.com/questions/113780/javascript-curry-what-are-the-practical-applications
   * @param {function} fnBase The function to curry or partially apply
   * @return {function}
