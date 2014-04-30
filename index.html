@@ -43,7 +43,6 @@
             <ul class="nav">
               <li class="active"><a href="#home">Home</a></li>
               <li><a href="#download" class="active">Custom Download</a></li>
-              <li><a href="#overview" class="active">About</a></li>
               <li><a href="#docs">Docs</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -55,12 +54,13 @@
   
     <div class="container">
 
-      <header class="jumbotron subhead" id="overview">
+      <header class="jumbotron subhead">
         <h1>undermore / mo-dash<a href="https://travis-ci.org/atomantic/undermore">
             <img src="https://travis-ci.org/atomantic/undermore.png?branch=dev" alt="Build Status" />
           </a>
         </h1>
         <p class="lead">All the stuff that should already be there, but isn't</p>
+        <p>Undermore collects a set of standard JavaScript utilities, exposed as underscore/lo-dash mixins (so you can keep your utilities in the _.* namespace. It also provides an optional es6-shim and hopeful future JS String prototype methods as well as some helpful jquery extensions that are too minimal to be full-fledge plugins but have become a standard addition to the library.</p>
       </header>
     </div>
 
@@ -74,10 +74,10 @@
           <p class="lead"><a href="https://github.com/atomantic/undermore">Download the full repository</a> or just take some parts:</p>
         </div>
         <div class="row" id="javascript-downloads">
-          <div class="span3 set">
+          <div class="span2 set">
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/safe.js"> safe.js (console safety)</label>
           </div>
-          <div class="span3 set">
+          <div class="span2 set">
             <label class="checkbox"><input class="complete" checked="checked" type="checkbox" value="src/_.build.js"> All undermore.js</label>
             <hr/>
             <input class="partial wrap" disabled type="checkbox" value="src/_source/_.banner.tmpl" />
@@ -123,7 +123,7 @@
             <input class="partial wrap" disabled type="checkbox" value="src/_source/_.foot.tmpl" />
             
           </div>
-          <div class="span5 set">
+          <div class="span4 set">
             <label class="checkbox"><input class="complete" checked="checked" type="checkbox" value="libs/es6-shim.js"> es6-shim.js (<a href="https://github.com/es-shims/es6-shim" target="off">docs</a>)</label><hr/>
             <label class="checkbox"><input class="partial" type="checkbox" value="src/string.capitalize.js">String.prototype.capitalize (es6-shim)</label>
             <label class="checkbox"><input class="partial" type="checkbox" value="src/string.contains.js">String.prototype.contains (es6-shim)</label>
@@ -132,6 +132,14 @@
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.left.js">String.prototype.left</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.right.js">String.prototype.right</label>
             <label class="checkbox"><input checked="checked" type="checkbox" value="src/string.trunc.js">String.prototype.trunc</label>
+          </div>
+          <div class="span3 set">
+            <label class="checkbox"><input class="complete" checked="checked" type="checkbox" value="src/$.build.js">$.core.js<hr/>
+            <input class="partial wrap" disabled type="checkbox" value="src/jquery_source/$.banner.tmpl" />
+            <label class="checkbox"><input class="partial" type="checkbox" value="src/jquery_source/$.expr_containsI.js">$.expr[':'].containsI</label>
+            <label class="checkbox"><input class="partial" type="checkbox" value="src/jquery_source/$.expr_startsWith.js">$.expr[':'].startsWith</label>
+            <label class="checkbox"><input class="partial" type="checkbox" value="src/jquery_source/$.fn.formToObject.js">$.expr[':'].formToObject</label>
+            <input class="partial wrap" disabled type="checkbox" value="src/jquery_source/$.foot.tmpl" />
           </div>
         </div><!-- /row -->
         <br />
@@ -153,7 +161,7 @@
     
     <section class="container">
         <h1 id="docs">Documentation</h1>
-        <iframe width="100%" height="2000" src="docs/module-undermore.html"></iframe>
+        <iframe id="docsframe" width="100%" height="8000" src="docs/module-undermore.html"></iframe>
     </section>
 
     <!-- Le javascript

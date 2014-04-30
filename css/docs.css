@@ -866,3 +866,8 @@ form.well {
 .wrap,.join{
   display:none;
 }
+
+p{
+  font-size:16px;
+  line-height:20px;
+}
