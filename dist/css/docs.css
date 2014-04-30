@@ -871,3 +871,8 @@ p{
   font-size:16px;
   line-height:20px;
 }
+
+[class*="span"] {
+  margin-left:5px;
+}
+

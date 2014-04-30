@@ -1,7 +1,7 @@
 /**
  * convert a form's name/value pairs to a json object
  * 
- * @function external:jQuery.formToObject
+ * @function module:jQuery.formToObject
  * @example 
  *  // captures the field/value set from #myform
  *  var formData = $('#myform').formToObject();

@@ -3,7 +3,7 @@
  * works just like $(':contains(text)') but as $(':containsI(text)')
  * Additionally, allows regex searches:
  * 
- * @function external:jQuery.containsI
+ * @function module:jQuery.containsI
  * @example
  *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
  *  $("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)

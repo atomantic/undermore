@@ -1,7 +1,7 @@
 /**
  * finds elements that contain text starting with string
  * 
- * @function external:jQuery.startsWith
+ * @function module:jQuery.startsWith
  * @example
  *  $(':startsWith(text)')
  * @return {object} selection of elements that have text starting with given string

@@ -4,7 +4,7 @@
  * The jQuery plugin namespace.
  * a set of standard mini jquery plugins and extensions
  * This set of extensions adds functionality to the jQuery.fn external library
- * @external jQuery
+ * @module jQuery
  * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
  * @copyright 2013 Adam Eivy (@antic)
  * @license MIT
@@ -18,7 +18,7 @@
  * works just like $(':contains(text)') but as $(':containsI(text)')
  * Additionally, allows regex searches:
  * 
- * @function external:jQuery.containsI
+ * @function module:jQuery.containsI
  * @example
  *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
  *  $("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)
@@ -32,7 +32,7 @@ $.expr[":"].containsI = function(elem, i, match) {
 /**
  * finds elements that contain text starting with string
  * 
- * @function external:jQuery.startsWith
+ * @function module:jQuery.startsWith
  * @example
  *  $(':startsWith(text)')
  * @return {object} selection of elements that have text starting with given string
@@ -44,7 +44,7 @@ $.expr[":"].startsWith = function(elem, i, match) {
 /**
  * convert a form's name/value pairs to a json object
  * 
- * @function external:jQuery.formToObject
+ * @function module:jQuery.formToObject
  * @example 
  *  // captures the field/value set from #myform
  *  var formData = $('#myform').formToObject();
