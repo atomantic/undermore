@@ -1,17 +1,11 @@
- /*jslint jquery:true*/
+/*jslint jquery:true*/
 /*global define*/
 /**
  * The jQuery plugin namespace.
+ * a set of standard mini jquery plugins and extensions
+ * This set of extensions adds functionality to the jQuery.fn external library
  * @external jQuery
  * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
- */
-/**
- * core.jquery is a set of standard mini jquery plugins and extensions
- * This set of extensions adds functionality to the jQuery.fn external library
- * 
- * @module core.jquery
- * @memberOf jQuery
- *
  * @copyright 2013 Adam Eivy (@antic)
  * @license MIT
  */
@@ -19,24 +13,29 @@
 (function(){
     'use strict';
     var plugin = function($) {
-     /**
- * :containsI() allows the query of elements containing case-insensitive text
+    /**
+ * allows the query of elements containing case-insensitive text
  * works just like $(':contains(text)') but as $(':containsI(text)')
  * Additionally, allows regex searches:
+ * 
+ * @function external:jQuery.containsI
  * @example
  *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
  *  $("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)
  *  $("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)
+ * @return selection of elements containing string (insensitively)
  */
 $.expr[":"].containsI = function(elem, i, match) {
     return (new RegExp (match[3], 'i')).test(elem.textContent || elem.innerText || '');
 };
 
 /**
- * :startsWith() returns a selection of elements that have text
- * starting with the given string
+ * finds elements that contain text starting with string
+ * 
+ * @function external:jQuery.startsWith
  * @example
  *  $(':startsWith(text)')
+ * @return {object} selection of elements that have text starting with given string
  */
 $.expr[":"].startsWith = function(elem, i, match) {
     return ( elem.textContent || elem.innerText || '' ).indexOf( match[3] ) === 0;
@@ -68,7 +67,7 @@ $.fn.formToObject = function() {
        }
    });
    return o;
-}; 
+};
     };
     // support for requirejs
     if ( typeof define === 'function' && define.amd ) {
@@ -78,4 +77,4 @@ $.fn.formToObject = function() {
     } else {
         plugin(jQuery);
     } 
-}()); 
+}());

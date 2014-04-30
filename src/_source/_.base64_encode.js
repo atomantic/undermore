@@ -4,6 +4,7 @@
  * Note: it might be work including an urlsafe flag
  * (see https://github.com/knowledgecode/base64.js)
  *
+ * @function module:undermore.base64_encode
  * @link https://github.com/davidchambers/Base64.js
  * @param {string} str The string to encode
  * @return {string}

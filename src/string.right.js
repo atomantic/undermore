@@ -1,7 +1,7 @@
 /**
  * get a substring of a particular length from the right
  * 
- * @function external:String.prototype.right
+ * @function module:String.prototype.right
  * @param {number}     n     The lenth of the string to return
  * @return {string}
  * @example

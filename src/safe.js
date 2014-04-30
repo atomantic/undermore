@@ -1,7 +1,17 @@
 /*jslint browser:true*/
 /*global console*/
 
-// make it safe to use console.log always
+/**
+* console safety
+* @module core
+* @see {@link http://patik.com/blog/complete-cross-browser-console-log/ Console.log}
+*/
+
+/**
+ * make it safe to use console.log always
+ * 
+ * @function module:core.console
+ */
 (function(a) {
     function b() {}
     for (

@@ -1,6 +1,7 @@
 /**
  * Get the english ordinal suffix for any number
  *
+ * @function module:undermore.ord
  * @param {number} n number The number to evaluate
  * @return {string} The ordinal for that number
  * @example:

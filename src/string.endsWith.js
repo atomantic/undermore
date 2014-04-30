@@ -4,7 +4,7 @@
  * Once ecmascript adds this natively, you should build core.js without this method:
  * @link http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
  * @link http://jsperf.com/string-prototype-endswith/3
- * @function external:String.prototype.endsWith
+ * @function module:String.prototype.endsWith
  * @param {string} A substring expected to be in the beginning of this string
  * @return {boolean}
   * @example
