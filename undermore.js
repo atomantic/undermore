@@ -1,88 +1,7 @@
 /*! undermore - v0.2.0 - 2014-04-30
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
- /*jslint jquery:true*/
-/*global define*/
-/**
- * The jQuery plugin namespace.
- * @external jQuery
- * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
- */
-/**
- * core.jquery is a set of standard mini jquery plugins and extensions
- * This set of extensions adds functionality to the jQuery.fn external library
- * 
- * @module core.jquery
- * @memberOf jQuery
- *
- * @copyright 2013 Adam Eivy (@antic)
- * @license MIT
- */
- 
-(function(){
-    'use strict';
-    var plugin = function($) {
-     /**
- * :containsI() allows the query of elements containing case-insensitive text
- * works just like $(':contains(text)') but as $(':containsI(text)')
- * Additionally, allows regex searches:
- * @example
- *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
- *  $("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)
- *  $("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)
- */
-$.expr[":"].containsI = function(elem, i, match) {
-    return (new RegExp (match[3], 'i')).test(elem.textContent || elem.innerText || '');
-};
-
-/**
- * :startsWith() returns a selection of elements that have text
- * starting with the given string
- * @example
- *  $(':startsWith(text)')
- */
-$.expr[":"].startsWith = function(elem, i, match) {
-    return ( elem.textContent || elem.innerText || '' ).indexOf( match[3] ) === 0;
-};
-
-/**
- * convert a form's name/value pairs to a json object
- * 
- * @function external:jQuery.formToObject
- * @example 
- *  // captures the field/value set from #myform
- *  var formData = $('#myform').formToObject();
- * 
- * @return {object} a json representation of the form
- */
-$.fn.formToObject = function() {
-   var o = {},
-       a = this.serializeArray(),
-       name;
-   $.each(a, function() {
-     name = this.name;
-       if (o[name] !== undefined) {
-           if (!o[name].push) {
-               o[name] = [o[name]];
-           }
-           o[name].push(this.value || '');
-       } else {
-           o[name] = this.value || '';
-       }
-   });
-   return o;
-}; 
-    };
-    // support for requirejs
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], function ($) { 
-            return plugin($); 
-        } );
-    } else {
-        plugin(jQuery);
-    } 
-}()); 
- /*global exports,Buffer,atob,btoa,escape,unescape*/
+/*global exports,Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
 /**
@@ -93,12 +12,12 @@ $.fn.formToObject = function() {
  * ONE MIXIN PER FILE (to allow custom builds)
  */
 
-
-/**
+ /**
  * The ecmascript String prototype
- * @external String
+ * @module String
  * @see {@link http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.3.1 ECMASCript 5.1 String.prototype}
  */
+
 /**
  * undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
  * that really should just already be there--these are tiny, unit tested additions to underscore.js, which
@@ -122,9 +41,10 @@ $.fn.formToObject = function() {
 
 
     // add the mixins to underscore
-    _.mixin({ /**
+    _.mixin({/**
  * base64_decode decode a string
  *
+ * @function module:undermore.base64_decode
  * @link https://github.com/davidchambers/Base64.js
  * @param {string} str The string to decode
  * @return {string}
@@ -171,6 +91,7 @@ base64_decode: function(str) {
  * Note: it might be work including an urlsafe flag
  * (see https://github.com/knowledgecode/base64.js)
  *
+ * @function module:undermore.base64_encode
  * @link https://github.com/davidchambers/Base64.js
  * @param {string} str The string to encode
  * @return {string}
@@ -207,6 +128,7 @@ base64_encode: function(str) {
  /**
   * create a partial application function (curry)
   * 
+  * @function module:undermore.curry
   * @link http://stackoverflow.com/questions/113780/javascript-curry-what-are-the-practical-applications
   * @param {function} fnBase The function to curry or partially apply
   * @return {function}
@@ -233,6 +155,8 @@ curry: function(fnBase) {
 }, 
  /**
  * empty event handler function, which simply prevents default handling
+ *
+ * @function module:undermore.eFn
  * @example
  *  $('thing').on('click',this.conf.onClick||_.eFn)
  */
@@ -244,6 +168,8 @@ eFn: function(e) {
  * If you are using jQuery, you could use $.noop if returning undefined is desireable
  * but this one is useful for anything requiring a boolean true return
  *
+ * @function module:undermore.fn
+ *
  * @return {boolean} true
  * @example
  *  this.onComplete = conf.onComplete||_.fn;
@@ -254,6 +180,7 @@ fn: function() {
  /**
  * get a new function, which runs two functions serially within a given context
  *
+ * @function module:undermore.fnMore
  * @param {function} originalFn The original function to run
  * @param {function} moreFn The extra function to run in the same context after the first
  * @param {object} scope The context in which to run the fn
@@ -276,6 +203,7 @@ fnMore: function(originalFn, moreFn, scope) {
  /**
  * Get the english ordinal suffix for any number
  *
+ * @function module:undermore.ord
  * @param {number} n number The number to evaluate
  * @return {string} The ordinal for that number
  * @example:
@@ -290,6 +218,7 @@ ord: function(n) {
  /**
  * utf8 decode a string
  *
+ * @function module:undermore.utf8_decode
  * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
  * @param {string} str The string to decode
  * @return {string}
@@ -300,6 +229,7 @@ utf8_decode: function(str) {
  /**
  * utf8 encode a string
  *
+ * @function module:undermore.utf8_encode
  * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
  * @param {string} str The string to encode
  * @return {string}
@@ -312,6 +242,7 @@ utf8_encode: function(str) {
  * where each x is replaced with a random hexadecimal digit from 0 to f,
  * and y is replaced with a random hexadecimal digit from 8 to b.
  *
+ * @function module:undermore.uuid
  * @link http://www.ietf.org/rfc/rfc4122.txt
  * @return {string} random uuid
  * @example
@@ -324,14 +255,104 @@ uuid: function() {
         d = Math.floor(d / 16);
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
-} 
+}
     }); // mixin
 
-}(typeof exports === 'object' && exports || this)); 
+}(typeof exports === 'object' && exports || this));
+/*jslint jquery:true*/
+/*global define*/
+/**
+ * The jQuery plugin namespace.
+ * a set of standard mini jquery plugins and extensions
+ * This set of extensions adds functionality to the jQuery.fn external library
+ * @external jQuery
+ * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
+ * @copyright 2013 Adam Eivy (@antic)
+ * @license MIT
+ */
+ 
+(function(){
+    'use strict';
+    var plugin = function($) {
+    /**
+ * allows the query of elements containing case-insensitive text
+ * works just like $(':contains(text)') but as $(':containsI(text)')
+ * Additionally, allows regex searches:
+ * 
+ * @function external:jQuery.containsI
+ * @example
+ *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
+ *  $("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)
+ *  $("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)
+ * @return selection of elements containing string (insensitively)
+ */
+$.expr[":"].containsI = function(elem, i, match) {
+    return (new RegExp (match[3], 'i')).test(elem.textContent || elem.innerText || '');
+};
+
+/**
+ * finds elements that contain text starting with string
+ * 
+ * @function external:jQuery.startsWith
+ * @example
+ *  $(':startsWith(text)')
+ * @return {object} selection of elements that have text starting with given string
+ */
+$.expr[":"].startsWith = function(elem, i, match) {
+    return ( elem.textContent || elem.innerText || '' ).indexOf( match[3] ) === 0;
+};
+
+/**
+ * convert a form's name/value pairs to a json object
+ * 
+ * @function external:jQuery.formToObject
+ * @example 
+ *  // captures the field/value set from #myform
+ *  var formData = $('#myform').formToObject();
+ * 
+ * @return {object} a json representation of the form
+ */
+$.fn.formToObject = function() {
+   var o = {},
+       a = this.serializeArray(),
+       name;
+   $.each(a, function() {
+     name = this.name;
+       if (o[name] !== undefined) {
+           if (!o[name].push) {
+               o[name] = [o[name]];
+           }
+           o[name].push(this.value || '');
+       } else {
+           o[name] = this.value || '';
+       }
+   });
+   return o;
+};
+    };
+    // support for requirejs
+    if ( typeof define === 'function' && define.amd ) {
+        define(['jquery'], function ($) { 
+            return plugin($); 
+        } );
+    } else {
+        plugin(jQuery);
+    } 
+}());
 /*jslint browser:true*/
 /*global console*/
 
-// make it safe to use console.log always
+/**
+* console safety
+* @module core
+* @see {@link http://patik.com/blog/complete-cross-browser-console-log/ Console.log}
+*/
+
+/**
+ * make it safe to use console.log always
+ * 
+ * @function module:core.console
+ */
 (function(a) {
     function b() {}
     for (
@@ -351,7 +372,7 @@ uuid: function() {
 /**
  * Capitalizes the first letter of a string and downcases all the others.
  *
- * @function external:String.prototype.capitalize
+ * @function module:String.prototype.capitalize
  * @return {string}
  * @example
  *  'hello'.capitalize() === 'Hello'
@@ -365,7 +386,7 @@ String.prototype.capitalize = String.prototype.capitalize || function() {
  * 
  * Once ecmascript adds this natively, you should build core.js without this method:
  * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains
- * @function external:String.prototype.contains
+ * @function module:String.prototype.contains
  * @param {string} searchString A string to be searched for within this string.
  * @param {number} position The position in this string at which to begin searching for searchString; defaults to 0.
  * @return {boolean}
@@ -386,7 +407,7 @@ String.prototype.contains = String.prototype.contains || function() {
  * Once ecmascript adds this natively, you should build core.js without this method:
  * @link http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
  * @link http://jsperf.com/string-prototype-endswith/3
- * @function external:String.prototype.endsWith
+ * @function module:String.prototype.endsWith
  * @param {string} A substring expected to be in the beginning of this string
  * @return {boolean}
   * @example
@@ -400,7 +421,7 @@ String.prototype.endsWith = String.prototype.endsWith || function (suffix){
 /**
  * get a substring of a particular length from the left
  * 
- * @function external:String.prototype.left
+ * @function module:String.prototype.left
  * @param {number}     n     The lenth of the string to return
  * @return {string}
  * @example
@@ -412,7 +433,7 @@ String.prototype.left = String.prototype.left || function(n) {
 /**
  * get a substring of a particular length from the right
  * 
- * @function external:String.prototype.right
+ * @function module:String.prototype.right
  * @param {number}     n     The lenth of the string to return
  * @return {string}
  * @example
@@ -426,7 +447,7 @@ String.prototype.right = String.prototype.right || function(n) {
  * 
  * Once ecmascript adds this natively, you should build core.js without this method:
  * @link http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
- * @function external:String.prototype.startsWith
+ * @function module:String.prototype.startsWith
  * @param {string} A substring expected to be in the beginning of this string
  * @return {boolean}
   * @example
@@ -439,7 +460,7 @@ String.prototype.startsWith = String.prototype.startsWith || function (prefix){
  * shorten a string, adding a suffix in place of excessive characters
  * default suffix is an html encoded ellipsis '&hellip;'
  * 
- * @function external:String.prototype.trunc
+ * @function module:String.prototype.trunc
  * @param {number}     len     The lenth of the string to keep (not counting suffix)
  * @param {string}  suffix  The suffix to append (e.g. '...<a>read more</a>')
  * @return {string}
