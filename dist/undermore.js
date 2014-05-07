@@ -1,4 +1,4 @@
-/*! undermore - v0.3.0 - 2014-04-30
+/*! undermore - v0.3.0 - 2014-05-06
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*global exports,Buffer,atob,btoa,escape,unescape*/
@@ -199,6 +199,21 @@ fnMore: function(originalFn, moreFn, scope) {
         originalFn();
         moreFn();
     };
+}, 
+ /**
+ * By default, underscore returns true for: _.isDate(SOME_INVALID_DATE) :facepalm: 
+ *
+ * @function module:undermore.isValidDate
+ * @param {date} dateVal The date to test
+ * @return {bool} Whether or not the date is valid
+ * @example:
+ *  _.isValidDate(new Date()) === true
+ *  _.isValidDate(new Date('foobar')) === false
+ *  _.isValidDate('1234') === false
+ */
+isValidDate: function (dateVal) {
+    //return !(_.isNaN(dateVal.valueOf()));
+    return _.isDate(dateVal) && !_.isNaN(dateVal.getTime());
 }, 
  /**
  * Get the english ordinal suffix for any number

@@ -263,6 +263,14 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
 
     });
 
+    test('isValidDate', function() {
+        equal(_.isValidDate(new Date()), true, 'new Date instance for current time is good');
+        equal(_.isValidDate(new Date('12/12/12')), true, 'new instance with arbitrary date is good');
+        equal(_.isValidDate(new Date('foobar')), false, 'foobar is not a date');
+        equal(_.isValidDate('121212'), false, 'a string is not a date');
+        equal(_.isValidDate(121212), false, 'a number is not a date');
+    });
+
     test('uuid', function() {
         var uuid1 = _.uuid(),
             uuid2 = _.uuid(),
