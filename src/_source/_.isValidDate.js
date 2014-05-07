@@ -14,18 +14,18 @@ isValidDate: function (dateVal) {
     
     // underscore
     /*
-		_.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
-			_['is' + name] = function(obj) {
-			  return toString.call(obj) == '[object ' + name + ']';
-			};
-		});
+        _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
+            _['is' + name] = function(obj) {
+                return toString.call(obj) == '[object ' + name + ']';
+            };
+        });
      */
     // lodash:
     /*
-	    var dateClass = '[object Date]';
-	    function isDate(value) {
-	      return (value && typeof value == 'object' && toString.call(value) == dateClass) || false;
-	    }
+        var dateClass = '[object Date]';
+        function isDate(value) {
+          return (value && typeof value == 'object' && toString.call(value) == dateClass) || false;
+        }
     */
     return _.isDate(dateVal) && !_.isNaN(dateVal.getTime());
 }
