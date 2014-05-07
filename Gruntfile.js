@@ -72,11 +72,7 @@ module.exports = function(grunt) {
                 src: 'Gruntfile.js'
             },
             src: {
-                options: {
-                    jshintrc: 'src/.jshintrc',
-                    ignore: 'src/_source'
-                },
-                src: ['src/**/*.js']
+                src: '<%= concat.dist.src %>'
             },
             test: {
                 src: ['test/**/*.js']
