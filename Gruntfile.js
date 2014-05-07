@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                     jshintrc: 'src/.jshintrc',
                     ignore: 'src/_source'
                 },
-                src: ['src/*.js']
+                src: ['src/**/*.js']
             },
             test: {
                 src: ['test/**/*.js']
@@ -120,8 +120,12 @@ module.exports = function(grunt) {
                 tasks: ['jshint:gruntfile']
             },
             src: {
-                files: '<%= jshint.src.src %>',
-                tasks: ['jshint:src', 'qunit']
+                files: [
+                    '<%= concat.undermore.src %>',
+                    '<%= concat.jquery.src %>',
+                    '<%= concat.dist.src %>'
+                ],
+                tasks: ['concat', 'jshint:src', 'uglify', 'qunit']
             },
             test: {
                 files: '<%= jshint.test.src %>',
