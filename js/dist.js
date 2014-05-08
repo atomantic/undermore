@@ -44,6 +44,22 @@
             });
         }
     });
+    $('.require').click(function(){
+        var $t = $(this),
+            requireID = $t.data('require'),
+            on = $t.is(':checked');
+        if(on){
+            $('#'+requireID).prop('checked', true).parent().effect("highlight");
+        }
+    });
+    $('.dependency').click(function(){
+        var $t = $(this),
+            depID = $t.data('dependency'),
+            on = $t.is(':checked');
+        if(!on){
+            $('#'+depID).prop('checked', false).parent().effect("highlight");
+        }
+    });
 
     $toggler.click(function() {
         var on = $toggler.data('on');

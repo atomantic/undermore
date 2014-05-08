@@ -82,11 +82,11 @@
             <hr/>
             <input class="partial wrap" disabled type="checkbox" value="src/_source/_.banner.tmpl" />
             <label class="checkbox">
-              <input type="checkbox" class="partial" value="src/_source/_.base64_decode.js" /> _.base64_decode
-              <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
+              <input type="checkbox" class="partial require" id="base64_decode" data-require="utf8_decode" value="src/_source/_.base64_decode.js" /> _.base64_decode
+              <input type="checkbox" class="partial join require" value="dist/js/undermore_join.tmpl" />
             </label>
             <label class="checkbox">
-              <input type="checkbox" class="partial" value="src/_source/_.base64_encode.js" /> _.base64_encode
+              <input type="checkbox" class="partial require" id="base64_encode" data-require="utf8_encode" value="src/_source/_.base64_encode.js" /> _.base64_encode
               <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
             </label>
             <label class="checkbox">
@@ -110,11 +110,11 @@
               <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
             </label>
             <label class="checkbox">
-              <input type="checkbox" class="partial" value="src/_source/_.utf8_decode.js" /> _.utf8_decode
+              <input type="checkbox" class="partial dependency" data-dependency="base64_decode" id="utf8_decode" value="src/_source/_.utf8_decode.js" /> _.utf8_decode
               <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
             </label>
             <label class="checkbox">
-              <input type="checkbox" class="partial" value="src/_source/_.utf8_encode.js" /> _.utf8_encode
+              <input type="checkbox" class="partial dependency" data-dependency="base64_encode" id="utf8_encode" value="src/_source/_.utf8_encode.js" /> _.utf8_encode
               <input type="checkbox" class="partial join" value="dist/js/undermore_join.tmpl" />
             </label>
             <label class="checkbox">
