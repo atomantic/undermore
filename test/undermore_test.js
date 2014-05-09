@@ -48,7 +48,8 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         equal(_.base64_encode('qrstuvwxyz{|}~'), 'cXJzdHV2d3h5ent8fX4=', '');
 
         // non-ascii input
-        equal(_.base64_encode('✈'), '4pyI', 'non-ascii input');
+        equal(_.base64_encode('複雜'), '6KSH6Zuc', 'complex traditional chinese');
+        equal(_.base64_encode('✈'), '4pyI', 'airplane');
     });
 
     test('base64_decode', function() {
@@ -68,7 +69,8 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         equal(_.base64_decode('ZGVmZ2hpamtsbW5vcA=='), 'defghijklmnop', '');
         equal(_.base64_decode('cXJzdHV2d3h5ent8fX4='), 'qrstuvwxyz{|}~', '');
 
-        equal(_.base64_decode('4pyI'), '✈', 'non-ascii output');
+        equal(_.base64_decode('6KSH6Zuc'), '複雜', 'complex traditional chinese');
+        equal(_.base64_decode('4pyI'), '✈', 'airplane');
     });
 
 
