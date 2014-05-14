@@ -862,6 +862,7 @@ form.well {
   padding: 5px 0 2px 5px;
   margin-bottom: 5px;
   border: 1px solid #999;
+  font-family:serif;
 }
 .wrap,.join{
   display:none;
