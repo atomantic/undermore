@@ -100,7 +100,7 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
-### <sup>v1.3.0</sup>
+### <sup>v1.3.1</sup>
  * Removing _.curry method
  	* it conflicted with lo-dash _.curry, implementing lo-dash _.partial rather than lo-dash _.curry as documented
  	* old undermore _.curry functionality exists by using _.partial instead
