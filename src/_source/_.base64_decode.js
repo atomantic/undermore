@@ -1,10 +1,12 @@
 /**
- * base64_decode decode a string
+ * base64_decode decode a string. This is not a strict polyfill for window.atob
+ * because it handles unicode characters
  *
  * @function module:undermore.base64_decode
  * @link https://github.com/davidchambers/Base64.js
  * @param {string} str The string to decode
  * @return {string}
+ * @example _.base64_decode('4pyI') => '✈'
  */
 base64_decode: function(str) {
 

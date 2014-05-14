@@ -1,5 +1,6 @@
 /**
- * base64_encode encode a string
+ * base64_encode encode a string. This is not a strict window.btoa polyfill
+ * because it handles utf8 strings (unlike the window.btoa spec)
  *
  * Note: it might be work including an urlsafe flag
  * (see https://github.com/knowledgecode/base64.js)
@@ -8,6 +9,7 @@
  * @link https://github.com/davidchambers/Base64.js
  * @param {string} str The string to encode
  * @return {string}
+ * @example _.base64_decode('✈') => '4pyI'
  */
 base64_encode: function(str) {
     // allow browser implementation if it exists
