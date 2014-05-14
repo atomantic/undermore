@@ -186,32 +186,6 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         );
     });
 
-
-
-    test('curry', function() {
-        // create a curry fn
-        // this function takes whatever arguments are passed and adds them together
-        var adder = function() {
-            var n = 0,
-                args = [].slice.call(arguments);
-
-            for (var i = 0, len = args.length; i < len; i++) {
-                n += args[i];
-            }
-
-            return n;
-        };
-
-        equal(adder(2, 2), 4, 'test basic adder with 2 args');
-
-        // curry adder for later application
-        var addTwelve = _.curry(adder, 12);
-
-        equal(addTwelve(3), 15, 'test add twelve to 3 for 15');
-
-        equal(addTwelve(3, 6, 4), 25, 'test add twelve with 3 args');
-    });
-
     test('ord', function() {
         var i, str, ones, tens, ord;
 

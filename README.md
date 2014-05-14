@@ -100,6 +100,11 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v1.3.0</sup>
+ * Removing _.curry method
+ 	* it conflicted with lo-dash _.curry, implementing lo-dash _.partial rather than lo-dash _.curry as documented
+ 	* old undermore _.curry functionality exists by using _.partial instead
+
 ### <sup>v0.3.0</sup>
  * Including jquery extensions and tiny $.fn methods
  * :containsI - case insensitive version of $(':contains(...)')
