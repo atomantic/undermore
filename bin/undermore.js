@@ -1,4 +1,4 @@
-/*! undermore - v0.3.0 - 2014-05-14
+/*! undermore - v1.3.1 - 2014-05-14
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*jslint jquery:true*/
@@ -101,7 +101,7 @@ $.fn.formToObject = function() {
 /**
  * undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
  * that really should just already be there--these are tiny, unit tested additions to underscore.js, which
- * reside in _.* -- e.g. _.curry()
+ * reside in _.* -- e.g. _.uuid()
  *
  * @module undermore
  * @link https://github.com/atomantic/undermore.js
@@ -142,10 +142,6 @@ base64_decode: function(str) {
         return new Buffer(str, 'base64').toString('binary');
     }
     // now roll our own
-    if (atob) {
-        return _.utf8_decode(atob(str));
-    }
-
     // decoder
     // [https://gist.github.com/1020396] by [https://github.com/atk]
     str = str.replace(/=+$/, '');

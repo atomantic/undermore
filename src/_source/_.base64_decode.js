@@ -19,10 +19,6 @@ base64_decode: function(str) {
         return new Buffer(str, 'base64').toString('binary');
     }
     // now roll our own
-    if (atob) {
-        return _.utf8_decode(atob(str));
-    }
-
     // decoder
     // [https://gist.github.com/1020396] by [https://github.com/atk]
     str = str.replace(/=+$/, '');
