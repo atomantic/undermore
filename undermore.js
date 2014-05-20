@@ -1,4 +1,4 @@
-/*! undermore - v1.3.1 - 2014-05-14
+/*! undermore - v1.3.1 - 2014-05-20
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*global exports,Buffer,atob,btoa,escape,unescape*/
@@ -130,7 +130,7 @@ base64_encode: function(str) {
  *
  * @function module:undermore.eFn
  * @example
- *  $('thing').on('click',this.conf.onClick||_.eFn)
+ *  $('#thing').on('click',this.conf.onClick||_.eFn)
  */
 eFn: function(e) {
     e.preventDefault();
@@ -178,7 +178,7 @@ fnMore: function(originalFn, moreFn, scope) {
  * @function module:undermore.ord
  * @param {number} n number The number to evaluate
  * @return {string} The ordinal for that number
- * @example:
+ * @example
  *  _.ord(1) === 'st'
  *  _.ord(345) === 'th'
  */
@@ -187,27 +187,39 @@ ord: function(n) {
         v = n % 100;
     return sfx[(v - 20) % 10] || sfx[v] || sfx[0];
 }, 
- /**
+ /*jshint -W100*/
+/**
  * utf8 decode a string
  *
  * @function module:undermore.utf8_decode
  * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
  * @param {string} str The string to decode
  * @return {string}
+ * @example
+ *  _.utf8_decode('asdf') === 'asdf';
+ *  _.utf8_decode('è¤é') === '複雜';
+ *  _.utf8_decode('â') === '✈';
  */
+/*jshint +W100*/
 utf8_decode: function(str) {
-    return decodeURIComponent(escape(str));
+	return decodeURIComponent(escape(str));
 }, 
- /**
+ /*jshint -W100*/
+/**
  * utf8 encode a string
  *
  * @function module:undermore.utf8_encode
  * @link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
  * @param {string} str The string to encode
  * @return {string}
+ * @example
+ *  _.utf8_encode('asdf') === 'asdf';
+ *  _.utf8_encode('✈') === 'â';
+ *  _.utf8_encode('複雜') === 'è¤é';
  */
+/*jshint +W100*/
 utf8_encode: function(str) {
-    return unescape(encodeURIComponent(str));
+	return unescape(encodeURIComponent(str));
 }, 
  /**
  * generate a random v4 UUID of the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx,
