@@ -22,7 +22,6 @@ If web standards were implemented as quickly as they should be:
 * we wouldn't have to create a tool to format the date in a sensible, readable way (and there wouldn't be 30 different libraries and standards for doing it).
 * we wouldn't have to provide our own ellipsis method for truncating strings
 * our own UUID generating function
-* our own method to get the ordinal suffix of a number (1 => "st")
 * etc...
 
 Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with [unit tests](https://travis-ci.org/atomantic/undermore) and auto-generated [documentation][docs].
