@@ -83,13 +83,18 @@ Create your own [custom build][build]!
 
 ## Contributing
 
-Start by downloading the project:
-
+* Fork the project
+* Clone your fork
+* run
 ```
-git clone git@github.com:atomantic/undermore.git
-cd undermore;
 npm install;
 ```
+* create a branch
+* run
+```
+grunt watch;
+```
+* once your tests pass, commit/push your branch and pull-request it
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Please note that the codebase uses 4 spaces (not 2) instead of tabs--and uses the comma pattern for declaring sets of new variables. 
