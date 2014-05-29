@@ -130,7 +130,7 @@ base64_encode: function(str) {
  *
  * @function module:undermore.eFn
  * @example
- *  $('#thing').on('click',this.conf.onClick||_.eFn)
+ *  $('thing').on('click',this.conf.onClick||_.eFn)
  */
 eFn: function(e) {
     e.preventDefault();
