@@ -91,15 +91,6 @@ module.exports = function(grunt) {
                 max_jshint_notifications: 5
             }
         },
-        dox: {
-            options: {
-                title: "Undermore Documentation"
-            },
-            files: {
-                src: ['src/'],
-                dest: 'dist/docs'
-            }
-        },
         jsdoc: {
             dist: {
                 src: [
@@ -140,15 +131,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    //grunt.loadNpmTasks('grunt-dox');
     grunt.loadNpmTasks('grunt-jsdoc');
     // Automatic notifications when tasks fail.
     grunt.loadNpmTasks('grunt-notify');
     // grunt-notify options handler
     grunt.task.run('notify_hooks');
 
-    // Default task.
-    grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'jsdoc', 'qunit', 'notify:done']);
-    grunt.registerTask('build', ['concat', 'jshint', 'uglify', 'jsdoc', 'notify:done']);
+    // Default task (grunt will use this + any defined on watches)
+    // TODO: figure out why and limit grunt watch
+    grunt.registerTask('default', []);
+    grunt.registerTask('build', ['concat', 'jshint', 'uglify', 'qunit', 'jsdoc', 'notify:done']);
 
 };

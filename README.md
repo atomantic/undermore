@@ -22,7 +22,6 @@ If web standards were implemented as quickly as they should be:
 * we wouldn't have to create a tool to format the date in a sensible, readable way (and there wouldn't be 30 different libraries and standards for doing it).
 * we wouldn't have to provide our own ellipsis method for truncating strings
 * our own UUID generating function
-* our own method to get the ordinal suffix of a number (1 => "st")
 * etc...
 
 Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with [unit tests](https://travis-ci.org/atomantic/undermore) and auto-generated [documentation][docs].
@@ -83,13 +82,18 @@ Create your own [custom build][build]!
 
 ## Contributing
 
-Start by downloading the project:
-
+* Fork the project
+* Clone your fork
+* run
 ```
-git clone git@github.com:atomantic/undermore.git
-cd undermore;
 npm install;
 ```
+* create a branch
+* run
+```
+grunt watch;
+```
+* once your tests pass, commit/push your branch and pull-request it
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Please note that the codebase uses 4 spaces (not 2) instead of tabs--and uses the comma pattern for declaring sets of new variables. 
@@ -99,6 +103,10 @@ Lint, build and test your code using [Grunt](http://gruntjs.com/).
 _Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Grunt. You'll find source code in the "src" subdirectory :)_
 
 ## Release History
+
+### <sup>v1.4.0</sup>
+ * _.isValidDate
+ * _.get (faster version of steelToe get method)
 
 ### <sup>v1.3.1</sup>
  * Removing _.curry method

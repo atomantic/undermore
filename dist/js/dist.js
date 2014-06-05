@@ -95,6 +95,8 @@
         );
     });
 
-    $docs.css({height:$docs.contents().height()+'px'});
+    setTimeout(function(){
+        $docs.height($docs.contents().children().height()+50);
+    },200);
 
 })();

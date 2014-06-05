@@ -4,7 +4,7 @@
  * @function module:undermore.ord
  * @param {number} n number The number to evaluate
  * @return {string} The ordinal for that number
- * @example:
+ * @example
  *  _.ord(1) === 'st'
  *  _.ord(345) === 'th'
  */

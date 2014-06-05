@@ -40,7 +40,7 @@
         
             <div class="description">undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
 that really should just already be there--these are tiny, unit tested additions to underscore.js, which
-reside in _.* -- e.g. _.curry()</div>
+reside in _.* -- e.g. _.uuid()</div>
         
         
         
@@ -114,7 +114,8 @@ reside in _.* -- e.g. _.curry()</div>
     
     
     <div class="description">
-        base64_decode decode a string
+        base64_decode decode a string. This is not a strict polyfill for window.atob
+because it handles unicode characters
     </div>
     
 
@@ -236,6 +237,11 @@ reside in _.* -- e.g. _.curry()</div>
         
     
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> _.base64_decode('4pyI') => '✈'</code></pre>
+
+    
 </dd>
 
         
@@ -249,7 +255,8 @@ reside in _.* -- e.g. _.curry()</div>
     
     
     <div class="description">
-        base64_encode encode a string
+        base64_encode encode a string. This is not a strict window.btoa polyfill
+because it handles utf8 strings (unlike the window.btoa spec)
 
 Note: it might be work including an urlsafe flag
 (see https://github.com/knowledgecode/base64.js)
@@ -333,7 +340,7 @@ Note: it might be work including an urlsafe flag
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line88">line 88</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line86">line 86</a>
     </li></ul></dd>
     
     
@@ -373,6 +380,11 @@ Note: it might be work including an urlsafe flag
 
         
     
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> _.base64_decode('✈') => '4pyI'</code></pre>
+
     
 </dd>
 
@@ -445,7 +457,7 @@ Note: it might be work including an urlsafe flag
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> $('thing').on('click',this.conf.onClick||_.eFn)</code></pre>
+    <pre class="prettyprint"><code> $('#thing').on('click',this.conf.onClick||_.eFn)</code></pre>
 
     
 </dd>
@@ -743,6 +755,352 @@ but this one is useful for anything requiring a boolean true return
         
             
 <dt>
+    <h4 class="name" id="get"><span class="type-signature">&lt;static> </span>get<span class="signature">(obj, ks, defaultValue)</span><span class="type-signature"> &rarr; {mixed}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get a deep value on an Object safely (optionally with a default value).
+<a href="http://jsperf.com/deepget-vs-steeltoe/2">Run jsperf test</a>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The object to traverse</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>ks</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A string path to use for finding the end item (e.g. 'prop.child.end')</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>defaultValue</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">mixed</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The object to traverse</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line175">line 175</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the last item in the ks or the defaultValue
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">mixed</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> var obj = {
+    prop: 1
+ };
+ _.get(obj,'prop','blarg') === 1
+ _.get(obj,'prop.child','blarg') === 'blarg'
+ _.get(obj,'thing','blarg') === 'blarg'
+ _.get(obj) === obj</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="isValidDate"><span class="type-signature">&lt;static> </span>isValidDate<span class="signature">(value)</span><span class="type-signature"> &rarr; {bool}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        test if a value is a valid Date instance, with a valid date
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Something to test</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line216">line 216</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Whether or not the date is valid
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">bool</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>  var d = new Date('foobar') => Invalid Date
+  d.getTime() => NaN 
+  _.isDate(d) => true
+  // even though this is a Date object instance, 
+  // it isn't a valid date... so:
+  _.isValidDate(d) => false</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="ord"><span class="type-signature">&lt;static> </span>ord<span class="signature">(n)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
     
@@ -832,7 +1190,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line175">line 175</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line233">line 233</a>
     </li></ul></dd>
     
     
@@ -876,6 +1234,12 @@ but this one is useful for anything requiring a boolean true return
 
         
     
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> _.ord(1) === 'st'
+ _.ord(345) === 'th'</code></pre>
+
     
 </dd>
 
@@ -971,7 +1335,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line190">line 190</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line249">line 249</a>
     </li></ul></dd>
     
     
@@ -1011,6 +1375,13 @@ but this one is useful for anything requiring a boolean true return
 
         
     
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> _.utf8_decode('asdf') === 'asdf';
+ _.utf8_decode('è¤é') === '複雜';
+ _.utf8_decode('â') === '✈';</code></pre>
+
     
 </dd>
 
@@ -1106,7 +1477,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line201">line 201</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line266">line 266</a>
     </li></ul></dd>
     
     
@@ -1146,6 +1517,13 @@ but this one is useful for anything requiring a boolean true return
 
         
     
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> _.utf8_encode('asdf') === 'asdf';
+ _.utf8_encode('✈') === 'â';
+ _.utf8_encode('複雜') === 'è¤é';</code></pre>
+
     
 </dd>
 
@@ -1195,7 +1573,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line212">line 212</a>
+        <a href="undermore.js.html">undermore.js</a>, <a href="undermore.js.html#line282">line 282</a>
     </li></ul></dd>
     
     
@@ -1269,7 +1647,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed May 14 2014 11:57:02 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jun 05 2014 16:18:18 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>
