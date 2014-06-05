@@ -104,6 +104,10 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v1.4.0</sup>
+ * _.isValidDate
+ * _.get (faster version of steelToe get method)
+
 ### <sup>v1.3.1</sup>
  * Removing _.curry method
  	* it conflicted with lo-dash _.curry, implementing lo-dash _.partial rather than lo-dash _.curry as documented
