@@ -73,6 +73,26 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         equal(_.base64_decode('4pyI'), '✈', 'airplane');
     });
 
+    test('get',function(){
+        var data = {
+            prop: 1,
+            deep: {
+                thing: 2
+            },
+            bad: null,
+            str: 'string'
+        };
+
+        equal(_.get(data,'prop'),1);
+        equal(_.get(data,'prop.foo','default'),'default');
+        deepEqual(_.get(data,'deep'),{"thing":2});
+        equal(_.get(data,'deep.thing'),2);
+        equal(_.get(data,'deep.thing.foo','default'),'default');
+        equal(_.get(data,'bad','default'),null);
+        equal(_.get(data,'bad.foo','default'),'default');
+        equal(_.get(data,'str','default'),'string');
+        equal(_.get(data,'str.foo','default'),'default');
+    });
 
     test('utf8', function() {
 
