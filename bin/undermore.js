@@ -1,4 +1,4 @@
-/*! undermore - v1.3.1 - 2014-05-20
+/*! undermore - v1.4.0 - 2014-06-05
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*jslint jquery:true*/
@@ -210,7 +210,7 @@ base64_encode: function(str) {
  *
  * @function module:undermore.eFn
  * @example
- *  $('thing').on('click',this.conf.onClick||_.eFn)
+ *  $('#thing').on('click',this.conf.onClick||_.eFn)
  */
 eFn: function(e) {
     e.preventDefault();
@@ -251,6 +251,64 @@ fnMore: function(originalFn, moreFn, scope) {
         originalFn();
         moreFn();
     };
+}, 
+ /**
+ * Get a deep value on an Object safely (optionally with a default value).
+ * {@link http://jsperf.com/deepget-vs-steeltoe/2|Run jsperf test}
+ *
+ * @function module:undermore.get
+ * @param {object} obj The object to traverse
+ * @param {string} ks A string path to use for finding the end item (e.g. 'prop.child.end')
+ * @param {mixed} defaultValue The object to traverse
+ * @return {mixed} the last item in the ks or the defaultValue
+ * @example
+ *  var obj = {
+ *     prop: 1
+ *  };
+ *  _.get(obj,'prop','blarg') === 1
+ *  _.get(obj,'prop.child','blarg') === 'blarg'
+ *  _.get(obj,'thing','blarg') === 'blarg'
+ *  _.get(obj) === obj
+ */
+get: function (obj, ks, defaultValue) {
+    if (typeof ks === 'string') {
+        ks = ks.split('.');
+    }
+
+    // end of the line (found nothing)
+    if (obj === undefined) {
+        return defaultValue;
+    }
+
+    // end of the line (found self)
+    if (ks.length === 0) {
+        return obj;
+    }
+
+    // can't continue down the line any further (non-traversable)
+    if (obj === null) {
+        return defaultValue;
+    }
+
+    // keep traversing
+    return _.get(obj[_.first(ks)], _.rest(ks), defaultValue);
+}, 
+ /**
+ * test if a value is a valid Date instance, with a valid date
+ *
+ * @function module:undermore.isValidDate
+ * @param {object} value Something to test
+ * @return {bool} Whether or not the date is valid
+ * @example
+ *   var d = new Date('foobar') => Invalid Date
+ *   d.getTime() => NaN 
+ *   _.isDate(d) => true
+ *   // even though this is a Date object instance, 
+ *   // it isn't a valid date... so:
+ *   _.isValidDate(d) => false
+ */
+isValidDate: function (value) {
+    return _.isDate(value) && !(_.isNaN(value.valueOf()));
 }, 
  /**
  * Get the english ordinal suffix for any number
