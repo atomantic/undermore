@@ -40,15 +40,26 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'src/_.build.js',
-                    'src/$.build.js',
                     'src/safe.js',
-                    'src/string.*.js'
+                    'src/_.build.js'
+                    // by default undermore does not ship
+                    // with string polyfills or jquery add-ons
+                    //,'src/$.build.js',
+                    //'src/string.*.js'
                 ],
                 dest: 'dist/undermore.js'
             },
+            docs:{
+                src: [
+                    'src/safe.js',
+                    'src/_.build.js',
+                    'src/$.build.js',
+                    'src/string.*.js'
+                ],
+                dest: 'dist/docs/all.js'
+            },
             bin: {
-                src: ['src/*.js'],
+                src: '<%= concat.dist.src %>',
                 dest: 'bin/<%= pkg.name %>.js'
             }
         },
@@ -94,7 +105,7 @@ module.exports = function(grunt) {
         jsdoc: {
             dist: {
                 src: [
-                    'dist/undermore.js'
+                    'dist/docs/all.js'
                 ],
                 options: {
                     destination: 'dist/docs'
@@ -120,6 +131,12 @@ module.exports = function(grunt) {
             }
         },
         shell:{
+            cleandocs:{
+                options: {
+                    stderr: false
+                },
+                command: 'rm -rf dist/docs/*'
+            },
             clean:{
                 options: {
                     stderr: false
@@ -146,6 +163,6 @@ module.exports = function(grunt) {
     // TODO: figure out why and limit grunt watch
     grunt.registerTask('default', []);
     // actual distribution build
-    grunt.registerTask('build', ['concat', 'jshint', 'uglify', 'qunit', 'jsdoc', 'notify:done']);
+    grunt.registerTask('build', ['shell:cleandocs', 'concat', 'jshint', 'uglify', 'qunit', 'jsdoc', 'notify:done']);
 
 };

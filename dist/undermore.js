@@ -1,6 +1,36 @@
-/*! undermore - v1.4.0 - 2014-06-05
+/*! undermore - v1.4.0 - 2014-06-13
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
+/*jslint browser:true*/
+/*global console*/
+
+/**
+* console safety
+* @module core
+* @see {@link http://patik.com/blog/complete-cross-browser-console-log/ Console.log}
+*/
+
+/**
+ * make it safe to use console.log always
+ * 
+ * @function module:core.console
+ */
+(function(a) {
+    function b() {}
+    for (
+        var c = 'assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn'.split(','), 
+        d; !! (d = c.pop());
+    ) {
+        a[d] = a[d] || b;
+    }
+})((function() {
+    try {
+        console.log();
+        return window.console;
+    } catch (a) {
+        return (window.console = {});
+    }
+}()));
 /*global exports,Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
@@ -301,214 +331,3 @@ uuid: function() {
     }); // mixin
 
 }(typeof exports === 'object' && exports || this));
-/*jslint jquery:true*/
-/*global define*/
-/**
- * The jQuery plugin namespace.
- * a set of standard mini jquery plugins and extensions
- * This set of extensions adds functionality to the jQuery.fn external library
- * @module jQuery
- * @see {@link http://docs.jquery.com/Plugins/Authoring The jQuery Plugin Guide}
- * @copyright 2013 Adam Eivy (@antic)
- * @license MIT
- */
- 
-(function(){
-    'use strict';
-    var plugin = function($) {
-    /**
- * allows the query of elements containing case-insensitive text
- * works just like $(':contains(text)') but as $(':containsI(text)')
- * Additionally, allows regex searches:
- * 
- * @function module:jQuery.containsI
- * @example
- *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
- *  $("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)
- *  $("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)
- * @return selection of elements containing string (insensitively)
- */
-$.expr[":"].containsI = function(elem, i, match) {
-    return (new RegExp (match[3], 'i')).test(elem.textContent || elem.innerText || '');
-};
-
-/**
- * finds elements that contain text starting with string
- * 
- * @function module:jQuery.startsWith
- * @example
- *  $(':startsWith(text)')
- * @return {object} selection of elements that have text starting with given string
- */
-$.expr[":"].startsWith = function(elem, i, match) {
-    return ( elem.textContent || elem.innerText || '' ).indexOf( match[3] ) === 0;
-};
-
-/**
- * convert a form's name/value pairs to a json object
- * 
- * @function module:jQuery.formToObject
- * @example 
- *  // captures the field/value set from #myform
- *  var formData = $('#myform').formToObject();
- * 
- * @return {object} a json representation of the form
- */
-$.fn.formToObject = function() {
-   var o = {},
-       a = this.serializeArray(),
-       name;
-   $.each(a, function() {
-     name = this.name;
-       if (o[name] !== undefined) {
-           if (!o[name].push) {
-               o[name] = [o[name]];
-           }
-           o[name].push(this.value || '');
-       } else {
-           o[name] = this.value || '';
-       }
-   });
-   return o;
-};
-    };
-    // support for requirejs
-    if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], function ($) { 
-            return plugin($); 
-        } );
-    } else {
-        plugin(jQuery);
-    } 
-}());
-/*jslint browser:true*/
-/*global console*/
-
-/**
-* console safety
-* @module core
-* @see {@link http://patik.com/blog/complete-cross-browser-console-log/ Console.log}
-*/
-
-/**
- * make it safe to use console.log always
- * 
- * @function module:core.console
- */
-(function(a) {
-    function b() {}
-    for (
-        var c = 'assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn'.split(','), 
-        d; !! (d = c.pop());
-    ) {
-        a[d] = a[d] || b;
-    }
-})((function() {
-    try {
-        console.log();
-        return window.console;
-    } catch (a) {
-        return (window.console = {});
-    }
-}()));
-/**
- * Capitalizes the first letter of a string and downcases all the others.
- *
- * @function module:String.prototype.capitalize
- * @return {string}
- * @example
- *  'hello'.capitalize() === 'Hello'
- *  'HELLO WORLD!'.capitalize() === 'Hello world!'
- */
-String.prototype.capitalize = String.prototype.capitalize || function() {
-    return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase();
-};
-/**
- * determines whether one string may be found within another string
- * 
- * Once ecmascript adds this natively, you should build core.js without this method:
- * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains
- * @function module:String.prototype.contains
- * @param {string} searchString A string to be searched for within this string.
- * @param {number} position The position in this string at which to begin searching for searchString; defaults to 0.
- * @return {boolean}
-  * @example
-  *  var str = "To be, or not to be, that is the question.";
-  *  console.log(str.contains("To be"));       // true
-  *  console.log(str.contains("question"));    // true
-  *  console.log(str.contains("nonexistent")); // false
-  *  console.log(str.contains("To be", 1));    // false
-  *  console.log(str.contains("TO BE"));       // false
- */
-String.prototype.contains = String.prototype.contains || function() {
-    return String.prototype.indexOf.apply( this, arguments ) !== -1;
-};
-/**
- * see if a string ends with a given string
- * 
- * Once ecmascript adds this natively, you should build core.js without this method:
- * @link http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
- * @link http://jsperf.com/string-prototype-endswith/3
- * @function module:String.prototype.endsWith
- * @param {string} A substring expected to be in the beginning of this string
- * @return {boolean}
-  * @example
-  *  'some string'.endsWith('g') === true;
-  *  'some string'.endsWith('string') === true;
-  *  'some string'.endsWith('!') === false;
- */
-String.prototype.endsWith = String.prototype.endsWith || function (suffix){ 
-    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-};
-/**
- * get a substring of a particular length from the left
- * 
- * @function module:String.prototype.left
- * @param {number}     n     The lenth of the string to return
- * @return {string}
- * @example
- *  'foobar'.left(3) === 'foo'
- */
-String.prototype.left = String.prototype.left || function(n) {
-	return this.substr(0,n);
-};
-/**
- * get a substring of a particular length from the right
- * 
- * @function module:String.prototype.right
- * @param {number}     n     The lenth of the string to return
- * @return {string}
- * @example
- *  'foobar'.right(3) === 'bar'
- */
-String.prototype.right = String.prototype.right || function(n) {
-	return this.substr((this.length-n),this.length);
-};
-/**
- * see if a string begins with a given string
- * 
- * Once ecmascript adds this natively, you should build core.js without this method:
- * @link http://wiki.ecmascript.org/doku.php?id=harmony%3astring_extras
- * @function module:String.prototype.startsWith
- * @param {string} A substring expected to be in the beginning of this string
- * @return {boolean}
-  * @example
-  *  'some string'.startsWith('s') === true;
- */
-String.prototype.startsWith = String.prototype.startsWith || function (prefix){
-    return this.slice(0, prefix.length) === prefix;
-};
-/**
- * shorten a string, adding a suffix in place of excessive characters
- * default suffix is an html encoded ellipsis '&hellip;'
- * 
- * @function module:String.prototype.trunc
- * @param {number}     len     The lenth of the string to keep (not counting suffix)
- * @param {string}  suffix  The suffix to append (e.g. '...<a>read more</a>')
- * @return {string}
- * @example
- *  'this is a description that is too detailed'.trunc(10) === 'this is a &hellip;'
- */
-String.prototype.trunc = String.prototype.trunc || function(len,suffix) {
-    return this.length > len ? this.slice(0, len) + (suffix||'&hellip;') : this;
-};
