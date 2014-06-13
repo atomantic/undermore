@@ -40,15 +40,26 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'src/_.build.js',
-                    'src/$.build.js',
                     'src/safe.js',
-                    'src/string.*.js'
+                    'src/_.build.js'
+                    // by default undermore does not ship
+                    // with string polyfills or jquery add-ons
+                    //,'src/$.build.js',
+                    //'src/string.*.js'
                 ],
                 dest: 'dist/undermore.js'
             },
+            docs:{
+                src: [
+                    'src/safe.js',
+                    'src/_.build.js',
+                    'src/$.build.js',
+                    'src/string.*.js'
+                ],
+                dest: 'dist/docs/all.js'
+            },
             bin: {
-                src: ['src/*.js'],
+                src: '<%= concat.dist.src %>',
                 dest: 'bin/<%= pkg.name %>.js'
             }
         },
@@ -94,7 +105,7 @@ module.exports = function(grunt) {
         jsdoc: {
             dist: {
                 src: [
-                    'dist/undermore.js'
+                    'dist/docs/all.js'
                 ],
                 options: {
                     destination: 'dist/docs'
@@ -110,17 +121,27 @@ module.exports = function(grunt) {
                 files: [
                     '<%= concat.undermore.src %>',
                     '<%= concat.jquery.src %>',
-                    '<%= concat.dist.src %>'
+                    '!src/*.build.js'
                 ],
-                tasks: ['concat', 'jshint:src', 'uglify', 'qunit']
+                tasks: ['concat', 'jshint:src', 'uglify', 'qunit', 'shell:clean']
             },
             test: {
                 files: '<%= jshint.test.src %>',
                 tasks: ['jshint:test', 'qunit']
+            }
+        },
+        shell:{
+            cleandocs:{
+                options: {
+                    stderr: false
+                },
+                command: 'rm -rf dist/docs/*'
             },
-            doc: {
-                files: '<%= jsdoc.dist.src %>',
-                tasks: ['jsdoc']
+            clean:{
+                options: {
+                    stderr: false
+                },
+                command: 'git checkout src/*build.js; git checkout bin; git checkout dist/docs; git checkout dist/undermore*'
             }
         }
     });
@@ -132,6 +153,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-shell');
     // Automatic notifications when tasks fail.
     grunt.loadNpmTasks('grunt-notify');
     // grunt-notify options handler
@@ -140,6 +162,7 @@ module.exports = function(grunt) {
     // Default task (grunt will use this + any defined on watches)
     // TODO: figure out why and limit grunt watch
     grunt.registerTask('default', []);
-    grunt.registerTask('build', ['concat', 'jshint', 'uglify', 'qunit', 'jsdoc', 'notify:done']);
+    // actual distribution build
+    grunt.registerTask('build', ['shell:cleandocs', 'concat', 'jshint', 'uglify', 'qunit', 'jsdoc', 'notify:done']);
 
 };
