@@ -318,4 +318,11 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
 
     });
 
+    test('version',function(){
+        ok(_.version('1.0.0','<','2.0.0'), 'major version is smaller');
+        ok(_.version('1.1.0','<','1.2.0'), 'minor version is smaller');
+        ok(!_.version('1.1.0','>','1.2.0'), 'minor version is smaller');
+        ok(_.version('1.0.10','>=','1.0.2'), 'patch version 10 is greater than or equal to 2');
+    });
+
 });
