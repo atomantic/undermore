@@ -40,12 +40,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'src/safe.js',
                     'src/_.build.js'
-                    // by default undermore does not ship
-                    // with string polyfills or jquery add-ons
-                    //,'src/$.build.js',
-                    //'src/string.*.js'
                 ],
                 dest: 'dist/undermore.js'
             },

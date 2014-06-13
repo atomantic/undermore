@@ -104,8 +104,13 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v1.5.1</sup>
+ * _.version
+ * undermore.js default build now only includes _.mixins (not even console safety)
+
 ### <sup>v1.5.0</sup>
  * _.version
+ * undermore.js default build now only includes safe.js and _.mixins
 
 ### <sup>v1.4.0</sup>
  * _.isValidDate
