@@ -104,6 +104,9 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v1.5.0</sup>
+ * _.version
+
 ### <sup>v1.4.0</sup>
  * _.isValidDate
  * _.get (faster version of steelToe get method)
