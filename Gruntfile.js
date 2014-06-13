@@ -110,17 +110,21 @@ module.exports = function(grunt) {
                 files: [
                     '<%= concat.undermore.src %>',
                     '<%= concat.jquery.src %>',
-                    '<%= concat.dist.src %>'
+                    '!src/*.build.js'
                 ],
-                tasks: ['concat', 'jshint:src', 'uglify', 'qunit']
+                tasks: ['concat', 'jshint:src', 'uglify', 'qunit', 'shell:clean']
             },
             test: {
                 files: '<%= jshint.test.src %>',
                 tasks: ['jshint:test', 'qunit']
-            },
-            doc: {
-                files: '<%= jsdoc.dist.src %>',
-                tasks: ['jsdoc']
+            }
+        },
+        shell:{
+            clean:{
+                options: {
+                    stderr: false
+                },
+                command: 'git checkout src/*build.js; git checkout bin; git checkout dist/docs; git checkout dist/undermore*'
             }
         }
     });
@@ -132,6 +136,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-shell');
     // Automatic notifications when tasks fail.
     grunt.loadNpmTasks('grunt-notify');
     // grunt-notify options handler
@@ -140,6 +145,7 @@ module.exports = function(grunt) {
     // Default task (grunt will use this + any defined on watches)
     // TODO: figure out why and limit grunt watch
     grunt.registerTask('default', []);
+    // actual distribution build
     grunt.registerTask('build', ['concat', 'jshint', 'uglify', 'qunit', 'jsdoc', 'notify:done']);
 
 };
