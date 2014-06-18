@@ -298,6 +298,7 @@ uuid: function() {
  /**
  * Compare a semantic version number string to another (e.g. "2.0.10" > "2.0.2")
  * Note: does not differentiate "1.0.1-pre" and "1.0.1"
+ * However, 1.2.3.rc1 or 1.2.3-rc1 will be evaluated as 1.2.3.1 (and resolve higher than 1.2.3)
  *
  * @function module:undermore.version
  * @param {string} left The left version
@@ -318,8 +319,10 @@ version: function(left, oper, right) {
 		return true;
 	}
 
-	var leftArray = left.split('.'),
-		rightArray = right.split('.'),
+	var regSplit = /[.-]/,
+		regReplace = /\D*/,
+		leftArray = left.split(regSplit),
+		rightArray = right.split(regSplit),
 		// how much do we need to loop (only need to compare to least specific)
 		// "1.0.2" > "2" doesn't need to run 3 loop actions (just one)
 		maxLen = Math.max(leftArray.length, rightArray.length),
@@ -330,18 +333,12 @@ version: function(left, oper, right) {
 		hit;
 
 	for(var i=0;i<maxLen && !hit;i++){
-		l = parseInt(leftArray[i],10);
-		r = parseInt(rightArray[i],10);
 		// handle case where index does not exist in one of the sets
 		// in which case it will be less than whatever is in the other version
-		// e.g. when comparing 1.2.3.4 with 1.2.3, the final 4 will compare with NaN
-		// which we will convert to 4 vs -1, leaving 4 as a higher version
-		if(_.isNaN(l)){
-			l = -1;
-		}
-		if(_.isNaN(r)){
-			r = -1;
-		}
+		// e.g. when comparing 1.2.3.4 with 1.2.3
+		// we will convert the evaluation to 4 vs -1, leaving 4 as a higher version
+		l = leftArray.length <= i ? -1 : parseInt(leftArray[i].replace(regReplace,''),10);
+		r = rightArray.length <= i ? -1 : parseInt(rightArray[i].replace(regReplace,''),10);
 		if(l!==r){
 			hit = true;
 			break;
