@@ -35,6 +35,16 @@ version: function(left, oper, right) {
 	for(var i=0;i<maxLen && !hit;i++){
 		l = parseInt(leftArray[i],10);
 		r = parseInt(rightArray[i],10);
+		// handle case where index does not exist in one of the sets
+		// in which case it will be less than whatever is in the other version
+		// e.g. when comparing 1.2.3.4 with 1.2.3, the final 4 will compare with NaN
+		// which we will convert to 4 vs -1, leaving 4 as a higher version
+		if(_.isNaN(l)){
+			l = -1;
+		}
+		if(_.isNaN(r)){
+			r = -1;
+		}
 		if(l!==r){
 			hit = true;
 			break;

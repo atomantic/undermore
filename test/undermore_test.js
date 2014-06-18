@@ -323,6 +323,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         ok(_.version('1.1.0','<','1.2.0'), 'minor version is smaller');
         ok(!_.version('1.1.0','>','1.2.0'), 'minor version is smaller');
         ok(_.version('1.0.10','>=','1.0.2'), 'patch version 10 is greater than or equal to 2');
+        ok(_.version('1.1.0.1','>','1.1.0'), 'extra version segments are greater');
     });
 
 });

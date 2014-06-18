@@ -1,39 +1,42 @@
 {
-    "name": "undermore",
-    "description": "additional mixins for underscore.js as a forkable collection box for your own js standard tools",
-    "version": "1.5.1",
-    "homepage": "https://github.com/atomantic/undermore",
-    "author": {
-        "name": "Adam Eivy (@antic)",
-        "url": "http://adameivy.com/"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/atomantic/undermore.git"
-    },
-    "bugs": {
-        "url": "https://github.com/atomantic/undermore/issues"
-    },
-    "licenses": [{
-        "type": "MIT",
-        "url": "https://github.com/atomantic/undermore/blob/master/LICENSE-MIT"
-    }],
-    "main": "bin/corejs",
-    "engines": {
-        "node": ">= 0.8.0"
-    },
-    "scripts": {
-        "test": "grunt qunit"
-    },
-    "devDependencies": {
-        "grunt-contrib-concat": "~0.3.0",
-        "grunt-contrib-uglify": "~0.2.0",
-        "grunt-contrib-jshint": "~0.6.0",
-        "grunt-contrib-qunit": "~0.2.0",
-        "grunt-contrib-watch": "~0.4.0",
-        "grunt": "~0.4.1",
-        "grunt-jsdoc": "~0.4.0",
-        "grunt-notify": "~0.2.7"
-    },
-    "keywords": []
+  "name": "undermore",
+  "description": "additional mixins for underscore.js as a forkable collection box for your own js standard tools",
+  "version": "1.5.1",
+  "homepage": "https://github.com/atomantic/undermore",
+  "author": {
+    "name": "Adam Eivy (@antic)",
+    "url": "http://adameivy.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/atomantic/undermore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atomantic/undermore/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/atomantic/undermore/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "bin/corejs",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt qunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-qunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt": "~0.4.1",
+    "grunt-jsdoc": "~0.4.0",
+    "grunt-notify": "~0.2.7",
+    "grunt-shell": "~0.7.0"
+  },
+  "keywords": []
 }
