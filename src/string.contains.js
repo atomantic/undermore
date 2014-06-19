@@ -1,8 +1,8 @@
 /**
  * determines whether one string may be found within another string
  * 
- * Once ecmascript adds this natively, you should build core.js without this method:
- * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains
+ * Once ecmascript adds this natively, you should build undermore.js without this method
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains MDN docs}
  * @function module:String.prototype.contains
  * @param {string} searchString A string to be searched for within this string.
  * @param {number} position The position in this string at which to begin searching for searchString; defaults to 0.

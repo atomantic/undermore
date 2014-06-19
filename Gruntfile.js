@@ -159,5 +159,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', []);
     // actual distribution build
     grunt.registerTask('build', ['shell:cleandocs', 'concat', 'jshint', 'uglify', 'qunit', 'jsdoc', 'notify:done']);
+    // build docs
+    grunt.registerTask('docbuild', ['shell:cleandocs', 'concat', 'jshint', 'uglify', 'jsdoc', 'notify:done']);
 
 };

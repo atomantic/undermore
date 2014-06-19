@@ -104,6 +104,9 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v1.5.2</sup>
+ * _.version now fully supports [Semantic Versioning Standard](http://semver.org/)
+
 ### <sup>v1.5.1</sup>
  * _.version
  * undermore.js default build now only includes _.mixins (not even console safety)
