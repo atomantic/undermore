@@ -319,10 +319,18 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
     });
 
     test('version',function(){
-        ok(_.version('1.0.0','<','2.0.0'), 'major version is smaller');
+        ok(_.version('1.2.3+20130313144700','=','1.2.3+asdf1123'), 'build metadata is ignored');
+        ok(_.version('1.2.3','<','2.0.0'), 'major version is smaller');
         ok(_.version('1.1.0','<','1.2.0'), 'minor version is smaller');
         ok(!_.version('1.1.0','>','1.2.0'), 'minor version is smaller');
         ok(_.version('1.0.10','>=','1.0.2'), 'patch version 10 is greater than or equal to 2');
+        ok(_.version('1.2.3-alpha','<','1.2.3-alpha.1'));
+        ok(_.version('1.2.3-alpha.1','<','1.2.3-alpha.beta'));
+        ok(_.version('1.2.3-alpha.beta','<','1.2.3-beta'));
+        ok(_.version('1.2.3-beta','<','1.2.3-beta.2'));
+        ok(_.version('1.2.3-beta.2','<','1.2.3-beta.11'));
+        ok(_.version('1.2.3-beta.11','<','1.2.3-rc.1'));
+        ok(_.version('1.2.3-rc.1','<','1.2.3'));
     });
 
 });
