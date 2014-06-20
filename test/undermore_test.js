@@ -94,6 +94,29 @@ define(['../bin/undermore.js', '../src/safe.js'], function() {
         equal(_.get(data,'str.foo','default'),'default');
     });
 
+    test('set',function(){
+        var data = {
+            prop: {}
+        };
+
+        deepEqual(_.set(data, 'prop', 1), _.extend(data, {prop:1}) );
+        deepEqual(_.set(data, 'prop.foo', 'fooVal'),  _.extend(data, {prop:{foo:'fooVal'}}) );
+        deepEqual(_.set(data, 'newKey', 'newVal'),  _.extend(data, {newKey:'newVal'}) );
+        deepEqual(_.set(data, 'deep.key.that.does.not.exist', 'deepVal'),  _.extend(data, {
+            deep: {
+                key:{
+                    that:{
+                        does:{
+                            not:{
+                                exist:'deepVal'
+                            }
+                        }
+                    }
+                }
+            }
+        }));
+    });
+
     test('utf8', function() {
 
         var data = [

@@ -1,4 +1,4 @@
-/*! undermore - v1.5.3 - 2014-06-20
+/*! undermore - v1.6.0 - 2014-06-20
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*jslint browser:true*/
@@ -208,7 +208,7 @@ fnMore: function(originalFn, moreFn, scope) {
  *
  * @function module:undermore.get
  * @param {object} obj The object to traverse
- * @param {string} ks A string path to use for finding the end item (e.g. 'prop.child.end')
+ * @param {mixed} chain A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])
  * @param {mixed} defaultValue The object to traverse
  * @return {mixed} the last item in the ks or the defaultValue
  * @example
@@ -220,9 +220,9 @@ fnMore: function(originalFn, moreFn, scope) {
  *  _.get(obj,'thing','blarg') === 'blarg'
  *  _.get(obj) === obj
  */
-get: function (obj, ks, defaultValue) {
-    if (typeof ks === 'string') {
-        ks = ks.split('.');
+get: function (obj, chain, defaultValue) {
+    if (typeof chain === 'string') {
+        chain = chain.split('.');
     }
 
     // end of the line (found nothing)
@@ -231,7 +231,7 @@ get: function (obj, ks, defaultValue) {
     }
 
     // end of the line (found self)
-    if (ks.length === 0) {
+    if (chain.length === 0) {
         return obj;
     }
 
@@ -241,7 +241,7 @@ get: function (obj, ks, defaultValue) {
     }
 
     // keep traversing
-    return _.get(obj[_.first(ks)], _.rest(ks), defaultValue);
+    return _.get(obj[_.first(chain)], _.rest(chain), defaultValue);
 }, 
  /**
  * test if a value is a valid Date instance, with a valid date
@@ -274,6 +274,61 @@ ord: function(n) {
     var sfx = ['th', 'st', 'nd', 'rd'],
         v = n % 100;
     return sfx[(v - 20) % 10] || sfx[v] || sfx[0];
+}, 
+ /**
+ * Set a deep value on an object (even if the key path doesn't exist)
+ * this is a shorthand for _.extend(), which is useful in cases where you can't easily build the extension object
+ * e.g. if you are building a path from variable names:
+ * _.set(obj, 'prop.'+varName+'.key', value); // 1 line vs: 3 lines with _.extend
+ * var extendObj = {prop:{}};
+ * extendObj.prop[varName] = {key:value};
+ * _.extend(obj, extendObj);
+ *
+ * @function module:undermore.set
+ * @param {object} obj The object to traverse
+ * @param {mixed} chain A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])
+ * @param {mixed} value The value to set the end key to
+ * @return {mixed} The full new extended object
+ * @example
+ *  var data = {
+ *          prop: {}
+ *      };
+ *
+ *  deepEqual(_.set(data, 'prop', 1), _.extend(data, {prop:1}) );
+ *  deepEqual(_.set(data, 'prop.foo', 'fooVal'),  _.extend(data, {prop:{foo:'fooVal'}}) );
+ *  deepEqual(_.set(data, 'newKey', 'newVal'),  _.extend(data, {newKey:'newVal'}) );
+ *  deepEqual(_.set(data, 'deep.key.that.does.not.exist', 'deepVal'),  _.extend(data, {
+ *      deep: {
+ *           key:{
+ *               that:{
+ *                   does:{
+ *                       not:{
+ *                           exist:'deepVal'
+ *                       }
+ *                   }
+ *               }
+ *           }
+ *       }
+ *  }));
+ */
+set: function(obj, chain, value) {
+    if (typeof chain === 'string') {
+        chain = chain.split('.');
+    }
+    var key = obj,
+        length = chain.length - 1;
+
+    for (var i = 0; i < length; i++) {
+        if (typeof key[chain[i]] === 'undefined' || key[chain[i]] === null) {
+            key[chain[i]] = {};
+        }
+
+        key = key[chain[i]];
+    }
+
+    key[chain[length]] = value;
+
+    return obj;
 }, 
  /*jshint -W100*/
 /**

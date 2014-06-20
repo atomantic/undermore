@@ -4,7 +4,7 @@
  *
  * @function module:undermore.get
  * @param {object} obj The object to traverse
- * @param {string} ks A string path to use for finding the end item (e.g. 'prop.child.end')
+ * @param {mixed} chain A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])
  * @param {mixed} defaultValue The object to traverse
  * @return {mixed} the last item in the ks or the defaultValue
  * @example
@@ -16,9 +16,9 @@
  *  _.get(obj,'thing','blarg') === 'blarg'
  *  _.get(obj) === obj
  */
-get: function (obj, ks, defaultValue) {
-    if (typeof ks === 'string') {
-        ks = ks.split('.');
+get: function (obj, chain, defaultValue) {
+    if (typeof chain === 'string') {
+        chain = chain.split('.');
     }
 
     // end of the line (found nothing)
@@ -27,7 +27,7 @@ get: function (obj, ks, defaultValue) {
     }
 
     // end of the line (found self)
-    if (ks.length === 0) {
+    if (chain.length === 0) {
         return obj;
     }
 
@@ -37,5 +37,5 @@ get: function (obj, ks, defaultValue) {
     }
 
     // keep traversing
-    return _.get(obj[_.first(ks)], _.rest(ks), defaultValue);
+    return _.get(obj[_.first(chain)], _.rest(chain), defaultValue);
 }
