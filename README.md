@@ -108,6 +108,21 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v1.6.0</sup>
+ * _.set(obj,chain,value) - a deep object setter, shorthand for _.extend where the chain to set on an object may not exist and may be defined by variable names: e.g.
+ ```
+ 	// we've got some vars that define the object key path
+ 	var varName = 'myKey';
+
+ 	// we can suffer this with _.extend
+ 	var extendObj = {prop:{}};
+ 	extendObj.prop[varName] = {key:value};
+ 	_.extend(obj, extendObj);
+
+ 	// or set it in one line with _.set
+ 	_.set(obj, 'prop.'+varName+'.key', value);
+```
+
 ### <sup>v1.5.2</sup>
  * _.version now fully supports [Semantic Versioning Standard](http://semver.org/)
 

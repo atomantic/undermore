@@ -755,7 +755,7 @@ but this one is useful for anything requiring a boolean true return
         
             
 <dt>
-    <h4 class="name" id="get"><span class="type-signature">&lt;static> </span>get<span class="signature">(obj, ks, defaultValue)</span><span class="type-signature"> &rarr; {mixed}</span></h4>
+    <h4 class="name" id="get"><span class="type-signature">&lt;static> </span>get<span class="signature">(obj, chain, defaultValue)</span><span class="type-signature"> &rarr; {mixed}</span></h4>
     
     
 </dt>
@@ -764,7 +764,7 @@ but this one is useful for anything requiring a boolean true return
     
     <div class="description">
         Get a deep value on an Object safely (optionally with a default value).
-<a href="http://jsperf.com/deepget-vs-steeltoe/2">Run jsperf test</a>
+<a href="http://jsperf.com/deepget-vs-steeltoe/3">Run jsperf test</a>
     </div>
     
 
@@ -821,13 +821,13 @@ but this one is useful for anything requiring a boolean true return
 	
         <tr>
             
-                <td class="name"><code>ks</code></td>
+                <td class="name"><code>chain</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">mixed</span>
 
 
             
@@ -837,7 +837,7 @@ but this one is useful for anything requiring a boolean true return
             
             
             
-            <td class="description last">A string path to use for finding the end item (e.g. 'prop.child.end')</td>
+            <td class="description last">A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])</td>
         </tr>
 	
 	
@@ -1246,6 +1246,221 @@ but this one is useful for anything requiring a boolean true return
         
             
 <dt>
+    <h4 class="name" id="set"><span class="type-signature">&lt;static> </span>set<span class="signature">(obj, chain, value)</span><span class="type-signature"> &rarr; {mixed}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set a deep value on an object (even if the key path doesn't exist)
+this is a shorthand for _.extend(), which is useful in cases where you can't easily build the extension object
+e.g. if you are building a path from variable names:
+_.set(obj, 'prop.'+varName+'.key', value); // 1 line vs: 3 lines with _.extend
+var extendObj = {prop:{}};
+extendObj.prop[varName] = {key:value};
+_.extend(obj, extendObj);
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The object to traverse</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>chain</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">mixed</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">mixed</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The value to set the end key to</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="all.js.html">all.js</a>, <a href="all.js.html#line278">line 278</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The full new extended object
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">mixed</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> var data = {
+         prop: {}
+     };
+
+ deepEqual(_.set(data, 'prop', 1), _.extend(data, {prop:1}) );
+ deepEqual(_.set(data, 'prop.foo', 'fooVal'),  _.extend(data, {prop:{foo:'fooVal'}}) );
+ deepEqual(_.set(data, 'newKey', 'newVal'),  _.extend(data, {newKey:'newVal'}) );
+ deepEqual(_.set(data, 'deep.key.that.does.not.exist', 'deepVal'),  _.extend(data, {
+     deep: {
+          key:{
+              that:{
+                  does:{
+                      not:{
+                          exist:'deepVal'
+                      }
+                  }
+              }
+          }
+      }
+ }));</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="utf8_decode"><span class="type-signature">&lt;static> </span>utf8_decode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
     
@@ -1335,7 +1550,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="all.js.html">all.js</a>, <a href="all.js.html#line279">line 279</a>
+        <a href="all.js.html">all.js</a>, <a href="all.js.html#line334">line 334</a>
     </li></ul></dd>
     
     
@@ -1477,7 +1692,7 @@ but this one is useful for anything requiring a boolean true return
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="all.js.html">all.js</a>, <a href="all.js.html#line296">line 296</a>
+        <a href="all.js.html">all.js</a>, <a href="all.js.html#line351">line 351</a>
     </li></ul></dd>
     
     
@@ -1573,7 +1788,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="all.js.html">all.js</a>, <a href="all.js.html#line312">line 312</a>
+        <a href="all.js.html">all.js</a>, <a href="all.js.html#line367">line 367</a>
     </li></ul></dd>
     
     
@@ -1765,7 +1980,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="all.js.html">all.js</a>, <a href="all.js.html#line331">line 331</a>
+        <a href="all.js.html">all.js</a>, <a href="all.js.html#line386">line 386</a>
     </li></ul></dd>
     
     
@@ -1856,7 +2071,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Fri Jun 20 2014 09:37:28 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Fri Jun 20 2014 15:36:02 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>
