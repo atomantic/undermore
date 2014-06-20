@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>undermore Test Suite</title>
+  <script data-main="../libs/require.main" src="../libs/require.js"></script>
+  <script src="../libs/qunit/qunit.js"></script>
+  <!-- Load local QUnit. -->
+  <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+      <div id="containsI">
+        <p class="insensitive">a TEST that is CaSE-InsensITIVE</p>
+        <p class="insensitive">a test that is case-insensitive</p>
+        <p>second to last element</p>
+        <p>last element</p>
+      </div>
+      <div id="startsWith">
+        <p>some element</p>
+        <p>another element</p>
+        <p>second to last element</p>
+        <p>last element</p>
+      </div>
+      <form id="formToObject">
+          <input type="text" name="someName" value="someValue" />
+          <input type="hidden" name="hiddenName" value="hiddenValue" />
+      </form>
+    </div>
+
+    <script>
+    QUnit.config.autostart = false;
+
+    require([
+      '../libs/jquery.js',
+      '../libs/lodash.min.js',
+      'undermore_test.js',
+      'string_test.js',
+      'jquery_test.js'
+    ], function(){
+        QUnit.start(); //Tests loaded, run tests
+    });
+    </script>
+</body>
+</html>
