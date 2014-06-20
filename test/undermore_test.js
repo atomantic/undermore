@@ -1,6 +1,6 @@
 /*jslint jquery:true,browser:true */
 /*global _,QUnit,test,module,deepEqual,equal,define,ok,notEqual*/
-define(['../src/_.build.js', '../src/safe.js'], function() {
+define(['../bin/undermore.js', '../src/safe.js'], function() {
     'use strict';
 
     /*
