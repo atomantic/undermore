@@ -55,6 +55,8 @@ after_success:
     - git rm -r .
     - cp -R ../dist/* .
     - cp ../dist/.* .
+    - cp -R ../test .
+    - cp -R ../libs .
     - git add -f .
     - git config user.email "atomantic@gmail.com"
     - git config user.name "Adam Eivy"

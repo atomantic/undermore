@@ -1,4 +1,4 @@
-/*! undermore - v1.5.2 - 2014-06-19
+/*! undermore - v1.5.2 - 2014-06-20
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*global exports,Buffer,atob,btoa,escape,unescape*/
@@ -352,20 +352,20 @@ version: function(left, oper, right) {
         i,
         l,
         r,
+        // have we hit a difference?
         hit;
 
-    // skip full SemVer match (index 0) and loop to compare the rest
-    // only look at major.minor.patch
-    for(i=1; i<4 && !hit; i++){
+    // skip full SemVer match (index 0) and loop to compare major.minor.patch
+    for(i=1; i<4; i++){
         // 1.2.1 is greater than 1.2
         // attempt to parseInt on it, but if it's undefined:
         // e.g. 1.2.1 vs 1.2 (and we are comparing patch)
         // we will end up with l=1 and r=NaN, which won't compare right
-        // so use 0
+        // so use 0 as a non-existent patch is < any existing patch
         l = parseInt(arrLeft[i],10) || 0;
         r = parseInt(arrRight[i],10) || 0;
 
-        if(l!==r){
+        if(l!==r){ // there's a difference
             hit = true; // we don't need to check anything else
             break;
         }
