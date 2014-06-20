@@ -337,7 +337,19 @@ version: function(left, oper, right) {
         return true;
     }
 
-    var regSemVer = /^(\d+).(\d+).(\d+)(?:-([a-z0-9.]+))?$/i,
+    // use regex here instead of a series of splits since .match will return a
+    // consistent array length and let use more easily parse out the results
+    // 
+    /*
+     /^                     // start of the line
+     (\d+).(\d+).(\d+)      // 1.2.3
+     (?:-([a-z0-9.]+))?     // possible -pre.alpha.numeric.1.2.thing.and.such
+                            // NOTE: we don't require termination of the string here with "$"
+                            // so that we can gracefullly handle version strings that don't comply
+                            // fully with SemVer (e.g. 2.0.2.rc1)
+     /i,                    // case insensitive
+     */
+    var regSemVer = /^(\d+).(\d+).(\d+)(?:-([a-z0-9.]+))?/i,
         // produces a match array of [full, major, minor, patch, pre]
         // ["1.2.3-rc.1", "1", "2", "3", "rc.1"]
         // or
