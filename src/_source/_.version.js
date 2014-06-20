@@ -40,7 +40,19 @@ version: function(left, oper, right) {
         return true;
     }
 
-    var regSemVer = /^(\d+).(\d+).(\d+)(?:-([a-z0-9.]+))?$/i,
+    // use regex here instead of a series of splits since .match will return a
+    // consistent array length and let use more easily parse out the results
+    // 
+    /*
+     /^                     // start of the line
+     (\d+).(\d+).(\d+)      // 1.2.3
+     (?:-([a-z0-9.]+))?     // possible -pre.alpha.numeric.1.2.thing.and.such
+                            // NOTE: we don't require termination of the string here with "$"
+                            // so that we can gracefullly handle version strings that don't comply
+                            // fully with SemVer (e.g. 2.0.2.rc1)
+     /i,                    // case insensitive
+     */
+    var regSemVer = /^(\d+).(\d+).(\d+)(?:-([a-z0-9.]+))?/i,
         // produces a match array of [full, major, minor, patch, pre]
         // ["1.2.3-rc.1", "1", "2", "3", "rc.1"]
         // or
@@ -52,20 +64,20 @@ version: function(left, oper, right) {
         i,
         l,
         r,
+        // have we hit a difference?
         hit;
 
-    // skip full SemVer match (index 0) and loop to compare the rest
-    // only look at major.minor.patch
-    for(i=1; i<4 && !hit; i++){
+    // skip full SemVer match (index 0) and loop to compare major.minor.patch
+    for(i=1; i<4; i++){
         // 1.2.1 is greater than 1.2
         // attempt to parseInt on it, but if it's undefined:
         // e.g. 1.2.1 vs 1.2 (and we are comparing patch)
         // we will end up with l=1 and r=NaN, which won't compare right
-        // so use 0
+        // so use 0 as a non-existent patch is < any existing patch
         l = parseInt(arrLeft[i],10) || 0;
         r = parseInt(arrRight[i],10) || 0;
 
-        if(l!==r){
+        if(l!==r){ // there's a difference
             hit = true; // we don't need to check anything else
             break;
         }

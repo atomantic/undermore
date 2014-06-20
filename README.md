@@ -2,6 +2,7 @@
 [max]: https://raw.github.com/atomantic/undermore/master/dist/undermore.js
 [docs]: http://atomantic.github.io/undermore/#docs
 [build]: http://atomantic.github.io/undermore/#download
+[tests]: http://atomantic.github.io/undermore/test/undermore.html
 
 ## Undermore (mo-dash)
 ### vetted, tested, documented mixins, polyfills and extensions to JS
@@ -12,7 +13,7 @@
 
 We've all seen this happen:
 
-A developer needs a generic function that isn't a part of the language spec. Let's use Base64 transcoding as an example. So you need to base64 encode/decode some data, but javascript btoa and atob is only supported by IE10+ (and all other browsers). Since you have to support old IE versions, you have to find or write a polyfill. So what does a developer do? Google it, of course. So you find something to fit the need, it's a pretty big chunk of code, but you figure it's like a library, so you just drop it into your codebase in a /libs folder and load a new Base64 object as a global namespace. Over time, you've collected a whole lot of these and it's not clear what is available to a developer and what isn't. To make matters worse, if you are developing modular code across teams, you likely don't know that another team has a copy of the same Base64 function (or worse, that they've grabbed another version from a different stack overflow answer and one of these versions has a bug or misses a usecase). It isn't part of underscore.js or any other library in your system, so you both implement it as a standalone. I have a product right now with several teams contributing that contains 3 copies of a Base64 function o_9
+A developer needs a generic function that isn't a part of the language spec. Let's use Base64 transcoding as an example. So you need to base64 encode/decode some data, but javascript btoa and atob isn't even an ecmascript standard it's an HTML spec and is only supported by IE10+ (and all other browsers--with spotty mobile support). Since you have to support old IE versions and mobile, you have to find or write a polyfill. So what does a developer do? Google it, of course. So you find something to fit the need, it's a pretty big chunk of code (unless you find some tiny code-golf version that might have bugs), but you figure it's like a library, so you just drop it into your codebase in a /libs folder and load a new Base64 object as a global namespace. Over time, you've collected a whole lot of these and it's not clear what is available to a developer and what isn't. To make matters worse, if you are developing modular code across teams, you likely don't know that another team has a copy of the same Base64 function (or worse, that they've grabbed another version from a different stack overflow answer and one of these versions has a bug or misses a usecase). It isn't part of underscore.js/lodash.js or any other library in your system, so you both implement it as a standalone. I have a product right now with several teams contributing that contains 3 copies of a Base64 function o_9
 
 So let's be honest: web standards can't keep up with innovation. While I may make devil's-advocate and practical arguments against some of the complaints in [Zed Shaw's talk](http://vimeo.com/43380467), he still makes a lot of great points regarding the speed (or lack thereof) in standards adoption.
 
@@ -24,7 +25,7 @@ If web standards were implemented as quickly as they should be:
 * our own UUID generating function
 * etc...
 
-Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with [unit tests](https://travis-ci.org/atomantic/undermore) and auto-generated [documentation][docs].
+Most of these utilities are small and in standard use throughout the industry anyway--but you shouldn't have to hunt google, stackoverflow or 140byt.es to find these. And wouldn't you like them to come with an [automated build](https://travis-ci.org/atomantic/undermore), [unit tests][tests] and auto-generated [documentation][docs].
 
 [underscore.js](http://underscorejs.org/) and [lo-dash](http://lodash.com/) have a lot of extra tools and specs for javascript that are either implemented in edge versions of ecmascript or on the way in the future, but there are still utilities that haven't made it into lo-dash or underscore that you will use in your product. If you are using underscore.js or lodash.js in your project, this is an additional library to help you collect things like _.base64, so you don't end up with a lot of global namespace pollution, duplication, and google copied code with potential bugs.
 
@@ -76,6 +77,9 @@ var uuid = _.uuid();
 
 ## Documentation
 You can view the documentation generated via grunt:jsdoc on github: [http://atomantic.github.io/undermore/docs/module-undermore.html][docs]
+
+## Tests
+You can [run the QUnit tests][tests]
 
 ## Custom Build
 Create your own [custom build][build]!
