@@ -26,9 +26,13 @@ module.exports = function(grunt) {
                     banner: '<%= banner_undermore %>',
                     footer: '<%= foot_undermore %>',
                     process: function(src) {
-                        var lines = src.replace('_.mixin({\n','').split('\n');
-                            lines.pop();
-                      return lines.join('\n');
+                        var lines = src.replace('_.mixin({\n','').split('\n'),
+                            last = lines.pop();
+                        // handle empty lines at the end of the file
+                        while(last===''){
+                            last = lines.pop();
+                        }   
+                        return lines.join('\n');
                     }
                 },
                 src: ['src/_source/_.*.js'],
