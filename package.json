@@ -1,7 +1,7 @@
 {
   "name": "undermore",
   "description": "additional mixins for underscore.js as a forkable collection box for your own js standard tools",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
     "name": "Adam Eivy (@antic)",
