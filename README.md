@@ -90,14 +90,17 @@ Create your own [custom build][build]!
 * Clone your fork
 * run
 ```
+git checkout dev;
 npm install;
 ```
-* create a branch
+* create a branch (from dev)
 * run
 ```
 grunt watch;
 ```
-* once your tests pass, commit/push your branch and pull-request it
+* add your qunit test to test/undermore_test.js
+* create an undermore mixin in src/_source/_.YOURMIXIN.js
+* once your tests pass, commit/push your branch and pull-request your branch back to 'dev'
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Please note that the codebase uses 4 spaces (not 2) instead of tabs--and uses the comma pattern for declaring sets of new variables. 
@@ -107,6 +110,17 @@ Lint, build and test your code using [Grunt](http://gruntjs.com/).
 _Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Grunt. You'll find source code in the "src" subdirectory :)_
 
 ## Release History
+
+### <sup>v1.7.0</sup>
+ * _.getQuery(name)
+ ```
+	// URL: http://foo.com?a=b&foo=bar
+	_.getQuery() === { a: 'b', foo: 'bar' }
+	_.getQuery('a') === 'b'
+	_.getQuery('b') === undefined
+	_.getQuery('c', 'd') === 'd'
+	_.getQuery('a', 'baz') === 'b'
+```
 
 ### <sup>v1.6.0</sup>
  * _.set(obj,chain,value) - a deep object setter, shorthand for _.extend where the chain to set on an object may not exist and may be defined by variable names: e.g.
