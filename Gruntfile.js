@@ -22,9 +22,14 @@ module.exports = function(grunt) {
             },
             undermore: {
                 options: {
-                    separator: ', \n ',
+                    separator: '\t, \n ',
                     banner: '<%= banner_undermore %>',
-                    footer: '<%= foot_undermore %>'
+                    footer: '<%= foot_undermore %>',
+                    process: function(src) {
+                        var lines = src.replace('_.mixin({\n','').split('\n');
+                            lines.pop();
+                      return lines.join('\n');
+                    }
                 },
                 src: ['src/_source/_.*.js'],
                 dest: 'src/_.build.js'
@@ -78,7 +83,7 @@ module.exports = function(grunt) {
                 src: 'Gruntfile.js'
             },
             src: {
-                src: '<%= concat.dist.src %>'
+                src: ['src/**/*.js']
             },
             test: {
                 src: ['test/**/*.js']

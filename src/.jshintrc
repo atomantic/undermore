@@ -9,5 +9,13 @@
   "undef": true,
   "boss": true,
   "eqnull": true,
-  "predef": ["exports"]
+  "jquery": true,
+  "browser": true,
+  "predef": ["exports"],
+  "globals":{
+    "_":true,
+    "chars":true,
+    "escape":true,
+    "unescape":true
+  }
 }
