@@ -1,0 +1,21 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "boss": true,
+  "eqnull": true,
+  "jquery": true,
+  "browser": true,
+  "predef": ["exports"],
+  "globals":{
+    "_":true,
+    "chars":true,
+    "escape":true,
+    "unescape":true
+  }
+}
