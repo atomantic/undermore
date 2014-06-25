@@ -1,8 +1,14 @@
 /*jslint jquery:true,browser:true */
 /*global _,QUnit,test,module,deepEqual,equal,define,ok,notEqual*/
+
+// In order to test _.getQuery(), we need to assure we have a query string
+var targetQuery = '?a=b&foo=bar';
+if (window.location.search !== targetQuery) {
+    window.location.search = targetQuery;
+}
+
 define(['../src/_.build.js', '../src/safe.js'], function() {
     'use strict';
-
     /*
     ======== A Handy Little QUnit Reference ========
     http://api.qunitjs.com/
@@ -73,7 +79,6 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
 
 
     test('utf8', function() {
-
         var data = [
             // 1-byte
             {
@@ -300,4 +305,21 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
 
     });
 
+    test('getQuery', function () {
+        var data = { a: 'b', foo: 'bar' };
+        var params = _.getQuery();
+
+        for (var k in data) {
+            if (data.hasOwnProperty(k)) {
+                ok(params.hasOwnProperty(k), 'Parameter "' + k + '" should exist in query string');
+                equal(params[k], data[k], 'Parameter "' + k + '" should equal "' + data[k] + '"');
+            }
+        }
+
+        // These tests are directly out of the example code from the definition file
+        equal(_.getQuery('a'), 'b', 'Query parameter "a" should be "b"');
+        equal(_.getQuery('b'), undefined, 'Query parameter "b" should be undefined');
+        equal(_.getQuery('c', 'd'), 'd', 'Undefined query parameter should result in default value, if present');
+        equal(_.getQuery('a', 'baz'), 'b', 'Default value should not override existing query string value');
+    });
 });
