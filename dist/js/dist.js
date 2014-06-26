@@ -76,7 +76,7 @@
         repo: "undermore",
         branch: "dev",
         process: function(text,filePath){
-            if(filePath.indexOf('.js')===-1 && filePath.indexOf('_source')===-1){
+            if(filePath.indexOf('.js')===-1 || filePath.indexOf('_source')===-1){
                 return text;
             }
             var lines = text.replace('_.mixin({','').split('\n'),
