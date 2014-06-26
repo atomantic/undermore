@@ -3,6 +3,7 @@ _.mixin({
      * Get the requested key from the query string.
      * If no key is provided, return a map of all
      * query string values.
+     * {@link http://jsperf.com/query-string-parser#run|Run jsperf test}
      *
      * @param {string} key The key to retrieve from the query string
      * @param {*} defaultValue The default value to return if key does not exist
