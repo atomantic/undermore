@@ -1,7 +1,7 @@
 _.mixin({
     /**
      * Get a deep value on an Object safely (optionally with a default value).
-     * {@link http://jsperf.com/deepget-vs-steeltoe/3|Run jsperf test}
+     * {@link http://jsperf.com/deepget-vs-steeltoe/3#run|Run jsperf test}
      *
      * @function module:undermore.get
      * @param {object} obj The object to traverse
