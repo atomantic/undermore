@@ -1,5 +1,5 @@
-/*jshint -W100*/
 _.mixin({
+    /*jshint -W100*/
     /**
      * utf8 decode a string
      *

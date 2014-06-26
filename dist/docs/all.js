@@ -71,7 +71,8 @@
 
 
     // add the mixins to underscore
-    _.mixin({    /**
+    _.mixin({
+        /**
      * base64_decode decode a string. This is not a strict polyfill for window.atob
      * because it handles unicode characters
      *
@@ -112,8 +113,8 @@
             buffer = chars.indexOf(buffer);
         }
         return output;
-    }	, 
-     /**
+    },
+    /**
      * base64_encode encode a string. This is not a strict window.btoa polyfill
      * because it handles utf8 strings (unlike the window.btoa spec)
      *
@@ -154,8 +155,8 @@
             block = block << 8 | charCode;
         }
         return output;
-    }	, 
-     /**
+    },
+    /**
      * empty event handler function, which simply prevents default handling
      *
      * @function module:undermore.eFn
@@ -164,8 +165,8 @@
      */
     eFn: function(e) {
         e.preventDefault();
-    }	, 
-     /**
+    },
+    /**
      * Generic empty function to speed up supplying anon empty functions.
      * If you are using jQuery, you could use $.noop if returning undefined is desireable
      * but this one is useful for anything requiring a boolean true return
@@ -178,8 +179,8 @@
      */
     fn: function() {
         return true;
-    }	, 
-     /**
+    },
+    /**
      * get a new function, which runs two functions serially within a given context
      *
      * @function module:undermore.fnMore
@@ -201,8 +202,8 @@
             originalFn();
             moreFn();
         };
-    }	, 
-     /**
+    },
+    /**
      * Get a deep value on an Object safely (optionally with a default value).
      * {@link http://jsperf.com/deepget-vs-steeltoe/3#run|Run jsperf test}
      *
@@ -242,8 +243,8 @@
 
         // keep traversing
         return _.get(obj[chain[0]], _.rest(chain), defaultValue);
-    }	, 
-     /**
+    },
+    /**
      * Get the requested key from the query string.
      * If no key is provided, return a map of all
      * query string values.
@@ -285,8 +286,8 @@
 
             return typeof key === 'undefined' ? o : (typeof o[key] === 'undefined' ? defaultValue : o[key]);
         };
-    })()	, 
-     /**
+    })(),
+    /**
      * test if a value is a valid Date instance, with a valid date
      *
      * @function module:undermore.isValidDate
@@ -302,8 +303,8 @@
      */
     isValidDate: function (value) {
         return _.isDate(value) && !(_.isNaN(value.valueOf()));
-    }	, 
-     /**
+    },
+    /**
      * Get the english ordinal suffix for any number
      *
      * @function module:undermore.ord
@@ -317,8 +318,8 @@
         var sfx = ['th', 'st', 'nd', 'rd'],
             v = n % 100;
         return sfx[(v - 20) % 10] || sfx[v] || sfx[0];
-    }	, 
-     /**
+    },
+    /**
      * Set a deep value on an object (even if the key path doesn't exist)
      * this is a shorthand for _.extend(), which is useful in cases where you can't easily build the extension object
      * e.g. if you are building a path from variable names:
@@ -372,8 +373,8 @@
         key[chain[length]] = value;
 
         return obj;
-    }	, 
- /*jshint -W100*/
+    },
+    /*jshint -W100*/
     /**
      * utf8 decode a string
      *
@@ -389,8 +390,8 @@
     /*jshint +W100*/
     utf8_decode: function(str) {
         return decodeURIComponent(escape(str));
-    }	, 
-     /*jshint -W100*/
+    },
+    /*jshint -W100*/
     /**
      * utf8 encode a string
      *
@@ -406,8 +407,8 @@
     /*jshint +W100*/
     utf8_encode: function(str) {
         return unescape(encodeURIComponent(str));
-    }	, 
-     /**
+    },
+    /**
      * generate a random v4 UUID of the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx,
      * where each x is replaced with a random hexadecimal digit from 0 to f,
      * and y is replaced with a random hexadecimal digit from 8 to b.
@@ -425,8 +426,8 @@
             d = Math.floor(d / 16);
             return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
         });
-    }	, 
-     /**
+    },
+    /**
      * Compare a semantic version number string to another:
      * 
      * 1.2.3-alpha < 1.2.3-alpha.1 < 1.2.3-alpha.beta < 1.2.3-beta < 1.2.3-beta.2 < 1.2.3-beta.11 < 1.2.3-rc.1 < 1.2.3

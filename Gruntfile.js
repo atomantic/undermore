@@ -22,7 +22,7 @@ module.exports = function(grunt) {
             },
             undermore: {
                 options: {
-                    separator: '\t, \n ',
+                    separator: ',\n',
                     banner: '<%= banner_undermore %>',
                     footer: '<%= foot_undermore %>',
                     process: function(src) {
