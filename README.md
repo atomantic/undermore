@@ -113,28 +113,28 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ### <sup>v1.7.0</sup>
  * _.getQuery(name)
- ```
-	// URL: http://foo.com?a=b&foo=bar
-	_.getQuery() === { a: 'b', foo: 'bar' }
-	_.getQuery('a') === 'b'
-	_.getQuery('b') === undefined
-	_.getQuery('c', 'd') === 'd'
-	_.getQuery('a', 'baz') === 'b'
+```
+// URL: http://foo.com?a=b&foo=bar
+_.getQuery() === { a: 'b', foo: 'bar' }
+_.getQuery('a') === 'b'
+_.getQuery('b') === undefined
+_.getQuery('c', 'd') === 'd'
+_.getQuery('a', 'baz') === 'b'
 ```
 
 ### <sup>v1.6.0</sup>
  * _.set(obj,chain,value) - a deep object setter, shorthand for _.extend where the chain to set on an object may not exist and may be defined by variable names: e.g.
- ```
- 	// we've got some vars that define the object key path
- 	var varName = 'myKey';
+```
+// we've got some vars that define the object key path
+var varName = 'myKey';
 
- 	// we can suffer this with _.extend
- 	var extendObj = {prop:{}};
- 	extendObj.prop[varName] = {key:value};
- 	_.extend(obj, extendObj);
+// we can suffer this with _.extend
+var extendObj = {prop:{}};
+extendObj.prop[varName] = {key:value};
+_.extend(obj, extendObj);
 
- 	// or set it in one line with _.set
- 	_.set(obj, 'prop.'+varName+'.key', value);
+// or set it in one line with _.set
+_.set(obj, 'prop.'+varName+'.key', value);
 ```
 
 ### <sup>v1.5.2</sup>

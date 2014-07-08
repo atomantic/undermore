@@ -71,11 +71,23 @@
     });
 
     var builder = new DownloadBuilder({
-        "location": "github",
-        "author": "atomantic",
-        "repo": "undermore",
-        "branch": "dev",
-        "onError": function(error) {
+        location: "local",
+        author: "atomantic",
+        repo: "undermore",
+        branch: "dev",
+        process: function(text,filePath){
+            if(filePath.indexOf('.js')===-1 || filePath.indexOf('_source')===-1){
+                return text;
+            }
+            var lines = text.replace('_.mixin({','').split('\n'),
+                last = lines.pop();
+            // handle empty lines at the end of the file
+            while(last===''){
+                last = lines.pop();
+            }
+            return lines.join('\n');
+        },
+        onError: function(error) {
             $('#errorMessage').html(error).show();
         }
     });

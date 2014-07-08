@@ -85,6 +85,11 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
             deep: {
                 thing: 2
             },
+            and:{
+                'funky-key':{
+                    child: 'woot'
+                }
+            },
             bad: null,
             str: 'string'
         };
@@ -98,6 +103,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         equal(_.get(data,'bad.foo','default'),'default');
         equal(_.get(data,'str','default'),'string');
         equal(_.get(data,'str.foo','default'),'default');
+        equal(_.get(data,'and.funky-key.child'),'woot');
     });
 
     test('set',function(){

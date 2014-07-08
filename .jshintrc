@@ -11,5 +11,12 @@
   "boss": true,
   "eqnull": true,
   "node": true,
-  "browser": true
+  "browser": true,
+  "jquery": true,
+  "globals":{
+    "_":true,
+    "chars":true,
+    "escape":true,
+    "unescape":true
+  }
 }

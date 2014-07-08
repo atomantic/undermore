@@ -43,7 +43,11 @@
             'client_secret': (obj && obj.client_secret) || '',
             
             // Error handler (e.g. github rate limit exceeded)
-            'onError': (obj && obj.onError) || function(){}
+            'onError': (obj && obj.onError) || function(){},
+
+            // Allows post-fetch processing of the file
+            // (add comma for concat, remove _.mixin({}) wrapper for joining to one, etc)
+            'process': (obj && obj.process) || function(text,filePath){return text;},
 
         };
 
@@ -405,7 +409,7 @@
                     if (this.readyState === 4 && this.status === 200) {
     
                         // Save the text response in a local variable
-                        text = this.responseText || this.response || '';
+                        text = self.options.process(this.responseText || this.response || '', obj.url);
 
                         // If the file is empty
                         if(!self.file) {
@@ -459,7 +463,7 @@
                 if(obj.type === 'github') {
 
                     // Appends the parsed Github text response to the file instance property
-                    text = self._parseGithubResponse({ 'elem': obj.elem, 'data': data }) || "";
+                    text = self.options.process(self._parseGithubResponse({ 'elem': obj.elem, 'data': data }) || "",obj.url);
 
                     // If the file is empty
                     if(!self.file) {

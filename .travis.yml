@@ -55,6 +55,8 @@ after_success:
     - git rm -r .
     - cp -R ../dist/* .
     - cp ../dist/.* .
+    - rm libs
+    - rm src
     - cp -R ../test .
     - cp -R ../libs .
     - cp -R ../src .
