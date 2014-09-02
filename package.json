@@ -1,7 +1,7 @@
 {
   "name": "undermore",
   "description": "additional mixins for underscore.js as a forkable collection box for your own js standard tools",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
     "name": "Adam Eivy (@antic)",
@@ -20,7 +20,7 @@
       "url": "https://github.com/atomantic/undermore/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "bin/corejs",
+  "main": "bin/undermore.js",
   "engines": {
     "node": ">= 0.8.0"
   },
