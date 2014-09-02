@@ -1,4 +1,4 @@
-/*global exports,Buffer,atob,btoa,escape,unescape*/
+/*global Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
 /**
@@ -27,19 +27,28 @@
  *
  * @param {object} exports The location of the underscore library to mixin all of the undermore methods
  */
-(function(exports) {
+(function(undefined) {
 
     'use strict';
 
-    // Establish the root object, `window` in the browser, or `global` on the server.
-    var _ = exports._,
-        // chars for base64 methods
-        chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    // Node.js support
+    var _;
+    var mixins = {};
+    if(typeof module !== 'undefined' && module.exports){
+        _ = require('lodash');
+        module.exports = mixins;
+    }
+    else{
+        _ = window._;
+    }
+
+    // chars for base64 methods
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
 
     // add the mixins to underscore
-    _.mixin({
-        /**
+    _.extend(mixins, {
+    /**
      * base64_decode decode a string. This is not a strict polyfill for window.atob
      * because it handles unicode characters
      *
@@ -547,7 +556,8 @@
 
         // not the droid we are looking for
         return false;
-    }
-    }); // mixin
+    }    }); // mixin
 
-}(typeof exports === 'object' && exports || this));
+    _.mixin(mixins);
+
+}());
