@@ -54,7 +54,8 @@ If you are using node.js, we are published in NPM!
 Install the module with: `npm install undermore`
 
 ```javascript
-var undermore = require('undermore');
+var _ = require('lodash');
+mixin(require('undermore'));
 
 // get a random uuid
 var uuid = _.uuid();
@@ -103,13 +104,16 @@ grunt watch;
 * once your tests pass, commit/push your branch and pull-request your branch back to 'dev'
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
-Please note that the codebase uses 4 spaces (not 2) instead of tabs--and uses the comma pattern for declaring sets of new variables. 
-Add unit tests for any new or changed functionality. 
+Please note that the codebase uses 4 spaces (not 2) instead of tabs--and uses the comma pattern for declaring sets of new variables.
+Add unit tests for any new or changed functionality.
 Lint, build and test your code using [Grunt](http://gruntjs.com/).
 
 _Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Grunt. You'll find source code in the "src" subdirectory :)_
 
 ## Release History
+
+### <sup>v1.8.0</sup>
+ * fixed node.js support :)
 
 ### <sup>v1.7.0</sup>
  * _.getQuery(name)
@@ -154,8 +158,8 @@ _.set(obj, 'prop.'+varName+'.key', value);
 
 ### <sup>v1.3.1</sup>
  * Removing _.curry method
- 	* it conflicted with lo-dash _.curry, implementing lo-dash _.partial rather than lo-dash _.curry as documented
- 	* old undermore _.curry functionality exists by using _.partial instead
+     * it conflicted with lo-dash _.curry, implementing lo-dash _.partial rather than lo-dash _.curry as documented
+     * old undermore _.curry functionality exists by using _.partial instead
 
 ### <sup>v0.3.0</sup>
  * Including jquery extensions and tiny $.fn methods
@@ -170,7 +174,7 @@ _.set(obj, 'prop.'+varName+'.key', value);
  * String.prototype.contains(searchString, position)
  * es6-shim as a build include option
  * update docs to include lo-dash as preferred foundation
- 
+
 ### <sup>v0.1.2</sup>
 
  * \_.utf8_encode(str)
@@ -195,7 +199,7 @@ _.set(obj, 'prop.'+varName+'.key', value);
  * String.prototype.trunc(len, suffix)
 
 ## License
-Copyright (c) 2013-2014 Adam Eivy (@antic)  
+Copyright (c) 2013-2014 Adam Eivy (@antic)
 Licensed under the MIT license.
 
 

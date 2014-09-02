@@ -1,7 +1,7 @@
 {
   "name": "undermore",
   "description": "additional mixins for underscore.js as a forkable collection box for your own js standard tools",
-  "version": "1.7.1",
+  "version": "1.8.1",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
     "name": "Adam Eivy (@antic)",
@@ -27,6 +27,9 @@
   "scripts": {
     "test": "grunt qunit"
   },
+  "dependencies": {
+    "lodash": ">=2.4.1"
+  },
   "devDependencies": {
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.0",
@@ -38,5 +41,5 @@
     "grunt-notify": "~0.2.7",
     "grunt-shell": "~0.7.0"
   },
-  "keywords": []
+  "keywords": ["underscore","modash","lodash","mixin","mixins","utility","semver","uuid","base64"]
 }
