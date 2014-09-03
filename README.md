@@ -8,6 +8,8 @@
 ### vetted, tested, documented mixins, polyfills and extensions to JS
 
 [![Build Status](https://travis-ci.org/atomantic/undermore.png?branch=dev)](https://travis-ci.org/atomantic/undermore)
+[![NPM version](https://badge.fury.io/js/undermore.svg)](http://badge.fury.io/js/undermore)
+![Dependencies](https://david-dm.org/atomantic/undermore.png)
 
 ## About
 
