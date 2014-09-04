@@ -1,0 +1,34 @@
+{
+  "name": "undermore",
+  "version": "1.8.1",
+  "homepage": "https://github.com/atomantic/undermore",
+  "authors": [
+    "Adam Eivy <atomantic@gmail.com>"
+  ],
+  "description": "additional mixins for underscore and lodash",
+  "main": "./bin/undermore.js",
+  "moduleType": [
+    "amd",
+    "es6"
+  ],
+  "keywords": [
+    "underscore",
+    "modash",
+    "lodash",
+    "mixin",
+    "mixins",
+    "utility",
+    "semver",
+    "uuid",
+    "base64"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "libs",
+    "dist"
+  ]
+}

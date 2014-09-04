@@ -1,6 +1,6 @@
 {
   "name": "undermore",
-  "description": "additional mixins for underscore.js as a forkable collection box for your own js standard tools",
+  "description": "additional mixins for underscore and lodash as a forkable collection box for your own js standard tools",
   "version": "1.8.1",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
