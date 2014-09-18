@@ -79,7 +79,7 @@ var uuid = _.uuid();
 ```
 
 ## Documentation
-You can view the documentation generated via grunt:jsdoc on github: [http://atomantic.github.io/undermore/docs/module-undermore.html][docs]
+You can view the documentation generated via gulp:docbuild on github: [http://atomantic.github.io/undermore/docs/module-undermore.html][docs]
 
 ## Tests
 You can [run the QUnit tests][tests]
@@ -99,7 +99,7 @@ npm install;
 * create a branch (from dev)
 * run
 ```
-grunt watch;
+gulp watch;
 ```
 * add your qunit test to test/undermore_test.js
 * create an undermore mixin in src/_source/_.YOURMIXIN.js
@@ -108,11 +108,14 @@ grunt watch;
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Please note that the codebase uses 4 spaces (not 2) instead of tabs--and uses the comma pattern for declaring sets of new variables.
 Add unit tests for any new or changed functionality.
-Lint, build and test your code using [Grunt](http://gruntjs.com/).
+Lint, build and test your code using [Gulp](http://gulpjs.com/).
 
-_Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Grunt. You'll find source code in the "src" subdirectory :)_
+_Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Gulp. You'll find source code in the "src" subdirectory :)_
 
 ## Release History
+
+### <sup>v1.8.4</sup>
+ * Gulp replaces Grunt
 
 ### <sup>v1.8.0</sup>
  * fixed node.js support :)
