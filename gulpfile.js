@@ -15,5 +15,6 @@ var gulp = require('./gulp')({
 
 // Task list
 gulp.task('default', []);
+gulp.task('test', ['jquery', 'undermore', 'bin', 'qunit']);
 gulp.task('build', ['docs', 'jquery', 'undermore', 'bin', 'qunit', 'jsdoc']);
 gulp.task('docbuild', ['docs', 'jquery', 'undermore', 'bin', 'jsdoc']);
