@@ -97,12 +97,12 @@ git checkout dev;
 npm install;
 ```
 * create a branch (from dev)
-* run
-```
-gulp watch;
-```
 * add your qunit test to test/undermore_test.js
 * create an undermore mixin in src/_source/_.YOURMIXIN.js
+* run
+```
+gulp test;
+```
 * once your tests pass, commit/push your branch and pull-request your branch back to 'dev'
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
