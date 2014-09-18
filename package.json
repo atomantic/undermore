@@ -25,7 +25,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt qunit"
+    "test": "gulp test"
   },
   "dependencies": {
     "lodash": ">=2.4.1"
