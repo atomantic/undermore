@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>JSDoc: Module: undermore</title>
-    
+
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
@@ -16,102 +16,102 @@
 <body>
 
 <div id="main">
-    
+
     <h1 class="page-title">Module: undermore</h1>
-    
+
     
 
 
 
 <section>
-    
+
 <header>
     <h2>
     undermore
     </h2>
     
-</header>  
+</header>
 
 <article>
     <div class="container-overview">
     
-    
+
     
         
             <div class="description">undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
 that really should just already be there--these are tiny, unit tested additions to underscore.js, which
 reside in _.* -- e.g. _.uuid()</div>
         
-        
+
         
 <dl class="details">
     
-        
-    
-    
+
     
 
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-copyright">Copyright:</dt>
     <dd class="tag-copyright"><ul class="dummy"><li>2013 Adam Eivy (@antic)</li></ul></dd>
     
-    
+
     
     <dt class="tag-license">License:</dt>
     <dd class="tag-license"><ul class="dummy"><li>MIT</li></ul></dd>
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="all.js.html">all.js</a>, <a href="all.js.html#line41">line 41</a>
+        <a href="all.js.html">all.js</a>, <a href="all.js.html#line51">line 51</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
-        
+
         
     
     </div>
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
+
     
         <h3 class="subsection-title">Methods</h3>
-        
+
         <dl>
             
 <dt>
     <h4 class="name" id="base64_decode"><span class="type-signature">&lt;static> </span>base64_decode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         base64_decode decode a string. This is not a strict polyfill for window.atob
@@ -120,38 +120,38 @@ because it handles unicode characters
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>str</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -160,62 +160,64 @@ because it handles unicode characters
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The string to decode</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line84">line 84</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -223,23 +225,23 @@ because it handles unicode characters
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">string</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> _.base64_decode('4pyI') => '✈'</code></pre>
+    <pre class="prettyprint"><code>_.base64_decode('4pyI') => '✈'</code></pre>
 
     
 </dd>
@@ -248,11 +250,11 @@ because it handles unicode characters
             
 <dt>
     <h4 class="name" id="base64_encode"><span class="type-signature">&lt;static> </span>base64_encode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         base64_encode encode a string. This is not a strict window.btoa polyfill
@@ -264,38 +266,38 @@ Note: it might be work including an urlsafe flag
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>str</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -304,62 +306,64 @@ Note: it might be work including an urlsafe flag
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The string to encode</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line126">line 126</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -367,23 +371,23 @@ Note: it might be work including an urlsafe flag
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">string</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> _.base64_decode('✈') => '4pyI'</code></pre>
+    <pre class="prettyprint"><code>_.base64_decode('✈') => '4pyI'</code></pre>
 
     
 </dd>
@@ -392,11 +396,11 @@ Note: it might be work including an urlsafe flag
             
 <dt>
     <h4 class="name" id="eFn"><span class="type-signature">&lt;static> </span>eFn<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         empty event handler function, which simply prevents default handling
@@ -404,60 +408,62 @@ Note: it might be work including an urlsafe flag
     
 
     
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
+
     
 
     
+
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line168">line 168</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
+
     
-    
-    
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> $('#thing').on('click',this.conf.onClick||_.eFn)</code></pre>
+    <pre class="prettyprint"><code>$('#thing').on('click',this.conf.onClick||_.eFn)</code></pre>
 
     
 </dd>
@@ -466,11 +472,11 @@ Note: it might be work including an urlsafe flag
             
 <dt>
     <h4 class="name" id="fn"><span class="type-signature">&lt;static> </span>fn<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         Generic empty function to speed up supplying anon empty functions.
@@ -480,54 +486,56 @@ but this one is useful for anything requiring a boolean true return
     
 
     
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
+
     
 
     
+
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line178">line 178</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -539,23 +547,23 @@ but this one is useful for anything requiring a boolean true return
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">boolean</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> this.onComplete = conf.onComplete||_.fn;</code></pre>
+    <pre class="prettyprint"><code>this.onComplete = conf.onComplete||_.fn;</code></pre>
 
     
 </dd>
@@ -564,11 +572,11 @@ but this one is useful for anything requiring a boolean true return
             
 <dt>
     <h4 class="name" id="fnMore"><span class="type-signature">&lt;static> </span>fnMore<span class="signature">(originalFn, moreFn, scope)</span><span class="type-signature"> &rarr; {function}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         get a new function, which runs two functions serially within a given context
@@ -576,38 +584,38 @@ but this one is useful for anything requiring a boolean true return
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>originalFn</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -616,21 +624,21 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The original function to run</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>moreFn</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -639,21 +647,21 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The extra function to run in the same context after the first</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>scope</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -662,62 +670,64 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The context in which to run the fn</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line192">line 192</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -729,25 +739,25 @@ but this one is useful for anything requiring a boolean true return
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">function</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>  var fn = _.fnMore(oldFn,newFn,someObj);
-  fn();
-  // runs oldFn, then newFn in the context of someObj</code></pre>
+    <pre class="prettyprint"><code>var fn = _.fnMore(oldFn,newFn,someObj);
+fn();
+// runs oldFn, then newFn in the context of someObj</code></pre>
 
     
 </dd>
@@ -756,11 +766,11 @@ but this one is useful for anything requiring a boolean true return
             
 <dt>
     <h4 class="name" id="get"><span class="type-signature">&lt;static> </span>get<span class="signature">(obj, chain, defaultValue)</span><span class="type-signature"> &rarr; {mixed}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         Get a deep value on an Object safely (optionally with a default value).
@@ -769,38 +779,38 @@ but this one is useful for anything requiring a boolean true return
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>obj</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -809,21 +819,21 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The object to traverse</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>chain</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -832,21 +842,21 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>defaultValue</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -855,62 +865,64 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The object to traverse</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line215">line 215</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -922,29 +934,29 @@ but this one is useful for anything requiring a boolean true return
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">mixed</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> var obj = {
-    prop: 1
- };
- _.get(obj,'prop','blarg') === 1
- _.get(obj,'prop.child','blarg') === 'blarg'
- _.get(obj,'thing','blarg') === 'blarg'
- _.get(obj) === obj</code></pre>
+    <pre class="prettyprint"><code>var obj = {
+   prop: 1
+};
+_.get(obj,'prop','blarg') === 1
+_.get(obj,'prop.child','blarg') === 'blarg'
+_.get(obj,'thing','blarg') === 'blarg'
+_.get(obj) === obj</code></pre>
 
     
 </dd>
@@ -953,11 +965,11 @@ but this one is useful for anything requiring a boolean true return
             
 <dt>
     <h4 class="name" id="isValidDate"><span class="type-signature">&lt;static> </span>isValidDate<span class="signature">(value)</span><span class="type-signature"> &rarr; {bool}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         test if a value is a valid Date instance, with a valid date
@@ -965,38 +977,38 @@ but this one is useful for anything requiring a boolean true return
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>value</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1005,62 +1017,64 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">Something to test</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line299">line 299</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -1072,28 +1086,28 @@ but this one is useful for anything requiring a boolean true return
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">bool</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>  var d = new Date('foobar') => Invalid Date
-  d.getTime() => NaN 
-  _.isDate(d) => true
-  // even though this is a Date object instance, 
-  // it isn't a valid date... so:
-  _.isValidDate(d) => false</code></pre>
+    <pre class="prettyprint"><code>var d = new Date('foobar') => Invalid Date
+d.getTime() => NaN 
+_.isDate(d) => true
+// even though this is a Date object instance, 
+// it isn't a valid date... so:
+_.isValidDate(d) => false</code></pre>
 
     
 </dd>
@@ -1102,11 +1116,11 @@ but this one is useful for anything requiring a boolean true return
             
 <dt>
     <h4 class="name" id="ord"><span class="type-signature">&lt;static> </span>ord<span class="signature">(n)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         Get the english ordinal suffix for any number
@@ -1114,38 +1128,38 @@ but this one is useful for anything requiring a boolean true return
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>n</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1154,62 +1168,64 @@ but this one is useful for anything requiring a boolean true return
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">number The number to evaluate</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line316">line 316</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -1221,24 +1237,24 @@ but this one is useful for anything requiring a boolean true return
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">string</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> _.ord(1) === 'st'
- _.ord(345) === 'th'</code></pre>
+    <pre class="prettyprint"><code>_.ord(1) === 'st'
+_.ord(345) === 'th'</code></pre>
 
     
 </dd>
@@ -1247,11 +1263,11 @@ but this one is useful for anything requiring a boolean true return
             
 <dt>
     <h4 class="name" id="set"><span class="type-signature">&lt;static> </span>set<span class="signature">(obj, chain, value)</span><span class="type-signature"> &rarr; {mixed}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         Set a deep value on an object (even if the key path doesn't exist)
@@ -1265,38 +1281,38 @@ _.extend(obj, extendObj);
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>obj</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1305,21 +1321,21 @@ _.extend(obj, extendObj);
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The object to traverse</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>chain</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1328,21 +1344,21 @@ _.extend(obj, extendObj);
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>value</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1351,62 +1367,64 @@ _.extend(obj, extendObj);
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The value to set the end key to</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line331">line 331</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -1418,42 +1436,42 @@ _.extend(obj, extendObj);
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">mixed</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> var data = {
-         prop: {}
-     };
+    <pre class="prettyprint"><code>var data = {
+        prop: {}
+    };
 
- deepEqual(_.set(data, 'prop', 1), _.extend(data, {prop:1}) );
- deepEqual(_.set(data, 'prop.foo', 'fooVal'),  _.extend(data, {prop:{foo:'fooVal'}}) );
- deepEqual(_.set(data, 'newKey', 'newVal'),  _.extend(data, {newKey:'newVal'}) );
- deepEqual(_.set(data, 'deep.key.that.does.not.exist', 'deepVal'),  _.extend(data, {
-     deep: {
-          key:{
-              that:{
-                  does:{
-                      not:{
-                          exist:'deepVal'
-                      }
-                  }
-              }
-          }
-      }
- }));</code></pre>
+deepEqual(_.set(data, 'prop', 1), _.extend(data, {prop:1}) );
+deepEqual(_.set(data, 'prop.foo', 'fooVal'),  _.extend(data, {prop:{foo:'fooVal'}}) );
+deepEqual(_.set(data, 'newKey', 'newVal'),  _.extend(data, {newKey:'newVal'}) );
+deepEqual(_.set(data, 'deep.key.that.does.not.exist', 'deepVal'),  _.extend(data, {
+    deep: {
+         key:{
+             that:{
+                 does:{
+                     not:{
+                         exist:'deepVal'
+                     }
+                 }
+             }
+         }
+     }
+}));</code></pre>
 
     
 </dd>
@@ -1462,11 +1480,11 @@ _.extend(obj, extendObj);
             
 <dt>
     <h4 class="name" id="utf8_decode"><span class="type-signature">&lt;static> </span>utf8_decode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         utf8 decode a string
@@ -1474,38 +1492,38 @@ _.extend(obj, extendObj);
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>str</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1514,62 +1532,64 @@ _.extend(obj, extendObj);
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The string to decode</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line387">line 387</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -1577,25 +1597,25 @@ _.extend(obj, extendObj);
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">string</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> _.utf8_decode('asdf') === 'asdf';
- _.utf8_decode('è¤é') === '複雜';
- _.utf8_decode('â') === '✈';</code></pre>
+    <pre class="prettyprint"><code>_.utf8_decode('asdf') === 'asdf';
+_.utf8_decode('è¤é') === '複雜';
+_.utf8_decode('â') === '✈';</code></pre>
 
     
 </dd>
@@ -1604,11 +1624,11 @@ _.extend(obj, extendObj);
             
 <dt>
     <h4 class="name" id="utf8_encode"><span class="type-signature">&lt;static> </span>utf8_encode<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         utf8 encode a string
@@ -1616,38 +1636,38 @@ _.extend(obj, extendObj);
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>str</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1656,62 +1676,64 @@ _.extend(obj, extendObj);
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The string to encode</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line404">line 404</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -1719,25 +1741,25 @@ _.extend(obj, extendObj);
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">string</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> _.utf8_encode('asdf') === 'asdf';
- _.utf8_encode('✈') === 'â';
- _.utf8_encode('複雜') === 'è¤é';</code></pre>
+    <pre class="prettyprint"><code>_.utf8_encode('asdf') === 'asdf';
+_.utf8_encode('✈') === 'â';
+_.utf8_encode('複雜') === 'è¤é';</code></pre>
 
     
 </dd>
@@ -1746,11 +1768,11 @@ _.extend(obj, extendObj);
             
 <dt>
     <h4 class="name" id="uuid"><span class="type-signature">&lt;static> </span>uuid<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         generate a random v4 UUID of the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx,
@@ -1760,54 +1782,56 @@ and y is replaced with a random hexadecimal digit from 8 to b.
     
 
     
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
+
     
 
     
+
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line420">line 420</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -1819,23 +1843,23 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">string</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> var uuid = _.uuid();</code></pre>
+    <pre class="prettyprint"><code>var uuid = _.uuid();</code></pre>
 
     
 </dd>
@@ -1844,11 +1868,11 @@ and y is replaced with a random hexadecimal digit from 8 to b.
             
 <dt>
     <h4 class="name" id="version"><span class="type-signature">&lt;static> </span>version<span class="signature">(left, oper, right)</span><span class="type-signature"> &rarr; {bool}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         Compare a semantic version number string to another:
@@ -1858,38 +1882,38 @@ and y is replaced with a random hexadecimal digit from 8 to b.
     
 
     
+
     
-    
-    
+
     
         <h5>Parameters:</h5>
         
 
 <table class="params">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
         <tr>
             
                 <td class="name"><code>left</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1898,21 +1922,21 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The left version</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>oper</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1921,21 +1945,21 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The operator to use for comparison ('==','>=','<=','<','>')</td>
         </tr>
-	
-	
-	
+
+    
+
         <tr>
             
                 <td class="name"><code>right</code></td>
             
-            
+
             <td class="type">
             
                 
@@ -1944,48 +1968,48 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 
             
             </td>
+
             
+
             
-            
-            
-            
+
             <td class="description last">The right version</td>
         </tr>
-	
-	
-	</tbody>
+
+    
+    </tbody>
 </table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
     
 
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line439">line 439</a>
     </li></ul></dd>
     
+
     
-    
-    
+
     
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
@@ -1994,19 +2018,21 @@ and y is replaced with a random hexadecimal digit from 8 to b.
         </ul>
     </dd>
     
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -2018,46 +2044,46 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">bool</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> ok(_.version('1.2.3','<','2.0.0'), 'major version is smaller');
- ok(_.version('1.1.0','<','1.2.0'), 'minor version is smaller');
- ok(!_.version('1.1.0','>','1.2.0'), 'minor version is smaller');
- ok(_.version('1.0.10','>=','1.0.2'), 'patch version 10 is greater than or equal to 2');
- ok(_.version('1.2.3-alpha','<','1.2.3-alpha.1'));
- ok(_.version('1.2.3-alpha.1','<','1.2.3-alpha.beta'));
- ok(_.version('1.2.3-alpha.beta','<','1.2.3-beta'));
- ok(_.version('1.2.3-beta','<','1.2.3-beta.2'));
- ok(_.version('1.2.3-beta.2','<','1.2.3-beta.11'));
- ok(_.version('1.2.3-beta.11','<','1.2.3-rc.1'));
- ok(_.version('1.2.3-rc.1','<','1.2.3'));</code></pre>
+    <pre class="prettyprint"><code>ok(_.version('1.2.3','&lt;','2.0.0'), 'major version is smaller');
+ok(_.version('1.1.0','&lt;','1.2.0'), 'minor version is smaller');
+ok(!_.version('1.1.0','>','1.2.0'), 'minor version is smaller');
+ok(_.version('1.0.10','>=','1.0.2'), 'patch version 10 is greater than or equal to 2');
+ok(_.version('1.2.3-alpha','&lt;','1.2.3-alpha.1'));
+ok(_.version('1.2.3-alpha.1','&lt;','1.2.3-alpha.beta'));
+ok(_.version('1.2.3-alpha.beta','&lt;','1.2.3-beta'));
+ok(_.version('1.2.3-beta','&lt;','1.2.3-beta.2'));
+ok(_.version('1.2.3-beta.2','&lt;','1.2.3-beta.11'));
+ok(_.version('1.2.3-beta.11','&lt;','1.2.3-rc.1'));
+ok(_.version('1.2.3-rc.1','&lt;','1.2.3'));</code></pre>
 
     
 </dd>
 
         </dl>
     
+
     
-    
-    
+
     
 </article>
 
-</section>  
+</section>
 
 
 
@@ -2071,7 +2097,7 @@ and y is replaced with a random hexadecimal digit from 8 to b.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Tue Sep 02 2014 12:41:13 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Sep 25 2014 15:32:06 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

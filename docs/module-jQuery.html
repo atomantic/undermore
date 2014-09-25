@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>JSDoc: Module: jQuery</title>
-    
+
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
@@ -16,68 +16,68 @@
 <body>
 
 <div id="main">
-    
+
     <h1 class="page-title">Module: jQuery</h1>
-    
+
     
 
 
 
 <section>
-    
+
 <header>
     <h2>
     jQuery
     </h2>
     
-</header>  
+</header>
 
 <article>
     <div class="container-overview">
     
-    
+
     
         
             <div class="description">The jQuery plugin namespace.
 a set of standard mini jquery plugins and extensions
 This set of extensions adds functionality to the jQuery.fn external library</div>
         
-        
+
         
 <dl class="details">
     
-        
-    
-    
+
     
 
     
+
     
+
     
+
     
-    
-    
+
     
     <dt class="tag-copyright">Copyright:</dt>
     <dd class="tag-copyright"><ul class="dummy"><li>2013 Adam Eivy (@antic)</li></ul></dd>
     
-    
+
     
     <dt class="tag-license">License:</dt>
     <dd class="tag-license"><ul class="dummy"><li>MIT</li></ul></dd>
     
+
     
-    
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line599">line 599</a>
     </li></ul></dd>
     
+
     
-    
-    
+
     
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
@@ -86,100 +86,39 @@ This set of extensions adds functionality to the jQuery.fn external library</div
         </ul>
     </dd>
     
-    
+
     
 </dl>
 
-        
+
         
     
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <h4 class="name" id="getQuery"><span class="type-signature">&lt;inner> </span>getQuery<span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Get the requested key from the query string.
-If no key is provided, return a map of all
-query string values.
-<a href="http://jsperf.com/query-string-parser#run">Run jsperf test</a>
-    </div>
-    
-    
+
     
 
     
-<dl class="details">
-    
-        
-    
-    
+
     
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="all.js.html">all.js</a>, <a href="all.js.html#line272">line 272</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
 
     
-    
-</dd>
 
-        </dl>
     
-    
+
     
         <h3 class="subsection-title">Methods</h3>
-        
+
         <dl>
             
 <dt>
     <h4 class="name" id="containsI"><span class="type-signature">&lt;static> </span>containsI<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         allows the query of elements containing case-insensitive text
@@ -189,54 +128,56 @@ Additionally, allows regex searches:
     
 
     
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
+
     
 
     
+
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line612">line 612</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -248,13 +189,13 @@ Additionally, allows regex searches:
 
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
- $("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)
- $("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)</code></pre>
+    <pre class="prettyprint"><code>$("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
+$("p:containsCI('(?:Red|Blue) state')") (Matches "red state" or "blue state", but not "up state", etc.)
+$("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)</code></pre>
 
     
 </dd>
@@ -263,11 +204,11 @@ Additionally, allows regex searches:
             
 <dt>
     <h4 class="name" id="formToObject"><span class="type-signature">&lt;static> </span>formToObject<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         convert a form's name/value pairs to a json object
@@ -275,54 +216,56 @@ Additionally, allows regex searches:
     
 
     
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
+
     
 
     
+
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line640">line 640</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -334,25 +277,25 @@ Additionally, allows regex searches:
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">object</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> 
- // captures the field/value set from #myform
- var formData = $('#myform').formToObject();</code></pre>
+    <pre class="prettyprint"><code>
+// captures the field/value set from #myform
+var formData = $('#myform').formToObject();</code></pre>
 
     
 </dd>
@@ -361,11 +304,11 @@ Additionally, allows regex searches:
             
 <dt>
     <h4 class="name" id="startsWith"><span class="type-signature">&lt;static> </span>startsWith<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
+
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         finds elements that contain text starting with string
@@ -373,54 +316,56 @@ Additionally, allows regex searches:
     
 
     
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
+
     
 
     
+
     
+<dl class="details">
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
+
     
-    
+
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="all.js.html">all.js</a>, <a href="all.js.html#line628">line 628</a>
     </li></ul></dd>
     
+
     
+
     
-    
-    
-    
+
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
+
     
     <h5>Returns:</h5>
     
@@ -432,36 +377,36 @@ Additionally, allows regex searches:
 
 
 <dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
 <span class="param-type">object</span>
 
 
-	</dd>
+    </dd>
 </dl>
 
         
-    
+
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> $(':startsWith(text)')</code></pre>
+    <pre class="prettyprint"><code>$(':startsWith(text)')</code></pre>
 
     
 </dd>
 
         </dl>
     
+
     
-    
-    
+
     
 </article>
 
-</section>  
+</section>
 
 
 
@@ -475,7 +420,7 @@ Additionally, allows regex searches:
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Tue Sep 02 2014 12:41:13 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Sep 25 2014 15:32:06 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>
