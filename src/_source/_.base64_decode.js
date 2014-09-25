@@ -13,7 +13,7 @@ _.mixin({
 
         // allow browser implementation if it exists
         // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
-        if (atob) {
+        if (typeof atob!=='undefined') {
             // utf8 decode after the fact to make sure we convert > 0xFF to ascii
             return _.utf8_decode(atob(str));
         }
