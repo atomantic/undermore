@@ -116,6 +116,7 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ### <sup>v1.8.4</sup>
  * Gulp replaces Grunt
+ * fix _.base64 methods for node.js
 
 ### <sup>v1.8.0</sup>
  * fixed node.js support :)
