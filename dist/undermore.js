@@ -1,4 +1,4 @@
-/*! undermore - v1.8.3 - 2014-09-17
+/*! undermore - v1.8.4 - 2014-09-25
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
@@ -65,7 +65,7 @@
 
         // allow browser implementation if it exists
         // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
-        if (atob) {
+        if (typeof atob!=='undefined') {
             // utf8 decode after the fact to make sure we convert > 0xFF to ascii
             return _.utf8_decode(atob(str));
         }
@@ -109,7 +109,7 @@
     base64_encode: function(str) {
         // allow browser implementation if it exists
         // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
-        if (btoa) {
+        if (typeof btoa!=='undefined') {
             // first utf8 encode to keep from throwing an error if we are out of 0xFF
             return btoa(_.utf8_encode(str));
         }
