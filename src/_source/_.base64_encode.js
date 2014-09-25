@@ -15,7 +15,7 @@ _.mixin({
     base64_encode: function(str) {
         // allow browser implementation if it exists
         // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
-        if (btoa) {
+        if (typeof btoa!=='undefined') {
             // first utf8 encode to keep from throwing an error if we are out of 0xFF
             return btoa(_.utf8_encode(str));
         }
