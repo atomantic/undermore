@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>JSDoc: Source: all.js</title>
-    
+
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
@@ -16,16 +16,16 @@
 <body>
 
 <div id="main">
-    
+
     <h1 class="page-title">Source: all.js</h1>
-    
+
     
 
 
     
     <section>
         <article>
-            <pre class="prettyprint source"><code>/*! undermore - v1.8.1 - 2014-09-02
+            <pre class="prettyprint source linenums"><code>/*! undermore - v1.8.4 - 2014-09-25
 * https://github.com/atomantic/undermore
 * Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
 /*jslint browser:true*/
@@ -94,7 +94,7 @@
     // Node.js support
     var _;
     var mixins = {};
-    if(typeof module !== 'undefined' && module.exports){
+    if(typeof module !== 'undefined' &amp;&amp; module.exports){
         _ = require('lodash');
         module.exports = mixins;
     }
@@ -140,10 +140,10 @@
             // get next character
             buffer = str.charAt(idx++);
             // character found in table? initialize bit storage and add its ascii value;
-            ~ buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
+            ~ buffer &amp;&amp; (bs = bc % 4 ? bs * 64 + buffer : buffer,
                 // and if not first of each 4 characters,
                 // convert the first 8 bits to one ascii character
-                bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+                bc++ % 4) ? output += String.fromCharCode(255 &amp; bs >> (-2 * bc &amp; 6)) : 0
         ) {
             // try to find character in table (0-63, not found => -1)
             buffer = chars.indexOf(buffer);
@@ -185,7 +185,7 @@
             //   check if d has no fractional digits
             str.charAt(idx | 0) || (map = '=', idx % 1);
             // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
-            output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+            output += map.charAt(63 &amp; block >> 8 - idx % 1 * 8)
         ) {
             charCode = str.charCodeAt(idx += 3 / 4);
             block = block &lt;&lt; 8 | charCode;
@@ -289,7 +289,7 @@
      * @param {string} key The key to retrieve from the query string
      * @param {*} defaultValue The default value to return if key does not exist
      * @example:
-     *  // URL: http://foo.com?a=b&foo=bar
+     *  // URL: http://foo.com?a=b&amp;foo=bar
      *  _.getQuery() === { a: 'b', foo: 'bar' }
      *  _.getQuery('a') === 'b'
      *  _.getQuery('b') === undefined
@@ -301,8 +301,8 @@
         var parseIt = function () {
             o = {};
             var query = (function (query) {
-                if (query && query.length > 0) {
-                    return query.replace(/^\?/, '').split('&');
+                if (query &amp;&amp; query.length > 0) {
+                    return query.replace(/^\?/, '').split('&amp;');
                 }
                 return [];
             })(window.location.search);
@@ -338,7 +338,7 @@
      *   _.isValidDate(d) => false
      */
     isValidDate: function (value) {
-        return _.isDate(value) && !(_.isNaN(value.valueOf()));
+        return _.isDate(value) &amp;&amp; !(_.isNaN(value.valueOf()));
     },
     /**
      * Get the english ordinal suffix for any number
@@ -460,7 +460,7 @@
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = (d + Math.random() * 16) % 16 | 0;
             d = Math.floor(d / 16);
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            return (c === 'x' ? r : (r &amp; 0x3 | 0x8)).toString(16);
         });
     },
     /**
@@ -500,7 +500,7 @@
         right = right.replace(regMeta);
 
         // see if we can bail early
-        if(equal && left===right){
+        if(equal &amp;&amp; left===right){
             // versions are exactly the same and that's good enough for us
             return true;
         }
@@ -572,7 +572,7 @@
                     hit = true;
                 }
             }
-            if(!preLeft && !preRight){
+            if(!preLeft &amp;&amp; !preRight){
                 hit = true; // both are Infinity, no reason to try to split and compare parts
             }
         }
@@ -605,11 +605,11 @@
 
         if(
             // equal
-            (equal && l===r) ||
+            (equal &amp;&amp; l===r) ||
             // left is greater
-            (oper.indexOf('>')!==-1 && l > r) ||
+            (oper.indexOf('>')!==-1 &amp;&amp; l > r) ||
             // right is greater
-            (oper.indexOf('&lt;')!==-1 && l &lt; r)
+            (oper.indexOf('&lt;')!==-1 &amp;&amp; l &lt; r)
         ){
             return true;
         }
@@ -693,7 +693,7 @@ $.fn.formToObject = function() {
 };
     };
     // support for requirejs
-    if ( typeof define === 'function' && define.amd ) {
+    if ( typeof define === 'function' &amp;&amp; define.amd ) {
         define(['jquery'], function ($) { 
             return plugin($); 
         } );
@@ -790,18 +790,19 @@ String.prototype.startsWith = String.prototype.startsWith || function (prefix){
 };
 /**
  * shorten a string, adding a suffix in place of excessive characters
- * default suffix is an html encoded ellipsis '&hellip;'
+ * default suffix is an html encoded ellipsis '&amp;hellip;'
  * 
  * @function module:String.prototype.trunc
  * @param {number}     len     The lenth of the string to keep (not counting suffix)
  * @param {string}  suffix  The suffix to append (e.g. '...&lt;a>read more&lt;/a>')
  * @return {string}
  * @example
- *  'this is a description that is too detailed'.trunc(10) === 'this is a &hellip;'
+ *  'this is a description that is too detailed'.trunc(10) === 'this is a &amp;hellip;'
  */
 String.prototype.trunc = String.prototype.trunc || function(len,suffix) {
-    return this.length > len ? this.slice(0, len) + (suffix||'&hellip;') : this;
-};</code></pre>
+    return this.length > len ? this.slice(0, len) + (suffix||'&amp;hellip;') : this;
+};
+</code></pre>
         </article>
     </section>
 
@@ -817,7 +818,7 @@ String.prototype.trunc = String.prototype.trunc || function(len,suffix) {
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Tue Sep 02 2014 12:41:13 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Sep 25 2014 15:32:06 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

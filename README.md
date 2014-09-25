@@ -114,7 +114,7 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
-### <sup>v1.8.4</sup>
+### <sup>v1.8.5</sup>
  * Gulp replaces Grunt
  * fix _.base64 methods for node.js
 
