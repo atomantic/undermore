@@ -1,7 +1,7 @@
 {
   "name": "undermore",
   "description": "additional mixins for underscore and lodash as a forkable collection box for your own js standard tools",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
     "name": "Adam Eivy (@antic)",
@@ -25,21 +25,38 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt qunit"
+    "test": "gulp test"
   },
   "dependencies": {
     "lodash": ">=2.4.1"
   },
   "devDependencies": {
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-qunit": "~0.2.0",
-    "grunt-contrib-watch": "~0.4.0",
-    "grunt": "~0.4.1",
-    "grunt-jsdoc": "~0.4.0",
-    "grunt-notify": "~0.2.7",
-    "grunt-shell": "~0.7.0"
+    "event-stream": "^3.1.7",
+    "gulp": "^3.8.8",
+    "gulp-concat": "^2.4.1",
+    "gulp-concat-util": "^0.4.0",
+    "gulp-insert": "^0.4.0",
+    "gulp-jsdoc": "^0.1.4",
+    "gulp-jshint": "^1.8.4",
+    "gulp-qunit": "^0.3.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-sourcemaps": "^1.1.5",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
+    "gulp-watch": "^1.0.5",
+    "jshint-stylish": "^0.4.0",
+    "yargs": "^1.3.1"
   },
-  "keywords": ["underscore","modash","lodash","mixin","mixins","utility","semver","uuid","base64"]
+  "keywords": [
+    "underscore",
+    "modash",
+    "lodash",
+    "mixin",
+    "mixins",
+    "utility",
+    "semver",
+    "uuid",
+    "base64"
+  ]
 }
