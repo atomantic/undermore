@@ -1,6 +1,6 @@
-/*! undermore - v1.8.5 - 2014-09-25
+/*! undermore - v1.8.5 - 2015-06-05
 * https://github.com/atomantic/undermore
-* Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
@@ -229,8 +229,10 @@
      * query string values.
      * {@link http://jsperf.com/query-string-parser#run|Run jsperf test}
      *
+     * @function module:undermore.getQuery
      * @param {string} key The key to retrieve from the query string
-     * @param {*} defaultValue The default value to return if key does not exist
+     * @param {mixed} defaultValue The default value to return if key does not exist
+     * @return {mixed} the query value or the defaultValue
      * @example:
      *  // URL: http://foo.com?a=b&foo=bar
      *  _.getQuery() === { a: 'b', foo: 'bar' }

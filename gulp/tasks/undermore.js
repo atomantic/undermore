@@ -33,11 +33,15 @@ function cleanContent() {
 module.exports = function (cb) {
     gulp.src(['src/_source/_.*.js'])
         .pipe(cleanContent())
-        .pipe(concat('undermore.js', {
+        .pipe(concat('_.build.js', {
             newLine: ',\n'
         }))
         .pipe(insert.wrap(fs.readFileSync('src/_source/_.banner.tmpl'), fs.readFileSync('src/_source/_.foot.tmpl')))
-        .pipe(insert.wrap(utils.license(), "\n"))
+        .pipe(insert.wrap(utils.license(), '\n'))
+        .pipe(gulp.dest('src/'))
+        .pipe(rename(function (path) {
+            path.basename = 'undermore';
+        }))
         .pipe(gulp.dest('dist/'))
         .on('end', function () {
             // Just built, so now uglify as well

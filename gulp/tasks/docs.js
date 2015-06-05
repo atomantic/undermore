@@ -14,6 +14,6 @@ module.exports = function () {
             'src/string.*.js'
         ])
         .pipe(concat('all.js'))
-        .pipe(insert.wrap(utils.license(), "\n"))
+        .pipe(insert.wrap(utils.license(), '\n'))
         .pipe(gulp.dest('dist/docs'));
 };
