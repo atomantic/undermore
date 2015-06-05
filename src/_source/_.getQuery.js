@@ -5,8 +5,10 @@ _.mixin({
      * query string values.
      * {@link http://jsperf.com/query-string-parser#run|Run jsperf test}
      *
+     * @function module:undermore.getQuery
      * @param {string} key The key to retrieve from the query string
-     * @param {*} defaultValue The default value to return if key does not exist
+     * @param {mixed} defaultValue The default value to return if key does not exist
+     * @return {mixed} the query value or the defaultValue
      * @example:
      *  // URL: http://foo.com?a=b&foo=bar
      *  _.getQuery() === { a: 'b', foo: 'bar' }
