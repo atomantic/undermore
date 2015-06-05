@@ -1,6 +1,9 @@
-/*! undermore - v1.8.5 - 2014-09-25
+/*! undermore - v1.8.5 - 2015-06-05
 * https://github.com/atomantic/undermore
-* Copyright (c) 2014 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
+/*! undermore - v1.8.5 - 2015-06-05
+* https://github.com/atomantic/undermore
+* Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
@@ -229,8 +232,10 @@
      * query string values.
      * {@link http://jsperf.com/query-string-parser#run|Run jsperf test}
      *
+     * @function module:undermore.getQuery
      * @param {string} key The key to retrieve from the query string
-     * @param {*} defaultValue The default value to return if key does not exist
+     * @param {mixed} defaultValue The default value to return if key does not exist
+     * @return {mixed} the query value or the defaultValue
      * @example:
      *  // URL: http://foo.com?a=b&foo=bar
      *  _.getQuery() === { a: 'b', foo: 'bar' }
@@ -274,9 +279,9 @@
      * @return {bool} Whether or not the date is valid
      * @example
      *   var d = new Date('foobar') => Invalid Date
-     *   d.getTime() => NaN
+     *   d.getTime() => NaN 
      *   _.isDate(d) => true
-     *   // even though this is a Date object instance,
+     *   // even though this is a Date object instance, 
      *   // it isn't a valid date... so:
      *   _.isValidDate(d) => false
      */
@@ -408,7 +413,7 @@
     },
     /**
      * Compare a semantic version number string to another:
-     *
+     * 
      * 1.2.3-alpha < 1.2.3-alpha.1 < 1.2.3-alpha.beta < 1.2.3-beta < 1.2.3-beta.2 < 1.2.3-beta.11 < 1.2.3-rc.1 < 1.2.3
      *
      * @function module:undermore.version
@@ -450,7 +455,7 @@
 
         // use regex here instead of a series of splits since .match will return a
         // consistent array length and let use more easily parse out the results
-        //
+        // 
         /*
          /^                     // start of the line
          (\d+).(\d+).(\d+)      // 1.2.3
@@ -493,7 +498,7 @@
         if(!hit){
             // all the same so far
             // test pre-release version
-            // at this point the rule of placement existence
+            // at this point the rule of placement existence 
             // causing higher version shifts temporarily
             // 1.2 < 1.2.3 but 1.2.3 > 1.2.3-pre
 
@@ -564,3 +569,4 @@
     _.mixin(mixins);
 
 }());
+
