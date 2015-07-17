@@ -1,4 +1,4 @@
-/*! undermore - v1.8.5 - 2015-06-05
+/*! undermore - v1.9.0 - 2015-07-17
 * https://github.com/atomantic/undermore
 * Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
 /*jslint browser:true*/
@@ -31,7 +31,7 @@
         return (window.console = {});
     }
 }()));
-/*! undermore - v1.8.5 - 2015-06-05
+/*! undermore - v1.9.0 - 2015-07-17
 * https://github.com/atomantic/undermore
 * Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
@@ -84,6 +84,45 @@
 
     // add the mixins to underscore
     _.extend(mixins, {
+    /**
+     * sort the keys in an object alphabetically, recursively
+     *
+     * @function module:undermore.alphabetize
+     * @param {object} obj The object to traverse
+     * @return {mixed} the object with alphabetized keys
+     * @example
+     *  var obj = {
+     *     b: 1,
+     *     a: 2
+     *  };
+     *  JSON.stringify(_.alphabetize(obj)) === '{"a":2,"b":1}'
+     */
+
+     /**
+      *
+      */
+     alphabetize: function (object) {
+         var sortedObj = {},
+             keys = _.keys(object);
+
+         keys = _.sortBy(keys, function(key){
+             return key;
+         });
+
+         _.each(keys, function(key) {
+             if(_.isArray(object[key])) {
+                 sortedObj[key] = _.map(object[key], function(val) {
+                     return _.isObject(val) ? _.alphabetize(val) : val;
+                 });
+             } else if(_.isObject(object[key])){
+                 sortedObj[key] = _.alphabetize(object[key]);
+             } else {
+                 sortedObj[key] = object[key];
+             }
+         });
+
+         return sortedObj;
+     },
     /**
      * base64_decode decode a string. This is not a strict polyfill for window.atob
      * because it handles unicode characters

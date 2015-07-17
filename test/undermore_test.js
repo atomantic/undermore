@@ -79,6 +79,27 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         equal(_.base64_decode('4pyI'), '✈', 'airplane');
     });
 
+    test('alphabetize',function(){
+        var data = {
+            c: 1,
+            b: {
+                thing: 2,
+                another: 1
+            },
+            a: {
+                'funky-key':{
+                    child: 'woot',
+                    a: 1
+                },
+                another: 1
+            },
+            d: null,
+            e: 'string'
+        };
+
+        equal(JSON.stringify(_.alphabetize(data)), '{"a":{"another":1,"funky-key":{"a":1,"child":"woot"}},"b":{"another":1,"thing":2},"c":1,"d":null,"e":"string"}');
+    });
+
     test('get',function(){
         var data = {
             prop: 1,
@@ -112,7 +133,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         };
 
         deepEqual(_.set(data, 'prop', 1), _.extend(data, {prop:1}) );
-        deepEqual(_.set(data, 'prop.foo', 'fooVal'),  _.extend(data, {prop:{foo:'fooVal'}}) );
+        deepEqual(_.set(data, 'doo.foo', 'fooVal'),  _.extend(data, {doo:{foo:'fooVal'}}) );
         deepEqual(_.set(data, 'newKey', 'newVal'),  _.extend(data, {newKey:'newVal'}) );
         deepEqual(_.set(data, 'deep.key.that.does.not.exist', 'deepVal'),  _.extend(data, {
             deep: {
@@ -294,17 +315,17 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
     });
 
     test('isValidDate', function() {
-        equal(_.isValidDate(new Date()), true, 
+        equal(_.isValidDate(new Date()), true,
             'new Date instance for current time is good'
         );
-        equal(_.isValidDate(new Date('12/12/12')), true, 
+        equal(_.isValidDate(new Date('12/12/12')), true,
             'new instance with arbitrary date is good'
         );
-        equal(_.isValidDate(new Date('foobar')), false, 
+        equal(_.isValidDate(new Date('foobar')), false,
             'foobar is not a date'
         );
         // there's more :)
-        equal(_.isValidDate('12/12/12'), false, 
+        equal(_.isValidDate('12/12/12'), false,
             'a string is not a date'
         );
         equal(_.isValidDate(121212), false,
