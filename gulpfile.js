@@ -8,7 +8,6 @@ var gulp = require('./gulp')({
     'jquery': [],
     'jsdoc': [],
     'jshint': [],
-
     'watch': [],
     'docs': ['clean', 'cleandocs'],
     'undermore': ['jshint']

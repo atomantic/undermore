@@ -98,7 +98,7 @@ npm install;
 ```
 * create a branch (from dev)
 * add your qunit test to test/undermore_test.js
-* create an undermore mixin in src/_source/_.YOURMIXIN.js
+* create an undermore mixin in src/\_source/\_.YOURMIXIN.js
 * run
 ```
 gulp test;
@@ -113,6 +113,9 @@ Lint, build and test your code using [Gulp](http://gulpjs.com/).
 _Also, please note that aside from the index.html (custom build tool) the "dist" subdirectory is generated via Gulp. You'll find source code in the "src" subdirectory :)_
 
 ## Release History
+
+### <sup>v1.9.0</sup>
+ * _.alphabetize - sorts an object's keys alphabetically
 
 ### <sup>v1.8.5</sup>
  * Gulp replaces Grunt
@@ -210,4 +213,3 @@ Licensed under the MIT license.
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/atomantic/undermore/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
