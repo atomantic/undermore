@@ -1,4 +1,4 @@
-/*! undermore - v1.9.0 - 2015-07-17
+/*! undermore - v1.9.1 - 2015-07-18
 * https://github.com/atomantic/undermore
 * Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
@@ -38,7 +38,7 @@
     var _;
     var mixins = {};
     if(typeof module !== 'undefined' && module.exports){
-        _ = require('lodash');
+        _ = require('lodash').runInContext();
         module.exports = mixins;
     }
     else{
