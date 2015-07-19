@@ -114,6 +114,9 @@ _Also, please note that aside from the index.html (custom build tool) the "dist"
 
 ## Release History
 
+### <sup>v1.9.1</sup>
+ * using `require('lodash').runInContext();` to not pollute lodash
+
 ### <sup>v1.9.0</sup>
  * _.alphabetize - sorts an object's keys alphabetically
 
