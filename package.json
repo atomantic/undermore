@@ -37,7 +37,7 @@
     "gulp-concat-util": "^0.4.0",
     "gulp-insert": "^0.4.0",
     "gulp-jsdoc": "^0.1.4",
-    "gulp-jshint": "^1.8.4",
+    "gulp-jshint": "^1.11.2",
     "gulp-qunit": "^0.3.3",
     "gulp-rename": "^1.2.0",
     "gulp-rimraf": "^0.1.0",
