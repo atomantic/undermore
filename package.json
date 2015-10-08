@@ -28,7 +28,7 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "lodash": ">=2.4.1"
+    "lodash": ">=3.10.1"
   },
   "devDependencies": {
     "event-stream": "^3.1.7",
