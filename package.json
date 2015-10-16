@@ -31,7 +31,7 @@
     "lodash": "^3.10.1"
   },
   "devDependencies": {
-    "event-stream": "^3.3.1",
+    "event-stream": "^3.3.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-concat-util": "^0.5.2",
