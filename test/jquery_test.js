@@ -41,17 +41,17 @@ define(['../src/safe.js', '../src/$.build.js'], function() {
             hiddenName: 'hiddenValue'
         }, 'Form convert to json object');
     });
-    
+
     test(':containsI',function(){
         var $area = $('#containsI');
         equal($area.find(':containsI(CASE)').length,2,'found two element where text contains an insensitive match for "CASE"');
     });
-    
+
     test(':startsWith',function(){
         var $area = $('#startsWith'),
             $startsWith_s = $area.find(':startsWith(s)'),
             $startsWith_last = $area.find(':startsWith(last)');
-        
+
         equal($startsWith_s.length,2,'found two elements where text begins with "s"');
         equal($startsWith_last.length,1,'found one element where text begins with "last"');
         equal($area.find(':startsWith(foobar)').length,0,'found zero element where text begins with "foobar"');

@@ -43,7 +43,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         equal(_.base64_encode('foo'), 'Zm9v', '');
         equal(_.base64_encode('quux'), 'cXV1eA==', '');
         equal(_.base64_encode('!"#$%'), 'ISIjJCU=', '');
-        equal(_.base64_encode("&'()*+"), 'JicoKSor', '');
+        equal(_.base64_encode('&\'()*+'), 'JicoKSor', '');
         equal(_.base64_encode(',-./012'), 'LC0uLzAxMg==', '');
         equal(_.base64_encode('3456789:'), 'MzQ1Njc4OTo=', '');
         equal(_.base64_encode(';<=>?@ABC'), 'Ozw9Pj9AQUJD', '');
@@ -65,7 +65,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
         equal(_.base64_decode('Zm9v'), 'foo', '');
         equal(_.base64_decode('cXV1eA=='), 'quux', '');
         equal(_.base64_decode('ISIjJCU='), '!"#$%', '');
-        equal(_.base64_decode('JicoKSor'), "&'()*+", '');
+        equal(_.base64_decode('JicoKSor'), '&\'()*+', '');
         equal(_.base64_decode('LC0uLzAxMg=='), ',-./012', '');
         equal(_.base64_decode('MzQ1Njc4OTo='), '3456789:', '');
         equal(_.base64_decode('Ozw9Pj9AQUJD'), ';<=>?@ABC', '');
@@ -117,7 +117,7 @@ define(['../src/_.build.js', '../src/safe.js'], function() {
 
         equal(_.get(data,'prop'),1);
         equal(_.get(data,'prop.foo','default'),'default');
-        deepEqual(_.get(data,'deep'),{"thing":2});
+        deepEqual(_.get(data,'deep'),{thing:2});
         equal(_.get(data,'deep.thing'),2);
         equal(_.get(data,'deep.thing.foo','default'),'default');
         equal(_.get(data,'bad','default'),null);

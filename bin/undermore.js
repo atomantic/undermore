@@ -1,9 +1,9 @@
-/*! undermore - v1.9.1 - 2015-10-13
+/*! undermore - v1.9.3 - 2016-01-14
 * https://github.com/atomantic/undermore
-* Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
-/*! undermore - v1.9.1 - 2015-10-12
+* Copyright (c) 2016 Adam Eivy (@antic); Licensed MIT */
+/*! undermore - v1.9.2 - 2016-01-13
 * https://github.com/atomantic/undermore
-* Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2016 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
@@ -164,6 +164,7 @@
         // [https://gist.github.com/999166] by [https://github.com/nignag]
         for (
             // initialize result and counter
+            // note: chars is defined in the _.banner.tmpl
             var block, charCode, idx = 0, map = chars, output = '';
             // if the next input index does not exist:
             //   change the mapping table to "="
@@ -318,9 +319,9 @@
      * @return {bool} Whether or not the date is valid
      * @example
      *   var d = new Date('foobar') => Invalid Date
-     *   d.getTime() => NaN 
+     *   d.getTime() => NaN
      *   _.isDate(d) => true
-     *   // even though this is a Date object instance, 
+     *   // even though this is a Date object instance,
      *   // it isn't a valid date... so:
      *   _.isValidDate(d) => false
      */
@@ -452,7 +453,7 @@
     },
     /**
      * Compare a semantic version number string to another:
-     * 
+     *
      * 1.2.3-alpha < 1.2.3-alpha.1 < 1.2.3-alpha.beta < 1.2.3-beta < 1.2.3-beta.2 < 1.2.3-beta.11 < 1.2.3-rc.1 < 1.2.3
      *
      * @function module:undermore.version
@@ -494,7 +495,7 @@
 
         // use regex here instead of a series of splits since .match will return a
         // consistent array length and let use more easily parse out the results
-        // 
+        //
         /*
          /^                     // start of the line
          (\d+).(\d+).(\d+)      // 1.2.3
@@ -526,8 +527,8 @@
             // e.g. 1.2.1 vs 1.2 (and we are comparing patch)
             // we will end up with l=1 and r=NaN, which won't compare right
             // so use 0 as a non-existent patch is < any existing patch
-            l = parseInt(arrLeft[i],10) || 0;
-            r = parseInt(arrRight[i],10) || 0;
+            l = parseInt(arrLeft[i], 10) || 0;
+            r = parseInt(arrRight[i], 10) || 0;
 
             if(l!==r){ // there's a difference
                 hit = true; // we don't need to check anything else
@@ -537,7 +538,7 @@
         if(!hit){
             // all the same so far
             // test pre-release version
-            // at this point the rule of placement existence 
+            // at this point the rule of placement existence
             // causing higher version shifts temporarily
             // 1.2 < 1.2.3 but 1.2.3 > 1.2.3-pre
 

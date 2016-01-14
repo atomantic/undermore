@@ -17,7 +17,7 @@
  * allows the query of elements containing case-insensitive text
  * works just like $(':contains(text)') but as $(':containsI(text)')
  * Additionally, allows regex searches:
- * 
+ *
  * @function module:jQuery.containsI
  * @example
  *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
@@ -25,30 +25,32 @@
  *  $("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)
  * @return selection of elements containing string (insensitively)
  */
-$.expr[":"].containsI = function(elem, i, match) {
+$.expr[':'].containsI = function(elem, i, match) {
     return (new RegExp (match[3], 'i')).test(elem.textContent || elem.innerText || '');
 };
 
+
 /**
  * finds elements that contain text starting with string
- * 
+ *
  * @function module:jQuery.startsWith
  * @example
  *  $(':startsWith(text)')
  * @return {object} selection of elements that have text starting with given string
  */
-$.expr[":"].startsWith = function(elem, i, match) {
+$.expr[':'].startsWith = function(elem, i, match) {
     return ( elem.textContent || elem.innerText || '' ).indexOf( match[3] ) === 0;
 };
 
+
 /**
  * convert a form's name/value pairs to a json object
- * 
+ *
  * @function module:jQuery.formToObject
- * @example 
+ * @example
  *  // captures the field/value set from #myform
  *  var formData = $('#myform').formToObject();
- * 
+ *
  * @return {object} a json representation of the form
  */
 $.fn.formToObject = function() {
@@ -68,13 +70,14 @@ $.fn.formToObject = function() {
    });
    return o;
 };
+
     };
     // support for requirejs
     if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], function ($) { 
-            return plugin($); 
+        define(['jquery'], function ($) {
+            return plugin($);
         } );
     } else {
         plugin(jQuery);
-    } 
+    }
 }());
