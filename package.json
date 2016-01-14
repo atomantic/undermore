@@ -1,7 +1,7 @@
 {
   "name": "undermore",
   "description": "additional mixins for underscore and lodash as a forkable collection box for your own js standard tools",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
     "name": "Adam Eivy (@antic)",
@@ -20,6 +20,7 @@
       "url": "https://github.com/atomantic/undermore/blob/master/LICENSE-MIT"
     }
   ],
+  "license": "MIT",
   "main": "bin/undermore.js",
   "engines": {
     "node": ">= 0.8.0"
@@ -28,25 +29,24 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^4.0.0"
   },
   "devDependencies": {
-    "event-stream": "^3.3.1",
+    "eslint": "^1.10.3",
+    "event-stream": "^3.3.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
-    "gulp-concat-util": "^0.5.2",
+    "gulp-concat-util": "^0.5.4",
+    "gulp-eslint": "^1.1.1",
     "gulp-insert": "^0.5.0",
-    "gulp-jsdoc": "^0.1.5",
-    "gulp-jshint": "^1.11.2",
-    "gulp-qunit": "^1.2.1",
+    "gulp-jsdoc": "^0.1.3",
+    "gulp-qunit": "^1.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-rimraf": "^0.2.0",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.4.2",
-    "gulp-util": "^3.0.6",
+    "gulp-uglify": "^1.5.1",
     "gulp-watch": "^4.3.5",
-    "jshint-stylish": "^2.0.1",
-    "yargs": "^3.27.0"
+    "yargs": "^3.31.0"
   },
   "keywords": [
     "underscore",

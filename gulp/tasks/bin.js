@@ -10,6 +10,6 @@ var utils = require(process.cwd() + '/gulp/utils');
 module.exports = function () {
     return gulp.src(['src/_.build.js'])
         .pipe(concat(pkg.name + '.js'))
-        .pipe(insert.wrap(utils.license(), "\n"))
+        .pipe(insert.wrap(utils.license(), '\n'))
         .pipe(gulp.dest('bin'));
 };

@@ -28,6 +28,7 @@ _.mixin({
         // [https://gist.github.com/999166] by [https://github.com/nignag]
         for (
             // initialize result and counter
+            // note: chars is defined in the _.banner.tmpl
             var block, charCode, idx = 0, map = chars, output = '';
             // if the next input index does not exist:
             //   change the mapping table to "="

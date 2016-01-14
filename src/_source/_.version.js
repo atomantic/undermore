@@ -1,7 +1,7 @@
 _.mixin({
     /**
      * Compare a semantic version number string to another:
-     * 
+     *
      * 1.2.3-alpha < 1.2.3-alpha.1 < 1.2.3-alpha.beta < 1.2.3-beta < 1.2.3-beta.2 < 1.2.3-beta.11 < 1.2.3-rc.1 < 1.2.3
      *
      * @function module:undermore.version
@@ -43,7 +43,7 @@ _.mixin({
 
         // use regex here instead of a series of splits since .match will return a
         // consistent array length and let use more easily parse out the results
-        // 
+        //
         /*
          /^                     // start of the line
          (\d+).(\d+).(\d+)      // 1.2.3
@@ -75,8 +75,8 @@ _.mixin({
             // e.g. 1.2.1 vs 1.2 (and we are comparing patch)
             // we will end up with l=1 and r=NaN, which won't compare right
             // so use 0 as a non-existent patch is < any existing patch
-            l = parseInt(arrLeft[i],10) || 0;
-            r = parseInt(arrRight[i],10) || 0;
+            l = parseInt(arrLeft[i], 10) || 0;
+            r = parseInt(arrRight[i], 10) || 0;
 
             if(l!==r){ // there's a difference
                 hit = true; // we don't need to check anything else
@@ -86,7 +86,7 @@ _.mixin({
         if(!hit){
             // all the same so far
             // test pre-release version
-            // at this point the rule of placement existence 
+            // at this point the rule of placement existence
             // causing higher version shifts temporarily
             // 1.2 < 1.2.3 but 1.2.3 > 1.2.3-pre
 

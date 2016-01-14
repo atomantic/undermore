@@ -7,9 +7,9 @@ _.mixin({
      * @return {bool} Whether or not the date is valid
      * @example
      *   var d = new Date('foobar') => Invalid Date
-     *   d.getTime() => NaN 
+     *   d.getTime() => NaN
      *   _.isDate(d) => true
-     *   // even though this is a Date object instance, 
+     *   // even though this is a Date object instance,
      *   // it isn't a valid date... so:
      *   _.isValidDate(d) => false
      */

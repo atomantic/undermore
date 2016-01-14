@@ -7,10 +7,10 @@ var gulp = require('./gulp')({
     'qunit': [],
     'jquery': [],
     'jsdoc': [],
-    'jshint': [],
+    'lint': [],
     'watch': [],
     'docs': ['clean', 'cleandocs'],
-    'undermore': ['jshint']
+    'undermore': ['lint']
 });
 
 // Task list
