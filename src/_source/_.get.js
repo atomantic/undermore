@@ -6,7 +6,7 @@ _.mixin({
      * @function module:undermore.get
      * @param {object} obj The object to traverse
      * @param {mixed} chain A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])
-     * @param {mixed} defaultValue The object to traverse
+     * @param {mixed} defaultValue The default value to return if key does not exist
      * @return {mixed} the last item in the ks or the defaultValue
      * @example
      *  var obj = {
