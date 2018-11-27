@@ -9,7 +9,6 @@
 
 [![Build Status](https://travis-ci.org/atomantic/undermore.png?branch=dev)](https://travis-ci.org/atomantic/undermore)
 [![NPM version](https://badge.fury.io/js/undermore.svg)](http://badge.fury.io/js/undermore)
-![Dependencies](https://david-dm.org/atomantic/undermore.png)
 
 ## About
 
@@ -213,6 +212,3 @@ _.set(obj, 'prop.'+varName+'.key', value);
 ## License
 Copyright (c) 2013-2014 Adam Eivy (@antic)
 Licensed under the MIT license.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/atomantic/undermore/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
