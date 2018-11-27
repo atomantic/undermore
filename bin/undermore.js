@@ -1,6 +1,6 @@
-/*! undermore - v1.9.2 - 2016-01-13
+/*! undermore - v1.9.4 - 2018-11-27
 * https://github.com/atomantic/undermore
-* Copyright (c) 2016 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2018 Adam Eivy (@antic); Licensed MIT */
 /*! undermore - v1.9.2 - 2016-01-13
 * https://github.com/atomantic/undermore
 * Copyright (c) 2016 Adam Eivy (@antic); Licensed MIT */
