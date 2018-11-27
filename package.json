@@ -1,7 +1,7 @@
 {
   "name": "undermore",
   "description": "additional mixins for underscore and lodash as a forkable collection box for your own js standard tools",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
     "name": "Adam Eivy (@antic)",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "eslint": "^1.10.3",
-    "event-stream": "^3.3.2",
+    "event-stream": "3.3.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-concat-util": "^0.5.4",

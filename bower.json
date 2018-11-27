@@ -3,7 +3,7 @@
   "version": "1.9.1",
   "homepage": "https://github.com/atomantic/undermore",
   "authors": [
-    "Adam Eivy <atomantic@gmail.com>"
+    "Adam Eivy"
   ],
   "description": "additional mixins for underscore and lodash",
   "main": "./bin/undermore.js",
