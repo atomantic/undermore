@@ -1,6 +1,6 @@
-/*! undermore - v1.9.1 - 2015-07-18
+/*! undermore - v1.9.5 - 2018-12-03
 * https://github.com/atomantic/undermore
-* Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2018 Adam Eivy (@antic); Licensed MIT */
 /*jslint browser:true*/
 /*global console*/
 
@@ -31,9 +31,9 @@
         return (window.console = {});
     }
 }()));
-/*! undermore - v1.9.0 - 2015-07-17
+/*! undermore - v1.9.2 - 2016-01-13
 * https://github.com/atomantic/undermore
-* Copyright (c) 2015 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2016 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
@@ -71,7 +71,7 @@
     var _;
     var mixins = {};
     if(typeof module !== 'undefined' && module.exports){
-        _ = require('lodash');
+        _ = require('lodash').runInContext();
         module.exports = mixins;
     }
     else{
@@ -194,6 +194,7 @@
         // [https://gist.github.com/999166] by [https://github.com/nignag]
         for (
             // initialize result and counter
+            // note: chars is defined in the _.banner.tmpl
             var block, charCode, idx = 0, map = chars, output = '';
             // if the next input index does not exist:
             //   change the mapping table to "="
@@ -348,9 +349,9 @@
      * @return {bool} Whether or not the date is valid
      * @example
      *   var d = new Date('foobar') => Invalid Date
-     *   d.getTime() => NaN 
+     *   d.getTime() => NaN
      *   _.isDate(d) => true
-     *   // even though this is a Date object instance, 
+     *   // even though this is a Date object instance,
      *   // it isn't a valid date... so:
      *   _.isValidDate(d) => false
      */
@@ -482,7 +483,7 @@
     },
     /**
      * Compare a semantic version number string to another:
-     * 
+     *
      * 1.2.3-alpha < 1.2.3-alpha.1 < 1.2.3-alpha.beta < 1.2.3-beta < 1.2.3-beta.2 < 1.2.3-beta.11 < 1.2.3-rc.1 < 1.2.3
      *
      * @function module:undermore.version
@@ -524,7 +525,7 @@
 
         // use regex here instead of a series of splits since .match will return a
         // consistent array length and let use more easily parse out the results
-        // 
+        //
         /*
          /^                     // start of the line
          (\d+).(\d+).(\d+)      // 1.2.3
@@ -556,8 +557,8 @@
             // e.g. 1.2.1 vs 1.2 (and we are comparing patch)
             // we will end up with l=1 and r=NaN, which won't compare right
             // so use 0 as a non-existent patch is < any existing patch
-            l = parseInt(arrLeft[i],10) || 0;
-            r = parseInt(arrRight[i],10) || 0;
+            l = parseInt(arrLeft[i], 10) || 0;
+            r = parseInt(arrRight[i], 10) || 0;
 
             if(l!==r){ // there's a difference
                 hit = true; // we don't need to check anything else
@@ -567,7 +568,7 @@
         if(!hit){
             // all the same so far
             // test pre-release version
-            // at this point the rule of placement existence 
+            // at this point the rule of placement existence
             // causing higher version shifts temporarily
             // 1.2 < 1.2.3 but 1.2.3 > 1.2.3-pre
 
@@ -658,7 +659,7 @@
  * allows the query of elements containing case-insensitive text
  * works just like $(':contains(text)') but as $(':containsI(text)')
  * Additionally, allows regex searches:
- * 
+ *
  * @function module:jQuery.containsI
  * @example
  *  $("p:containsI('\\bup\\b')") (Matches "Up" or "up", but not "upper", "wakeup", etc.)
@@ -666,30 +667,32 @@
  *  $("p:containsCI('^\\s*Stocks?')") (Matches "stock" or "stocks", but only at the start of the paragraph (ignoring any leading whitespace).)
  * @return selection of elements containing string (insensitively)
  */
-$.expr[":"].containsI = function(elem, i, match) {
+$.expr[':'].containsI = function(elem, i, match) {
     return (new RegExp (match[3], 'i')).test(elem.textContent || elem.innerText || '');
 };
 
+
 /**
  * finds elements that contain text starting with string
- * 
+ *
  * @function module:jQuery.startsWith
  * @example
  *  $(':startsWith(text)')
  * @return {object} selection of elements that have text starting with given string
  */
-$.expr[":"].startsWith = function(elem, i, match) {
+$.expr[':'].startsWith = function(elem, i, match) {
     return ( elem.textContent || elem.innerText || '' ).indexOf( match[3] ) === 0;
 };
 
+
 /**
  * convert a form's name/value pairs to a json object
- * 
+ *
  * @function module:jQuery.formToObject
- * @example 
+ * @example
  *  // captures the field/value set from #myform
  *  var formData = $('#myform').formToObject();
- * 
+ *
  * @return {object} a json representation of the form
  */
 $.fn.formToObject = function() {
@@ -709,16 +712,18 @@ $.fn.formToObject = function() {
    });
    return o;
 };
+
     };
     // support for requirejs
     if ( typeof define === 'function' && define.amd ) {
-        define(['jquery'], function ($) { 
-            return plugin($); 
+        define(['jquery'], function ($) {
+            return plugin($);
         } );
     } else {
         plugin(jQuery);
-    } 
+    }
 }());
+
 /**
  * Capitalizes the first letter of a string and downcases all the others.
  *
