@@ -56,7 +56,7 @@ Install the module with: `npm install undermore`
 
 ```javascript
 var _ = require('lodash');
-mixin(require('undermore'));
+_.mixin(require('undermore'));
 
 // get a random uuid
 var uuid = _.uuid();

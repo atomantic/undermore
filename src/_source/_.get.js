@@ -38,6 +38,6 @@ _.mixin({
         }
 
         // keep traversing
-        return _.get(obj[chain[0]], _.rest(chain), defaultValue);
+        return _.get(obj[chain[0]], _.drop(chain), defaultValue);
     }
 });
