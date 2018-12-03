@@ -1,9 +1,9 @@
-/*! undermore - v1.9.4 - 2018-11-27
+/*! undermore - v1.9.5 - 2018-12-03
 * https://github.com/atomantic/undermore
 * Copyright (c) 2018 Adam Eivy (@antic); Licensed MIT */
-/*! undermore - v1.9.2 - 2016-01-13
+/*! undermore - v1.9.5 - 2018-12-03
 * https://github.com/atomantic/undermore
-* Copyright (c) 2016 Adam Eivy (@antic); Licensed MIT */
+* Copyright (c) 2018 Adam Eivy (@antic); Licensed MIT */
 /*global Buffer,atob,btoa,escape,unescape*/
 /*jslint browser:true*/
 
@@ -232,7 +232,7 @@
      * @function module:undermore.get
      * @param {object} obj The object to traverse
      * @param {mixed} chain A string/array path to use for finding the end item (e.g. 'prop.child.end' or ['prop','child','end'])
-     * @param {mixed} defaultValue The object to traverse
+     * @param {mixed} defaultValue The default value to return if key does not exist
      * @return {mixed} the last item in the ks or the defaultValue
      * @example
      *  var obj = {
@@ -264,7 +264,7 @@
         }
 
         // keep traversing
-        return _.get(obj[chain[0]], _.rest(chain), defaultValue);
+        return _.get(obj[chain[0]], _.drop(chain), defaultValue);
     },
     /**
      * Get the requested key from the query string.
@@ -609,4 +609,3 @@
     _.mixin(mixins);
 
 }());
-
