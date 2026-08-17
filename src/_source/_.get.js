@@ -18,6 +18,10 @@ _.mixin({
      *  _.get(obj) === obj
      */
     get: function (obj, chain, defaultValue) {
+        if (typeof chain === 'undefined' || chain === null) {
+            return obj;
+        }
+
         if (typeof chain === 'string') {
             chain = chain.split('.');
         }

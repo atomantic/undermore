@@ -1,53 +1,42 @@
 {
   "name": "undermore",
-  "description": "additional mixins for underscore and lodash as a forkable collection box for your own js standard tools",
+  "description": "Deprecated utility mixins for Lodash",
   "version": "1.9.5",
   "homepage": "https://github.com/atomantic/undermore",
   "author": {
-    "name": "Adam Eivy (@antic)",
-    "url": "http://adameivy.com/"
+    "name": "Adam Eivy (@atomantic)",
+    "url": "https://adameivy.com/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/atomantic/undermore.git"
+    "url": "https://github.com/atomantic/undermore.git"
   },
   "bugs": {
     "url": "https://github.com/atomantic/undermore/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/atomantic/undermore/blob/master/LICENSE-MIT"
-    }
-  ],
   "license": "MIT",
   "main": "bin/undermore.js",
+  "files": [
+    "bin/undermore.js",
+    "LICENSE-MIT"
+  ],
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=20.19.0"
   },
   "scripts": {
-    "test": "gulp test"
+    "build": "node scripts/build.js",
+    "check:generated": "node scripts/build.js --check",
+    "lint": "eslint scripts test/node.test.js src/_source bin/undermore.js",
+    "test": "node --test test/node.test.js",
+    "verify": "npm run lint && npm run check:generated && npm test",
+    "prepack": "npm run verify"
   },
   "dependencies": {
-    "lodash": "^4.0.0"
+    "lodash": "^4.18.1"
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "event-stream": "3.3.2",
-    "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-concat-util": "^0.5.4",
-    "gulp-eslint": "^1.1.1",
-    "gulp-insert": "^0.5.0",
-    "gulp-jsdoc": "^0.1.3",
-    "gulp-qunit": "^1.3.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-rimraf": "^0.2.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.1",
-    "gulp-watch": "^4.3.5",
-    "jsdoc": "3.5.5",
-    "yargs": "^3.31.0"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.1"
   },
   "keywords": [
     "underscore",

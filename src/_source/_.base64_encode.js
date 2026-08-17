@@ -13,16 +13,16 @@ _.mixin({
      * @example _.base64_decode('✈') => '4pyI'
      */
     base64_encode: function(str) {
+        // allow node.js Buffer implementation if it exists
+        if (typeof Buffer !== 'undefined') {
+            var buffer = Buffer.isBuffer(str) ? str : Buffer.from(str.toString(), 'utf8');
+            return buffer.toString('base64');
+        }
         // allow browser implementation if it exists
-        // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
-        if (typeof btoa!=='undefined') {
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/btoa
+        if (typeof btoa !== 'undefined') {
             // first utf8 encode to keep from throwing an error if we are out of 0xFF
             return btoa(_.utf8_encode(str));
-        }
-        // allow node.js Buffer implementation if it exists
-        if (Buffer) {
-            var buffer = (str instanceof Buffer) ? str : new Buffer(str.toString(), 'binary');
-            return buffer.toString('base64');
         }
         // now roll our own
         // [https://gist.github.com/999166] by [https://github.com/nignag]

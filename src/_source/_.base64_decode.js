@@ -11,15 +11,15 @@ _.mixin({
      */
     base64_decode: function(str) {
 
-        // allow browser implementation if it exists
-        // https://developer.mozilla.org/en-US/docs/Web/API/window.btoa
-        if (typeof atob!=='undefined') {
-            // utf8 decode after the fact to make sure we convert > 0xFF to ascii
-            return _.utf8_decode(atob(str));
-        }
         // allow node.js Buffer implementation if it exists
-        if (Buffer) {
-            return new Buffer(str, 'base64').toString('binary');
+        if (typeof Buffer !== 'undefined') {
+            return Buffer.from(str, 'base64').toString('utf8');
+        }
+        // allow browser implementation if it exists
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/atob
+        if (typeof atob !== 'undefined') {
+            // utf8 decode after the fact to make sure we convert > 0xFF to unicode
+            return _.utf8_decode(atob(str));
         }
         // now roll our own
         // decoder

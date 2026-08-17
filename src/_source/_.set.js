@@ -39,6 +39,17 @@ _.mixin({
         if (typeof chain === 'string') {
             chain = chain.split('.');
         }
+
+        if (!_.isArray(chain) || chain.length === 0) {
+            return obj;
+        }
+
+        if (_.some(chain, function(part) {
+            return part === '__proto__' || part === 'constructor' || part === 'prototype';
+        })) {
+            return obj;
+        }
+
         var key = obj,
             length = chain.length - 1;
 
