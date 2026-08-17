@@ -1,4 +1,4 @@
-/*! undermore - v1.9.5
+/*! undermore - v2.0.0
  * https://github.com/atomantic/undermore
  * Copyright (c) 2013 Adam Eivy (@atomantic); Licensed MIT */
 /**
