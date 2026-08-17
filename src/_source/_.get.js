@@ -22,26 +22,25 @@ _.mixin({
             return obj;
         }
 
-        if (typeof chain === 'string') {
-            chain = chain.split('.');
-        }
-
-        // end of the line (found nothing)
-        if (obj === undefined) {
+        var path = normalizePath(chain);
+        if (path === null) {
             return defaultValue;
         }
 
-        // end of the line (found self)
-        if (chain.length === 0) {
-            return obj;
+        var current = obj;
+        for (var index = 0; index < path.length; index += 1) {
+            if (current === null || typeof current === 'undefined') {
+                return defaultValue;
+            }
+
+            var container = Object(current);
+            if (!hasOwn(container, path[index])) {
+                return defaultValue;
+            }
+
+            current = container[path[index]];
         }
 
-        // can't continue down the line any further (non-traversable)
-        if (obj === null) {
-            return defaultValue;
-        }
-
-        // keep traversing
-        return _.get(obj[chain[0]], _.drop(chain), defaultValue);
+        return typeof current === 'undefined' ? defaultValue : current;
     }
 });

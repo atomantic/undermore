@@ -25,15 +25,20 @@ _.mixin({
          });
 
          _.each(keys, function(key) {
-             if(_.isArray(object[key])) {
-                 sortedObj[key] = _.map(object[key], function(val) {
+             var originalValue = object[key];
+             var value;
+
+             if(_.isArray(originalValue)) {
+                 value = _.map(originalValue, function(val) {
                      return _.isObject(val) ? _.alphabetize(val) : val;
                  });
-             } else if(_.isObject(object[key])){
-                 sortedObj[key] = _.alphabetize(object[key]);
+             } else if(_.isObject(originalValue)){
+                 value = _.alphabetize(originalValue);
              } else {
-                 sortedObj[key] = object[key];
+                 value = originalValue;
              }
+
+             writeOwn(sortedObj, key, value);
          });
 
          return sortedObj;

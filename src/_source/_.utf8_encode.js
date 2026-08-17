@@ -14,6 +14,6 @@ _.mixin({
      */
     /*jshint +W100*/
     utf8_encode: function(str) {
-        return unescape(encodeURIComponent(str));
+        return Buffer.from(String(str), 'utf8').toString('latin1');
     }
 });

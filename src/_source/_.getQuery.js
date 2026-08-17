@@ -31,7 +31,7 @@ _.mixin({
             _.map(query, function (item) {
                 var param = item.split('=');
                 if (param.length === 2) {
-                    o[param[0]] = param[1];
+                    writeOwn(o, param[0], param[1]);
                 }
             });
         };
@@ -41,7 +41,7 @@ _.mixin({
                 parseIt();
             }
 
-            return typeof key === 'undefined' ? o : (typeof o[key] === 'undefined' ? defaultValue : o[key]);
+            return typeof key === 'undefined' ? o : (hasOwn(o, key) ? o[key] : defaultValue);
         };
     })()
 });

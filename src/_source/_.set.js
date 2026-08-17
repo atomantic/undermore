@@ -36,32 +36,34 @@ _.mixin({
      *  }));
      */
     set: function(obj, chain, value) {
-        if (typeof chain === 'string') {
-            chain = chain.split('.');
-        }
-
-        if (!_.isArray(chain) || chain.length === 0) {
-            return obj;
-        }
-
-        if (_.some(chain, function(part) {
-            return part === '__proto__' || part === 'constructor' || part === 'prototype';
-        })) {
+        var path = normalizePath(chain);
+        if (
+            path === null ||
+            path.length === 0 ||
+            obj === null ||
+            (typeof obj !== 'object' && typeof obj !== 'function')
+        ) {
             return obj;
         }
 
         var key = obj,
-            length = chain.length - 1;
+            length = path.length - 1;
 
         for (var i = 0; i < length; i++) {
-            if (typeof key[chain[i]] === 'undefined' || key[chain[i]] === null) {
-                key[chain[i]] = {};
+            var descriptor = Object.getOwnPropertyDescriptor(key, path[i]);
+            var next = descriptor && hasOwn(descriptor, 'value') ? descriptor.value : undefined;
+
+            if (next === null || (typeof next !== 'object' && typeof next !== 'function')) {
+                next = {};
+                if (!writeOwn(key, path[i], next)) {
+                    return obj;
+                }
             }
 
-            key = key[chain[i]];
+            key = next;
         }
 
-        key[chain[length]] = value;
+        writeOwn(key, path[length], value);
 
         return obj;
     }

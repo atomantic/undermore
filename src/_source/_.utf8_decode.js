@@ -14,6 +14,10 @@ _.mixin({
      */
     /*jshint +W100*/
     utf8_decode: function(str) {
-        return decodeURIComponent(escape(str));
+        try {
+            return utf8Decoder.decode(Buffer.from(String(str), 'latin1'));
+        } catch (error) {
+            throw new URIError('Malformed UTF-8 data', {cause: error});
+        }
     }
 });

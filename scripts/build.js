@@ -8,12 +8,16 @@ var packageJson = require(path.join(root, 'package.json'));
 var sourceDirectory = path.join(root, 'src', '_source');
 var checkOnly = process.argv.includes('--check');
 
+function normalizeLineEndings(source) {
+    return source.replace(/\r\n?/g, '\n');
+}
+
 function read(relativePath) {
-    return fs.readFileSync(path.join(root, relativePath), 'utf8');
+    return normalizeLineEndings(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 }
 
 function extractMixin(filename) {
-    var source = fs.readFileSync(path.join(sourceDirectory, filename), 'utf8');
+    var source = normalizeLineEndings(fs.readFileSync(path.join(sourceDirectory, filename), 'utf8'));
     var startMarker = '_.mixin({';
     var start = source.indexOf(startMarker);
     var end = source.lastIndexOf('});');

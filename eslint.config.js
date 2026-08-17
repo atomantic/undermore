@@ -17,17 +17,17 @@ module.exports = [
             globals: {
                 Buffer: 'readonly',
                 __dirname: 'readonly',
-                atob: 'readonly',
-                btoa: 'readonly',
-                chars: 'readonly',
                 console: 'readonly',
-                escape: 'readonly',
                 global: 'readonly',
+                hasOwn: 'readonly',
                 module: 'readonly',
+                nodeCrypto: 'readonly',
+                normalizePath: 'readonly',
                 process: 'readonly',
                 require: 'readonly',
-                unescape: 'readonly',
+                utf8Decoder: 'readonly',
                 window: 'readonly',
+                writeOwn: 'readonly',
                 _: 'readonly'
             }
         },

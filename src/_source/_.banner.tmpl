@@ -6,41 +6,86 @@
  * ONE MIXIN PER FILE (to allow custom builds)
  */
 
- /**
- * The ecmascript String prototype
- * @module String
- * @see {@link http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.3.1 ECMASCript 5.1 String.prototype}
- */
-
 /**
- * undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
- * that really should just already be there--these are tiny, unit tested additions to underscore.js, which
- * reside in _.* -- e.g. _.uuid()
+ * Undermore provides a historical collection of Lodash mixins.
  *
  * @module undermore
- * @link https://github.com/atomantic/undermore.js
+ * @link https://github.com/atomantic/undermore
  * @copyright 2013 Adam Eivy (@antic)
  * @license MIT
- *
- * @param {object} exports The location of the underscore library to mixin all of the undermore methods
  */
 (function() {
 
     'use strict';
 
-    // Node.js support
-    var _;
+    var _ = require('lodash').runInContext();
     var mixins = {};
-    if(typeof module !== 'undefined' && module.exports){
-        _ = require('lodash').runInContext();
-        module.exports = mixins;
-    }
-    else{
-        _ = window._;
+    var nodeCrypto = require('node:crypto');
+    var Utf8Decoder = require('node:util').TextDecoder;
+    var utf8Decoder = new Utf8Decoder('utf-8', {fatal: true});
+
+    module.exports = mixins;
+
+    function hasOwn(object, key) {
+        return Object.prototype.hasOwnProperty.call(object, key);
     }
 
-    // chars for base64 methods
-    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    function normalizePath(chain) {
+        if (typeof chain === 'string') {
+            chain = chain.split('.');
+        }
+
+        if (!Array.isArray(chain)) {
+            return null;
+        }
+
+        var normalized = [];
+        for (var index = 0; index < chain.length; index += 1) {
+            var part = chain[index];
+
+            if (typeof part === 'number') {
+                part = String(part);
+            } else if (typeof part !== 'string' && typeof part !== 'symbol') {
+                return null;
+            }
+
+            if (
+                typeof part === 'string' &&
+                (part === '__proto__' || part === 'constructor' || part === 'prototype')
+            ) {
+                return null;
+            }
+
+            normalized.push(part);
+        }
+
+        return normalized;
+    }
+
+    function writeOwn(object, key, value) {
+        var descriptor = Object.getOwnPropertyDescriptor(object, key);
+
+        if (descriptor && hasOwn(descriptor, 'value')) {
+            if (!descriptor.writable) {
+                return false;
+            }
+
+            Object.defineProperty(object, key, {value: value});
+            return true;
+        }
+
+        if (descriptor && !descriptor.configurable) {
+            return false;
+        }
+
+        Object.defineProperty(object, key, {
+            configurable: true,
+            enumerable: descriptor ? descriptor.enumerable : true,
+            value: value,
+            writable: true
+        });
+        return true;
+    }
 
 
     // add the mixins to underscore

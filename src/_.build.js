@@ -9,41 +9,86 @@
  * ONE MIXIN PER FILE (to allow custom builds)
  */
 
- /**
- * The ecmascript String prototype
- * @module String
- * @see {@link http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.3.1 ECMASCript 5.1 String.prototype}
- */
-
 /**
- * undermore fills in the gaps where standards lag behind by providing a lot of tiny functions
- * that really should just already be there--these are tiny, unit tested additions to underscore.js, which
- * reside in _.* -- e.g. _.uuid()
+ * Undermore provides a historical collection of Lodash mixins.
  *
  * @module undermore
- * @link https://github.com/atomantic/undermore.js
+ * @link https://github.com/atomantic/undermore
  * @copyright 2013 Adam Eivy (@antic)
  * @license MIT
- *
- * @param {object} exports The location of the underscore library to mixin all of the undermore methods
  */
 (function() {
 
     'use strict';
 
-    // Node.js support
-    var _;
+    var _ = require('lodash').runInContext();
     var mixins = {};
-    if(typeof module !== 'undefined' && module.exports){
-        _ = require('lodash').runInContext();
-        module.exports = mixins;
-    }
-    else{
-        _ = window._;
+    var nodeCrypto = require('node:crypto');
+    var Utf8Decoder = require('node:util').TextDecoder;
+    var utf8Decoder = new Utf8Decoder('utf-8', {fatal: true});
+
+    module.exports = mixins;
+
+    function hasOwn(object, key) {
+        return Object.prototype.hasOwnProperty.call(object, key);
     }
 
-    // chars for base64 methods
-    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    function normalizePath(chain) {
+        if (typeof chain === 'string') {
+            chain = chain.split('.');
+        }
+
+        if (!Array.isArray(chain)) {
+            return null;
+        }
+
+        var normalized = [];
+        for (var index = 0; index < chain.length; index += 1) {
+            var part = chain[index];
+
+            if (typeof part === 'number') {
+                part = String(part);
+            } else if (typeof part !== 'string' && typeof part !== 'symbol') {
+                return null;
+            }
+
+            if (
+                typeof part === 'string' &&
+                (part === '__proto__' || part === 'constructor' || part === 'prototype')
+            ) {
+                return null;
+            }
+
+            normalized.push(part);
+        }
+
+        return normalized;
+    }
+
+    function writeOwn(object, key, value) {
+        var descriptor = Object.getOwnPropertyDescriptor(object, key);
+
+        if (descriptor && hasOwn(descriptor, 'value')) {
+            if (!descriptor.writable) {
+                return false;
+            }
+
+            Object.defineProperty(object, key, {value: value});
+            return true;
+        }
+
+        if (descriptor && !descriptor.configurable) {
+            return false;
+        }
+
+        Object.defineProperty(object, key, {
+            configurable: true,
+            enumerable: descriptor ? descriptor.enumerable : true,
+            value: value,
+            writable: true
+        });
+        return true;
+    }
 
 
     // add the mixins to underscore
@@ -74,103 +119,73 @@
          });
 
          _.each(keys, function(key) {
-             if(_.isArray(object[key])) {
-                 sortedObj[key] = _.map(object[key], function(val) {
+             var originalValue = object[key];
+             var value;
+
+             if(_.isArray(originalValue)) {
+                 value = _.map(originalValue, function(val) {
                      return _.isObject(val) ? _.alphabetize(val) : val;
                  });
-             } else if(_.isObject(object[key])){
-                 sortedObj[key] = _.alphabetize(object[key]);
+             } else if(_.isObject(originalValue)){
+                 value = _.alphabetize(originalValue);
              } else {
-                 sortedObj[key] = object[key];
+                 value = originalValue;
              }
+
+             writeOwn(sortedObj, key, value);
          });
 
          return sortedObj;
      },
 /**
-     * base64_decode decode a string. This is not a strict polyfill for window.atob
-     * because it handles unicode characters
+     * Decode a Base64-encoded UTF-8 string.
      *
      * @function module:undermore.base64_decode
-     * @link https://github.com/davidchambers/Base64.js
      * @param {string} str The string to decode
      * @return {string}
      * @example _.base64_decode('4pyI') => '✈'
      */
     base64_decode: function(str) {
+        if (typeof str !== 'string') {
+            throw new TypeError('Base64 input must be a string');
+        }
 
-        // allow node.js Buffer implementation if it exists
-        if (typeof Buffer !== 'undefined') {
-            return Buffer.from(str, 'base64').toString('utf8');
-        }
-        // allow browser implementation if it exists
-        // https://developer.mozilla.org/en-US/docs/Web/API/Window/atob
-        if (typeof atob !== 'undefined') {
-            // utf8 decode after the fact to make sure we convert > 0xFF to unicode
-            return _.utf8_decode(atob(str));
-        }
-        // now roll our own
-        // decoder
-        // [https://gist.github.com/1020396] by [https://github.com/atk]
-        str = str.replace(/=+$/, '');
-        for (
-            // initialize result and counters
-            var bc = 0, bs, buffer, idx = 0, output = '';
-            // get next character
-            buffer = str.charAt(idx++);
-            // character found in table? initialize bit storage and add its ascii value;
-            ~ buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
-                // and if not first of each 4 characters,
-                // convert the first 8 bits to one ascii character
-                bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+        var normalized = str.replace(/[\t\n\f\r ]/g, '');
+        var paddingIndex = normalized.indexOf('=');
+        var paddingLength = paddingIndex === -1 ? 0 : normalized.length - paddingIndex;
+
+        if (
+            !/^[A-Za-z0-9+/]*={0,2}$/.test(normalized) ||
+            normalized.length % 4 === 1 ||
+            (paddingLength > 0 && normalized.length % 4 !== 0) ||
+            (paddingLength === 1 && paddingIndex % 4 !== 3) ||
+            (paddingLength === 2 && paddingIndex % 4 !== 2)
         ) {
-            // try to find character in table (0-63, not found => -1)
-            buffer = chars.indexOf(buffer);
+            throw new TypeError('Invalid Base64 input');
         }
-        return output;
+
+        if (paddingLength === 0) {
+            normalized += '='.repeat((4 - normalized.length % 4) % 4);
+        }
+
+        var buffer = Buffer.from(normalized, 'base64');
+        if (buffer.toString('base64') !== normalized) {
+            throw new TypeError('Invalid Base64 input');
+        }
+
+        return _.utf8_decode(buffer.toString('latin1'));
     },
 /**
-     * base64_encode encode a string. This is not a strict window.btoa polyfill
-     * because it handles utf8 strings (unlike the window.btoa spec)
-     *
-     * Note: it might be work including an urlsafe flag
-     * (see https://github.com/knowledgecode/base64.js)
+     * Base64-encode a UTF-8 string or Buffer.
      *
      * @function module:undermore.base64_encode
-     * @link https://github.com/davidchambers/Base64.js
-     * @param {string} str The string to encode
+     * @param {string|Buffer} str The value to encode
      * @return {string}
      * @example _.base64_decode('✈') => '4pyI'
      */
     base64_encode: function(str) {
-        // allow node.js Buffer implementation if it exists
-        if (typeof Buffer !== 'undefined') {
-            var buffer = Buffer.isBuffer(str) ? str : Buffer.from(str.toString(), 'utf8');
-            return buffer.toString('base64');
-        }
-        // allow browser implementation if it exists
-        // https://developer.mozilla.org/en-US/docs/Web/API/Window/btoa
-        if (typeof btoa !== 'undefined') {
-            // first utf8 encode to keep from throwing an error if we are out of 0xFF
-            return btoa(_.utf8_encode(str));
-        }
-        // now roll our own
-        // [https://gist.github.com/999166] by [https://github.com/nignag]
-        for (
-            // initialize result and counter
-            // note: chars is defined in the _.banner.tmpl
-            var block, charCode, idx = 0, map = chars, output = '';
-            // if the next input index does not exist:
-            //   change the mapping table to "="
-            //   check if d has no fractional digits
-            str.charAt(idx | 0) || (map = '=', idx % 1);
-            // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
-            output += map.charAt(63 & block >> 8 - idx % 1 * 8)
-        ) {
-            charCode = str.charCodeAt(idx += 3 / 4);
-            block = block << 8 | charCode;
-        }
-        return output;
+        var buffer = Buffer.isBuffer(str) ? str : Buffer.from(String(str), 'utf8');
+        return buffer.toString('base64');
     },
 /**
      * empty event handler function, which simply prevents default handling
@@ -242,27 +257,26 @@
             return obj;
         }
 
-        if (typeof chain === 'string') {
-            chain = chain.split('.');
-        }
-
-        // end of the line (found nothing)
-        if (obj === undefined) {
+        var path = normalizePath(chain);
+        if (path === null) {
             return defaultValue;
         }
 
-        // end of the line (found self)
-        if (chain.length === 0) {
-            return obj;
+        var current = obj;
+        for (var index = 0; index < path.length; index += 1) {
+            if (current === null || typeof current === 'undefined') {
+                return defaultValue;
+            }
+
+            var container = Object(current);
+            if (!hasOwn(container, path[index])) {
+                return defaultValue;
+            }
+
+            current = container[path[index]];
         }
 
-        // can't continue down the line any further (non-traversable)
-        if (obj === null) {
-            return defaultValue;
-        }
-
-        // keep traversing
-        return _.get(obj[chain[0]], _.drop(chain), defaultValue);
+        return typeof current === 'undefined' ? defaultValue : current;
     },
 /**
      * Get the requested key from the query string.
@@ -296,7 +310,7 @@
             _.map(query, function (item) {
                 var param = item.split('=');
                 if (param.length === 2) {
-                    o[param[0]] = param[1];
+                    writeOwn(o, param[0], param[1]);
                 }
             });
         };
@@ -306,7 +320,7 @@
                 parseIt();
             }
 
-            return typeof key === 'undefined' ? o : (typeof o[key] === 'undefined' ? defaultValue : o[key]);
+            return typeof key === 'undefined' ? o : (hasOwn(o, key) ? o[key] : defaultValue);
         };
     })(),
 /**
@@ -378,32 +392,34 @@
      *  }));
      */
     set: function(obj, chain, value) {
-        if (typeof chain === 'string') {
-            chain = chain.split('.');
-        }
-
-        if (!_.isArray(chain) || chain.length === 0) {
-            return obj;
-        }
-
-        if (_.some(chain, function(part) {
-            return part === '__proto__' || part === 'constructor' || part === 'prototype';
-        })) {
+        var path = normalizePath(chain);
+        if (
+            path === null ||
+            path.length === 0 ||
+            obj === null ||
+            (typeof obj !== 'object' && typeof obj !== 'function')
+        ) {
             return obj;
         }
 
         var key = obj,
-            length = chain.length - 1;
+            length = path.length - 1;
 
         for (var i = 0; i < length; i++) {
-            if (typeof key[chain[i]] === 'undefined' || key[chain[i]] === null) {
-                key[chain[i]] = {};
+            var descriptor = Object.getOwnPropertyDescriptor(key, path[i]);
+            var next = descriptor && hasOwn(descriptor, 'value') ? descriptor.value : undefined;
+
+            if (next === null || (typeof next !== 'object' && typeof next !== 'function')) {
+                next = {};
+                if (!writeOwn(key, path[i], next)) {
+                    return obj;
+                }
             }
 
-            key = key[chain[i]];
+            key = next;
         }
 
-        key[chain[length]] = value;
+        writeOwn(key, path[length], value);
 
         return obj;
     },
@@ -422,7 +438,11 @@
      */
     /*jshint +W100*/
     utf8_decode: function(str) {
-        return decodeURIComponent(escape(str));
+        try {
+            return utf8Decoder.decode(Buffer.from(String(str), 'latin1'));
+        } catch (error) {
+            throw new URIError('Malformed UTF-8 data', {cause: error});
+        }
     },
 /*jshint -W100*/
     /**
@@ -439,10 +459,10 @@
      */
     /*jshint +W100*/
     utf8_encode: function(str) {
-        return unescape(encodeURIComponent(str));
+        return Buffer.from(String(str), 'utf8').toString('latin1');
     },
 /**
-     * generate a random v4 UUID of the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx,
+     * generate a cryptographically random v4 UUID of the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx,
      * where each x is replaced with a random hexadecimal digit from 0 to f,
      * and y is replaced with a random hexadecimal digit from 8 to b.
      *
@@ -453,15 +473,10 @@
      *  var uuid = _.uuid();
      */
     uuid: function() {
-        var d = new Date().getTime();
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = (d + Math.random() * 16) % 16 | 0;
-            d = Math.floor(d / 16);
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
+        return nodeCrypto.randomUUID();
     },
 /**
-     * Compare a semantic version number string to another:
+     * Compare one Semantic Versioning 2.0.0 string to another:
      *
      * 1.2.3-alpha < 1.2.3-alpha.1 < 1.2.3-alpha.beta < 1.2.3-beta < 1.2.3-beta.2 < 1.2.3-beta.11 < 1.2.3-rc.1 < 1.2.3
      *
@@ -485,134 +500,114 @@
      *  ok(_.version('1.2.3-rc.1','<','1.2.3'));
      */
     version: function(left, oper, right) {
+        var expression = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
 
-        // is equal acceptable?
-        var equal = oper.indexOf('=')!==-1,
-            // we will remove all build metadata
-            regMeta = /\+.*$/;
-
-        // strip build metadata (not to be used for comparison)
-        // e.g. '1.2.3+20140101081413' => '1.2.3'
-        left = left.replace(regMeta);
-        right = right.replace(regMeta);
-
-        // see if we can bail early
-        if(equal && left===right){
-            // versions are exactly the same and that's good enough for us
-            return true;
-        }
-
-        // use regex here instead of a series of splits since .match will return a
-        // consistent array length and let use more easily parse out the results
-        //
-        /*
-         /^                     // start of the line
-         (\d+).(\d+).(\d+)      // 1.2.3
-         (?:-([a-z0-9.]+))?     // possible -pre.alpha.numeric.1.2.thing.and.such
-                                // NOTE: we don't require termination of the string here with "$"
-                                // so that we can gracefullly handle version strings that don't comply
-                                // fully with SemVer (e.g. 2.0.2.rc1)
-         /i,                    // case insensitive
-         */
-        var regSemVer = /^(\d+).(\d+).(\d+)(?:-([a-z0-9.]+))?/i,
-            // produces a match array of [full, major, minor, patch, pre]
-            // ["1.2.3-rc.1", "1", "2", "3", "rc.1"]
-            // or
-            // ["1.2.3", "1", "2", "3", undefined]
-            arrLeft = left.match(regSemVer),
-            arrRight = right.match(regSemVer),
-            preLeft = arrLeft[4],
-            preRight = arrRight[4],
-            i,
-            l,
-            r,
-            // have we hit a difference?
-            hit;
-
-        // skip full SemVer match (index 0) and loop to compare major.minor.patch
-        for(i=1; i<4; i++){
-            // 1.2.1 is greater than 1.2
-            // attempt to parseInt on it, but if it's undefined:
-            // e.g. 1.2.1 vs 1.2 (and we are comparing patch)
-            // we will end up with l=1 and r=NaN, which won't compare right
-            // so use 0 as a non-existent patch is < any existing patch
-            l = parseInt(arrLeft[i], 10) || 0;
-            r = parseInt(arrRight[i], 10) || 0;
-
-            if(l!==r){ // there's a difference
-                hit = true; // we don't need to check anything else
-                break;
+        function parse(version) {
+            if (typeof version !== 'string') {
+                return null;
             }
-        }
-        if(!hit){
-            // all the same so far
-            // test pre-release version
-            // at this point the rule of placement existence
-            // causing higher version shifts temporarily
-            // 1.2 < 1.2.3 but 1.2.3 > 1.2.3-pre
 
-            // if there is no pre-release on one side, that side is greater
-            // 1.2.3-pre is an earlier version than 1.2.3 (1.2.3.112 < 1.2.3.Infinity)
-            if(!preLeft){
-                l = Infinity;
-                if(preRight){
-                    // left > right by not existing
-                    r = 0; // kill the value
-                    hit = true;
+            var match = version.match(expression);
+            if (!match) {
+                return null;
+            }
+
+            var prerelease = match[4] ? match[4].split('.') : [];
+            if (_.some(prerelease, function(identifier) {
+                return /^\d+$/.test(identifier) && identifier.length > 1 && identifier.charAt(0) === '0';
+            })) {
+                return null;
+            }
+
+            return {
+                core: match.slice(1, 4),
+                prerelease: prerelease
+            };
+        }
+
+        function compareNumeric(leftNumber, rightNumber) {
+            if (leftNumber.length !== rightNumber.length) {
+                return leftNumber.length < rightNumber.length ? -1 : 1;
+            }
+
+            if (leftNumber === rightNumber) {
+                return 0;
+            }
+
+            return leftNumber < rightNumber ? -1 : 1;
+        }
+
+        function compare(leftVersion, rightVersion) {
+            var index;
+            for (index = 0; index < 3; index += 1) {
+                var coreComparison = compareNumeric(leftVersion.core[index], rightVersion.core[index]);
+                if (coreComparison !== 0) {
+                    return coreComparison;
                 }
             }
-            if(!preRight){
-                r = Infinity;
-                if(preLeft){
-                    // right > left by not existing
-                    l = 0;
-                    hit = true;
+
+            if (leftVersion.prerelease.length === 0 || rightVersion.prerelease.length === 0) {
+                if (leftVersion.prerelease.length === rightVersion.prerelease.length) {
+                    return 0;
+                }
+
+                return leftVersion.prerelease.length === 0 ? 1 : -1;
+            }
+
+            var length = Math.max(leftVersion.prerelease.length, rightVersion.prerelease.length);
+            for (index = 0; index < length; index += 1) {
+                if (index >= leftVersion.prerelease.length) {
+                    return -1;
+                }
+                if (index >= rightVersion.prerelease.length) {
+                    return 1;
+                }
+
+                var leftIdentifier = leftVersion.prerelease[index];
+                var rightIdentifier = rightVersion.prerelease[index];
+                var leftNumeric = /^\d+$/.test(leftIdentifier);
+                var rightNumeric = /^\d+$/.test(rightIdentifier);
+
+                if (leftNumeric && rightNumeric) {
+                    var numericComparison = compareNumeric(leftIdentifier, rightIdentifier);
+                    if (numericComparison !== 0) {
+                        return numericComparison;
+                    }
+                } else if (leftNumeric !== rightNumeric) {
+                    return leftNumeric ? -1 : 1;
+                } else if (leftIdentifier !== rightIdentifier) {
+                    return leftIdentifier < rightIdentifier ? -1 : 1;
                 }
             }
-            if(!preLeft && !preRight){
-                hit = true; // both are Infinity, no reason to try to split and compare parts
-            }
-        }
-        if(!hit){
-            // split the pre-release version and compare each part ([0-9a-zA-Z.]+)
-            var pl = preLeft.split('.'),
-                pr = preRight.split('.'),
-                lenL = pl.length,
-                lenR = pr.length,
-                // we need to set the iteration limit to the longest one
-                // (but we will stop 1 after the shortest)
-                iters = lenL > lenR ? lenL : lenR;
-            for(i=0; i<iters; i++){
-                // pre-release part either won't exist, in which case
-                // we will use -1 as the value (to mark non-existence as lower priority than existence)
-                // if it's a number, we can parseInt to get an int for comparison
-                // else it will become NaN
-                // and we try to charCodeAt to convert the [a-zA-Z] to a number
-                // e.g. 'alpha' => 97, 'beta' => 98, 'rc' => 114
-                l = (i >= lenL) ? -1 : parseInt(pl[i],10) || pl[i].charCodeAt();
-                r = (i >= lenR) ? -1 : parseInt(pr[i],10) || pr[i].charCodeAt();
-                if(l!==r){
-                    break;
-                }
-            }
+
+            return 0;
         }
 
-        // at this point, l and r will be the first number in position that was not the same
-        // or we will have made it through the loop and all were identical
-
-        if(
-            // equal
-            (equal && l===r) ||
-            // left is greater
-            (oper.indexOf('>')!==-1 && l > r) ||
-            // right is greater
-            (oper.indexOf('<')!==-1 && l < r)
-        ){
-            return true;
+        if (!['=', '==', '===', '>', '>=', '<', '<='].includes(oper)) {
+            return false;
         }
 
-        // not the droid we are looking for
-        return false;
+        var parsedLeft = parse(left);
+        var parsedRight = parse(right);
+        if (!parsedLeft || !parsedRight) {
+            return false;
+        }
+
+        var result = compare(parsedLeft, parsedRight);
+        if (oper === '=' || oper === '==' || oper === '===') {
+            return result === 0;
+        }
+        if (oper === '>') {
+            return result > 0;
+        }
+        if (oper === '>=') {
+            return result >= 0;
+        }
+        if (oper === '<') {
+            return result < 0;
+        }
+
+        return result <= 0;
     }
 }); // mixin
 

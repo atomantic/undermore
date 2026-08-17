@@ -35,7 +35,7 @@ _.mixin(require('undermore'));
 var id = _.uuid();
 ```
 
-Version 2.0.0 requires Node.js 20.19 or newer. It updates the runtime dependency, removes the obsolete Gulp/PhantomJS development stack and vendored browser site, adds current automated verification, and prevents prototype pollution through Undermore's `set` mixin. The old browser download builder, jQuery extensions, and prototype polyfills have been retired.
+Version 2.0.0 supports Node.js 20.19–20.x, 22.13–22.x, and 24 or newer. It updates the runtime dependency, removes the obsolete Gulp/PhantomJS development stack and vendored browser site, adds current automated verification, prevents prototype pollution through Undermore's object helpers, and replaces predictable UUIDs with cryptographically random values. The old browser download builder, jQuery extensions, and prototype polyfills have been retired.
 
 ## Final verification
 

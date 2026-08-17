@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/atomantic/undermore.git"
+    "url": "git+https://github.com/atomantic/undermore.git"
   },
   "bugs": {
     "url": "https://github.com/atomantic/undermore/issues"
@@ -21,7 +21,7 @@
     "LICENSE-MIT"
   ],
   "engines": {
-    "node": ">=20.19.0"
+    "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "scripts": {
     "build": "node scripts/build.js",
@@ -48,5 +48,8 @@
     "semver",
     "uuid",
     "base64"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

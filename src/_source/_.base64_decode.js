@@ -1,44 +1,40 @@
 _.mixin({
     /**
-     * base64_decode decode a string. This is not a strict polyfill for window.atob
-     * because it handles unicode characters
+     * Decode a Base64-encoded UTF-8 string.
      *
      * @function module:undermore.base64_decode
-     * @link https://github.com/davidchambers/Base64.js
      * @param {string} str The string to decode
      * @return {string}
      * @example _.base64_decode('4pyI') => '✈'
      */
     base64_decode: function(str) {
+        if (typeof str !== 'string') {
+            throw new TypeError('Base64 input must be a string');
+        }
 
-        // allow node.js Buffer implementation if it exists
-        if (typeof Buffer !== 'undefined') {
-            return Buffer.from(str, 'base64').toString('utf8');
-        }
-        // allow browser implementation if it exists
-        // https://developer.mozilla.org/en-US/docs/Web/API/Window/atob
-        if (typeof atob !== 'undefined') {
-            // utf8 decode after the fact to make sure we convert > 0xFF to unicode
-            return _.utf8_decode(atob(str));
-        }
-        // now roll our own
-        // decoder
-        // [https://gist.github.com/1020396] by [https://github.com/atk]
-        str = str.replace(/=+$/, '');
-        for (
-            // initialize result and counters
-            var bc = 0, bs, buffer, idx = 0, output = '';
-            // get next character
-            buffer = str.charAt(idx++);
-            // character found in table? initialize bit storage and add its ascii value;
-            ~ buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
-                // and if not first of each 4 characters,
-                // convert the first 8 bits to one ascii character
-                bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+        var normalized = str.replace(/[\t\n\f\r ]/g, '');
+        var paddingIndex = normalized.indexOf('=');
+        var paddingLength = paddingIndex === -1 ? 0 : normalized.length - paddingIndex;
+
+        if (
+            !/^[A-Za-z0-9+/]*={0,2}$/.test(normalized) ||
+            normalized.length % 4 === 1 ||
+            (paddingLength > 0 && normalized.length % 4 !== 0) ||
+            (paddingLength === 1 && paddingIndex % 4 !== 3) ||
+            (paddingLength === 2 && paddingIndex % 4 !== 2)
         ) {
-            // try to find character in table (0-63, not found => -1)
-            buffer = chars.indexOf(buffer);
+            throw new TypeError('Invalid Base64 input');
         }
-        return output;
+
+        if (paddingLength === 0) {
+            normalized += '='.repeat((4 - normalized.length % 4) % 4);
+        }
+
+        var buffer = Buffer.from(normalized, 'base64');
+        if (buffer.toString('base64') !== normalized) {
+            throw new TypeError('Invalid Base64 input');
+        }
+
+        return _.utf8_decode(buffer.toString('latin1'));
     }
 });
